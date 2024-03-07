@@ -56,7 +56,8 @@
 											$max_run = mysqli_query($con, $max_semester);
 											$row = mysqli_fetch_array($max_run);
 											$semester = $row['semester'];
-											$query="select sc.subject_code,cs.subject_name,sc.semester,cs.credit_hours, sc.roll_no, sc.semester from student_courses sc inner join course_subjects cs on sc.subject_code=cs.subject_code where sc.roll_no='$roll_no' and sc.semester = $semester";
+											$query="select sc.subject_code,cs.subject_name,sc.semester,cs.credit_hours, sc.roll_no, sc.semester from student_courses sc inner join course_subjects cs on sc.subject_code=cs.subject_code where sc.roll_no='$roll_no' and sc.semester = '$semester'";
+											// $query="select sc.subject_code,cs.subject_name,sc.semester,cs.credit_hours, sc.roll_no, sc.semester from student_courses sc inner join course_subjects cs on sc.subject_code=cs.subject_code where sc.roll_no='$roll_no' and sc.semester = $semester";
 											$run=mysqli_query($con,$query);
 											while ($row=mysqli_fetch_array($run)) { ?>								
 										<tr>

@@ -80,6 +80,13 @@
               <i class="fa fa-key mr-2" aria-hidden="true"></i> Manage Account
             </a>
           </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../admin/admin-password.php">
+              <span data-feather="layers"></span>
+              <i class="fa fa-key mr-2" aria-hidden="true"></i> Change Password
+            </a>
+          </li>
         </ul>
       </div>
     </nav>

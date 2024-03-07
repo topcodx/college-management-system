@@ -3,9 +3,9 @@
     <div class="container">
         <div class="row">
           <div class="col-md-3 col-sm-6 col-xs-12 segment-one md-mb-30 sm-mb-30">
-            <h3>Imperial College</h3>
-            <p>This Project has been made by Muhammad Husnain Raza with the help of 
-              my Allah Almighty.
+            <h3>VMJ UNIVERCITY</h3>
+            <p>This Project has been made by Vidhi Jogani, Manjari Desai
+              and also Janvi Anghan.
               The prupose of this project is Learning Computer Languages.
               I hope you realy enjoyed to visit this project. Thanks!
             </p>
@@ -13,7 +13,7 @@
           <div class="col-md-2 col-sm-6 col-xs-12 segment-two md-mb-30 sm-mb-30">
             <h2>Quick Links</h2>
             <ul>
-              <li><a href="">About ICBS</a></li>
+              <li><a href="">About VMJ</a></li>
               <li><a href="">Admissions Policy</a></li>
               <li><a href="">Apply for Admission</a></li>
               <li><a href="">Download Prospectus</a></li>
@@ -33,13 +33,13 @@
           </div>  
           <div class="col-md-3 col-sm-6 col-xs-12 segment-two md-mb-30 sm-mb-30">
             <h2>CONTACT DETAILS</h2>
-              <p>Address: Imperial College of Business Studies,
-                  Bahria Town, Shahkam Chowk, Canal Bank Road,53720 Lahore – Pakistan</p>
-              <p>Telephones: (+92 42) 35978525-32</p>
-              <p>E-mail: admissions@imperial.edu.pk</p>
+              <p>Address: VMJ UNIVERCITY of Business Computers,
+                  Sitanagar Chowk,Ramnagar Road,Nana varchha,Surat 395006 Gujarat – India</p>
+              <p>Telephones: (+91) 1800 192 1800</p>
+              <p>E-mail: admissions@VMJ.edu.pk</p>
         </div>
       </div>
     </div>
     </div>
-  <p class="footer-bottom-text">CopyRights © reserved by Raza Programming and Code Academia.2020</p>
+  <p class="footer-bottom-text">CopyRights © reserved by VMJ.2024</p>
 </footer>

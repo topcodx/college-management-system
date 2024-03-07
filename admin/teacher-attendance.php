@@ -98,6 +98,7 @@ if (isset($_POST['sub'])) {
 											<td class="text-center"><?php echo "1/1" ?></td>
 											<td><?php echo "50% of 100%" ?></td>
 											<td>Present<input type="checkbox" name="attendance" value="1">Absent<input type="checkbox" name="attendance" value="0" ></td>
+										
 										</tr>
 										
 								<?php		

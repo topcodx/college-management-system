@@ -8,7 +8,7 @@
 	margin-left:auto;
 ">
 			<h1>FACULTIES</h1>
-			<p>ICBS serves the national and international community through a broad spectrum of undergraduate studies..</p>
+			<p>VMJ serves the national and international community through a broad spectrum of undergraduate studies..</p>
 			<div class="row pt-3 pb-3">
 				<div class="col-lg-3 col-md-3 col-sm-12 col-10 m-auto">
 					<div class="card card-margin">
