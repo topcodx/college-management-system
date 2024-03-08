@@ -15,7 +15,7 @@
 					<h4 class="dean-message-heading mt-3">Dean's Message</h4>
 					<div class="col-lg-12 text-justify">
 						<p>
-							It is a pleasure to welcome the prospective candidates and their parents/guardians to the ICBS, Faculty of Engineering & Technology (FOE&T) comprising of three Departments of Engineering i.e. Civil, Electrical and Mechanical. Selecting an institution for undergraduate’s studies is an important decision you have to make and the primary purpose of the information given in this prospectus is to give a feel of what it might be like to study at FOE&T. Let me assure you that we are imparting engineering education at par with all other institute and all three undergraduate engineering programs are accredited by Pakistan Engineering Council and recognized by Higher Education Commission of Pakistan.
+							It is a pleasure to welcome the prospective candidates and their parents/guardians to the VMJ, Faculty of Engineering & Technology (FOE&T) comprising of three Departments of Engineering i.e. Civil, Electrical and Mechanical. Selecting an institution for undergraduate’s studies is an important decision you have to make and the primary purpose of the information given in this prospectus is to give a feel of what it might be like to study at FOE&T. Let me assure you that we are imparting engineering education at par with all other institute and all three undergraduate engineering programs are accredited by Pakistan Engineering Council and recognized by Higher Education Commission of Pakistan.
 						</p>
 						<p>
 							FOE&T has always endeavored to empower the graduates with knowledge and skills.
@@ -40,7 +40,7 @@
 					<h4 class="dean-message-heading mt-3">Dean's Message</h4>
 					<div class="col-lg-12 text-justify">
 						<p>
-							It is a pleasure to welcome the prospective candidates and their parents/guardians to the ICBS, Faculty of Engineering & Technology (FOE&T) comprising of three Departments of Engineering i.e. Civil, Electrical and Mechanical. Selecting an institution for undergraduate’s studies is an important decision you have to make and the primary purpose of the information given in this prospectus is to give a feel of what it might be like to study at FOE&T. Let me assure you that we are imparting engineering education at par with all other institute and all three undergraduate engineering programs are accredited by Pakistan Engineering Council and recognized by Higher Education Commission of Pakistan.
+							It is a pleasure to welcome the prospective candidates and their parents/guardians to the VMJ, Faculty of Engineering & Technology (FOE&T) comprising of three Departments of Engineering i.e. Civil, Electrical and Mechanical. Selecting an institution for undergraduate’s studies is an important decision you have to make and the primary purpose of the information given in this prospectus is to give a feel of what it might be like to study at FOE&T. Let me assure you that we are imparting engineering education at par with all other institute and all three undergraduate engineering programs are accredited by Pakistan Engineering Council and recognized by Higher Education Commission of Pakistan.
 						</p>
 						<p>
 							FOE&T has always endeavored to empower the graduates with knowledge and skills.
@@ -65,7 +65,7 @@
 					<h4 class="dean-message-heading mt-3">Dean's Message</h4>
 					<div class="col-lg-12 text-justify">
 						<p>
-							It is a pleasure to welcome the prospective candidates and their parents/guardians to the ICBS, Faculty of Engineering & Technology (FOE&T) comprising of three Departments of Engineering i.e. Civil, Electrical and Mechanical. Selecting an institution for undergraduate’s studies is an important decision you have to make and the primary purpose of the information given in this prospectus is to give a feel of what it might be like to study at FOE&T. Let me assure you that we are imparting engineering education at par with all other institute and all three undergraduate engineering programs are accredited by Pakistan Engineering Council and recognized by Higher Education Commission of Pakistan.
+							It is a pleasure to welcome the prospective candidates and their parents/guardians to the VMJ, Faculty of Engineering & Technology (FOE&T) comprising of three Departments of Engineering i.e. Civil, Electrical and Mechanical. Selecting an institution for undergraduate’s studies is an important decision you have to make and the primary purpose of the information given in this prospectus is to give a feel of what it might be like to study at FOE&T. Let me assure you that we are imparting engineering education at par with all other institute and all three undergraduate engineering programs are accredited by Pakistan Engineering Council and recognized by Higher Education Commission of Pakistan.
 						</p>
 						<p>
 							FOE&T has always endeavored to empower the graduates with knowledge and skills.
@@ -90,7 +90,7 @@
 					<h4 class="dean-message-heading mt-3">Dean's Message</h4>
 					<div class="col-lg-12 text-justify">
 						<p>
-							It is a pleasure to welcome the prospective candidates and their parents/guardians to the ICBS, Faculty of Engineering & Technology (FOE&T) comprising of three Departments of Engineering i.e. Civil, Electrical and Mechanical. Selecting an institution for undergraduate’s studies is an important decision you have to make and the primary purpose of the information given in this prospectus is to give a feel of what it might be like to study at FOE&T. Let me assure you that we are imparting engineering education at par with all other institute and all three undergraduate engineering programs are accredited by Pakistan Engineering Council and recognized by Higher Education Commission of Pakistan.
+							It is a pleasure to welcome the prospective candidates and their parents/guardians to the VMJ, Faculty of Engineering & Technology (FOE&T) comprising of three Departments of Engineering i.e. Civil, Electrical and Mechanical. Selecting an institution for undergraduate’s studies is an important decision you have to make and the primary purpose of the information given in this prospectus is to give a feel of what it might be like to study at FOE&T. Let me assure you that we are imparting engineering education at par with all other institute and all three undergraduate engineering programs are accredited by Pakistan Engineering Council and recognized by Higher Education Commission of Pakistan.
 						</p>
 						<p>
 							FOE&T has always endeavored to empower the graduates with knowledge and skills.

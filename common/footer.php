@@ -41,5 +41,5 @@
       </div>
     </div>
     </div>
-  <p class="footer-bottom-text">CopyRights © reserved by VMJ.2024</p>
+  <p class="footer-bottom-text">CopyRights © reserved by VMJ UNIVERCITY.2024</p>
 </footer>
