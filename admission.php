@@ -1,3 +1,29 @@
+<?php
+    // Include database connection
+    require_once "connection/connection.php";
+
+    if(isset($_POST['btn_save'])) {
+        // Retrieve form data
+        $first_name = $_POST['first_name'];
+        $middle_name = $_POST['middle_name'];
+        $last_name = $_POST['last_name'];
+        $father_name = $_POST['father_name'];
+        // Retrieve and sanitize other form fields
+        
+        // Insert data into database
+        $insert_query = "INSERT INTO student_registration (first_name, middle_name, last_name, father_name, ...) 
+                         VALUES ('$first_name', '$middle_name', '$last_name', '$father_name', ...)";
+        $insert_result = mysqli_query($con, $insert_query);
+        
+        if($insert_result) {
+            // Data inserted successfully, show success message or redirect
+            echo "Data submitted successfully.";
+        } else {
+            // Failed to insert data, show error message
+            echo "Error: " . mysqli_error($con);
+        }
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>

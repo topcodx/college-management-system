@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
 									else if($message==true)
 										$bg_color = "alert-danger";	
 								?>
-								<h5 class="py-2 pl-3 <?php echo $bg_color; ?>">
+								<!-- <h5 class="py-2 pl-3 <?php echo $bg_color; ?>"> -->
 									
 									<?php echo $message ?>
 								</h5>

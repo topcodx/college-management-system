@@ -139,14 +139,15 @@
 <?php include "../common/common-header.php"?>
     <div class="container mt-4">
         <div class="text-danger text-center m-auto">
-            <img src="../Images/icbs_logo.png" alt="" width="100" height="100">
-            <h4 class="text-dark mt-3">IMPERIAL COLLEGE OF BUSINESS STUDIES - ICBS*</h4>
-            <h4 class="text-dark">SCHOOL OF ARCHITECTURE, ART & DESIGN - SAAD</h4>
+            <img src="../Images/LOGO1.JPG" alt="" width="100" height="100">
+            <h4 class="text-dark mt-3">Vidhi Manjari Janvi - VMJ Univercity</h4>
+            <h4 class="text-dark">Univercity OF Computer Science And Business Managemant</h4>
         </div>
     </div>
     <div class="container-fluid mb-4 text-dark">
         <div class="program-info">
             <?php  
+            
                 $roll_no = $_SESSION['LoginStudent'];
                 $query = "select * from student_info inner join sessions on sessions.session=student_info.session where roll_no = '$roll_no'";
                 $run = mysqli_query($con, $query);
@@ -159,8 +160,15 @@
                 <h5>S/O : <?php echo $row['father_name']; ?></h5>
             </div>
             <div class="ml-auto">
+                <?php
+                    $row['session_name'] = "";
+                    // print_r($row);
+                    // exit;
+                ?>
                 <h5>Student I.D # : <?php echo $row['roll_no']; ?></h5>
-                <h5>Year of Addmission : <?php echo intval($row['admission_date']) . " ". $row['session_name']; ?></h5>
+                <?php if (isset($row['admission_date'])): ?>
+                    <h5>Year of Admission : <?php echo intval($row['admission_date']) . " ". $row['session_name']; ?></h5>
+                <?php endif; ?>
             </div>
         </div>
         <?php }
@@ -175,33 +183,46 @@
                             <table class="w-100 table-elements table-six-tr"cellpadding="2">
                                 <tr class="pt-5 table-six text-white" style="height: 32px;">
                                 <?php
-                                    $que="select * from student_courses sc inner join sessions s on sc.session = s.session_id where sc.semester='1' and sc.roll_no='$roll_no'";
-                                    $run=mysqli_query($con,$que);
-                                    while ($row=mysqli_fetch_array($run)) {
-                                        $session = $row['session_name'];
-                                        $assign_date = date("Y", strtotime($row['assign_date']));;
-                                    }
-                                ?>
-                                    <th colspan="2"><div class="d-flex"><span class="mr-5">Semester - 1</span><span class="ml-5"><?php echo  $assign_date. " ".$session; ?> </span></div></th>
-                                    <th>CH</th>
-                                    <th>%</th>
-                                    <th>G.P</th>
-                                    <th>Letter</th>
-                                </tr>
-                                <?php
-                                    $completed_ch = 0;
-                                    $total_semester_ch = 0;
-                                    $obtain_marks = "";
-                                    $total_ch = 0;
-                                    $quality_points = 0;
-                                    $total_quality_points = 0;
-                                    $all_semester_quality_points = 0;
-                                    $que="select * from course_subjects where dept_id='1' and semester=1 order By semester asc";
-                                    $run=mysqli_query($con,$que);
-                                    while ($row=mysqli_fetch_array($run)) {
-                                        $gpa = "";
-                                        $grade = "";
-                                ?>
+$que="SELECT * FROM student_courses sc INNER JOIN sessions s ON sc.session = s.session_id WHERE sc.semester='1' AND sc.roll_no='$roll_no'";
+$run=mysqli_query($con,$que);
+while ($row=mysqli_fetch_array($run)) {
+    $session = $row['session_name'];
+    $assign_date = date("Y", strtotime($row['assign_date'])); // Removed extra semicolon
+}
+?>
+<tr>
+    <th colspan="2">
+        <?php
+            $assign_date = ""; 
+            $session = "";
+        ?>
+        <div class="d-flex">
+            <span class="mr-5">Semester - 1</span>
+            <span class="ml-5"><?php echo $assign_date . " " . $session; ?></span>
+        </div>
+    </th>
+    <th>CH</th>
+    <th>%</th>
+    <th>G.P</th>
+    <th>Letter</th>
+</tr>
+<?php
+$completed_ch = 0;
+$total_semester_ch = 0;
+$obtain_marks = ""; // It seems this variable is not being used, consider removing if unnecessary
+$total_ch = 0;
+$quality_points = 0;
+$total_quality_points = 0;
+$all_semester_quality_points = 0;
+$que="SELECT * FROM course_subjects WHERE dept_id='1' AND semester=1 ORDER BY semester ASC";
+$run=mysqli_query($con,$que);
+while ($row=mysqli_fetch_array($run)) {
+    $gpa = "";
+    $grade = "";
+    // Here you can continue with your code logic for each row fetched
+}
+?>
+
                                 <tr>
                                     <td><?php echo $row['subject_code'] ?></td>
                                     <td><?php echo $row['subject_name'] ?></td>
@@ -233,7 +254,7 @@
                                 </tr>
                                 <?php
                                 $obtain_marks = "";
-                                    } 
+                                    
                                 ?>
                                 <tr>
                                     <th colspan="2">Total Semester CH</th>
@@ -268,11 +289,17 @@
                             <table class="w-100 table-elements table-six-tr"cellpadding="2">
                                 <tr class="pt-5 table-six text-white" style="height: 32px;">
                                 <?php
-                                    $que="select * from student_courses sc inner join sessions s on sc.session = s.session_id where sc.semester='2' and sc.roll_no='$roll_no'";
-                                    $run=mysqli_query($con,$que);
-                                    while ($row=mysqli_fetch_array($run)) {
-                                        $session = $row['session_name'];
-                                        $assign_date = date("Y", strtotime($row['assign_date']));;
+                                    $que = "SELECT * FROM student_courses sc INNER JOIN sessions s ON sc.session = s.session_id WHERE sc.semester = '2' AND sc.roll_no = '$roll_no'";
+                                    $run = mysqli_query($con, $que);
+                                    while ($row = mysqli_fetch_array($run)) {
+                                        if (isset($row['session_name'])) {
+                                            $session = $row['session_name'];
+                                            $assign_date = date("Y", strtotime($row['assign_date']));
+                                        } else {
+                                            // Handle the case where 'session_name' is not set
+                                            $session = ''; // Assign a default value
+                                            $assign_date = ''; // Assign a default value
+                                        }
                                     }
                                 ?>
                                     <th colspan="2"><div class="d-flex"><span class="mr-5">Semester - 2</span><span class="ml-5"><?php echo  $assign_date. " ".$session; ?> </span></div></th>

@@ -10,56 +10,65 @@
 <!---------------- Session Ends form here ------------------------>
 
 <!--*********************** PHP code starts from here for data insertion into database ******************************* -->
+
 <?php 
- 
- 	if (isset($_POST['btn_save'])) {
+    // Check if the form for saving data is submitted
+    if (isset($_POST['btn_save'])) {
+        $teacher_id = $_POST["teacher_id"];
+        $basic_salary = $_POST["basic_salary"];
+        $medical_allowance = $_POST["medical_allowance"];
+        $hr_allowance = $_POST["hr_allowance"];
+        $scale = $_POST["scale"];
+        
+        // Check if record already exists for the given teacher ID
+        $check_query = "SELECT * FROM teacher_salary_allowances WHERE teacher_id = '$teacher_id'";
+        $check_result = mysqli_query($con, $check_query);
+        if (mysqli_num_rows($check_result) > 0) {
+            // If record exists, update the existing record
+            $update_query = "UPDATE teacher_salary_allowances SET basic_salary = '$basic_salary', medical_allowance = '$medical_allowance', hr_allowance = '$hr_allowance', scale = '$scale' WHERE teacher_id = '$teacher_id'";
+            $update_result = mysqli_query($con, $update_query);
+            if ($update_result) {
+                echo "Record for this teacher already exists. Record has been updated.";
+            } else {
+                echo "Failed to update record.";
+            }
+        } else {
+            // If record doesn't exist, insert a new record
+            $insert_query = "INSERT INTO teacher_salary_allowances (teacher_id, basic_salary, medical_allowance, hr_allowance, scale) VALUES ('$teacher_id', '$basic_salary', '$medical_allowance', '$hr_allowance', '$scale')";
+            $insert_result = mysqli_query($con, $insert_query);
+            if ($insert_result) {
+                echo "Your Data has been submitted";
+            } else {
+                echo "Your Data has not been submitted";
+            }
+        }
+    }
 
- 		$teacher_id=$_POST["teacher_id"];
+    // Check if the form for submitting salary is submitted
+    if (isset($_POST['btn_sub'])) {
+        $teacher_id = $_POST["teacher_id"];
 
- 		$basic_salary=$_POST["basic_salary"];
+        // Check if record exists for the given teacher ID
+        $check_query = "SELECT * FROM teacher_salary_allowances WHERE teacher_id = '$teacher_id'";
+        $check_result = mysqli_query($con, $check_query);
+        if (mysqli_num_rows($check_result) == 0) {
+            echo "Record for this teacher does not exist. Salary cannot be paid.";
+        } else {
+            // Insert salary report
+            $insert_query = "INSERT INTO teacher_salary_report (teacher_id, total_amount, status) SELECT teacher_id, (basic_salary + (basic_salary * medical_allowance / 100) + (basic_salary * hr_allowance / 100)), 'Paid' FROM teacher_salary_allowances WHERE teacher_id = '$teacher_id'";
+            $insert_result = mysqli_query($con, $insert_query);
 
- 		$medical_allowance=$_POST["medical_allowance"];
- 		
- 		$hr_allowance=$_POST["hr_allowance"];
- 		
- 		$scale=$_POST["scale"];
- 		
- 		$query="insert into teacher_salary_allowances(teacher_id,basic_salary,medical_allowance,hr_allowance,scale)values('$teacher_id','$basic_salary','$medical_allowance','$hr_allowance','$scale')";
- 		$run=mysqli_query($con, $query);
- 		if ($run) {
- 			echo "Your Data has been submitted";
- 		}
- 		else {
- 			echo "Your Data has not been submitted";
- 		}
- 	}
-
-
-
- 	if (isset($_POST['btn_sub'])) {
-
- 		$teacher_id=$_POST["teacher_id"];
-
- 		$query="select * from teacher_salary_allowances where teacher_id='$teacher_id'";
- 		$run=mysqli_query($con, $query);
- 		while ($row=mysqli_fetch_array($run)) {
-	
- 			$total_amount=$row['basic_salary']+($row['basic_salary']*$row['medical_allowance']/100)+($row['basic_salary']*$row['hr_allowance']/100);
- 			$query1="INSERT INTO teacher_salary_report(teacher_id, total_amount, status) VALUES ('$teacher_id','$total_amount','Paid')";
- 			$run1=mysqli_query($con, $query1);
-
-	 		if ($run1) {  ?>
-	 			<script type="text/javascript">
-	 				alert("Salary has been paid to I'd is : "+<?php echo $row['teacher_id'] ?>);
-	 			</script>
-	 		<?php }
-	 		else { ?>
-	 			<script type="text/javascript">
-	 				alert("Salary has not been paid due to some errors");
-	 			</script>
-	 		<?php }
- 	    }
- 	}
+            if ($insert_result) { ?>
+                <script type="text/javascript">
+                    alert("Salary has been paid to ID: <?php echo $teacher_id; ?>");
+                </script>
+            <?php } else { ?>
+                <script type="text/javascript">
+                    alert("Salary has not been paid due to some errors");
+                </script>
+            <?php }
+        }
+    }
 ?>
 <!--*********************** PHP code end from here for data insertion into database ******************************* -->
 
