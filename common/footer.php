@@ -36,7 +36,7 @@
               <p>Address: VMJ UNIVERCITY of Business Computers,
                   Sitanagar Chowk,Ramnagar Road,Nana varchha,Surat 395006 Gujarat – India</p>
               <p>Telephones: (+91) 1800 192 1800</p>
-              <p>E-mail: admissions@VMJ.edu.pk</p>
+              <p>E-mail: admissions@VMJ.edu</p>
         </div>
       </div>
     </div>

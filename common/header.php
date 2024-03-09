@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Home-College Of Business Studies</title>
-	<link rel="shortcut icon" href="./Images/icbs_logo.png" type="image/x-icon">
+	<link rel="shortcut icon" href="./images/LOGO1.JPG" type="image/x-icon">
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/footer.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -30,6 +30,9 @@
 			</li>
 			<li class="nav-item active">
 				<a class="nav-link" href="admission.php">ADMISSION<span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item active">
+				<a class="nav-link" href="contactus.php">CONTACT US<span class="sr-only">(current)</span></a>
 			</li>
 			<li class="nav-item active">
 				<a class="nav-link" href="login/login.php"><i class="fa fa-sign-in text-white fa-lg" aria-hidden="true"></i><span class="sr-only">(current)</span></a>
