@@ -27,6 +27,19 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="../admin/manage-accounts.php">
+              <span data-feather="layers"></span>
+              <i class="fa fa-key mr-2" aria-hidden="true"></i> Manage Account
+            </a>
+          </li>
+          <li class="nav-item">
+    <a class="nav-link" href="../admin/contact.php">
+        <span data-feather="layers"></span>
+        <i class="fa fa-handshake-o" aria-hidden="true"></i> Contact
+    </a>
+</li>
+
+          <li class="nav-item">
             <a class="nav-link" href="../admin/courses.php">
               <span data-feather="users"></span>
               <i class="fa fa-book mr-2" aria-hidden="true"></i>Courses
@@ -73,13 +86,6 @@
               <span data-feather="layers"></span>
               <i class="fa fa-credit-card-alt mr-2" aria-hidden="true"></i> Student Fee
             </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../admin/manage-accounts.php">
-              <span data-feather="layers"></span>
-              <i class="fa fa-key mr-2" aria-hidden="true"></i> Manage Account
-            </a>
-          </li>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../admin/admin-password.php">
