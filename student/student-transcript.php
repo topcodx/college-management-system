@@ -190,7 +190,7 @@ while ($row=mysqli_fetch_array($run)) {
     $assign_date = date("Y", strtotime($row['assign_date'])); // Removed extra semicolon
 }
 ?>
-<tr>
+
     <th colspan="2">
         <?php
             $assign_date = ""; 
@@ -201,6 +201,7 @@ while ($row=mysqli_fetch_array($run)) {
             <span class="ml-5"><?php echo $assign_date . " " . $session; ?></span>
         </div>
     </th>
+    
     <th>CH</th>
     <th>%</th>
     <th>G.P</th>

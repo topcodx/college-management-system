@@ -96,8 +96,15 @@ if (isset($_POST['sub'])) {
                                             <td><?php echo $present_count ?></td>
                                             <td><?php echo $absent_count ?></td>
                                             <td class="text-center"><?php echo ($present_count + $absent_count) ?></td>
-                                            <td><?php echo round(($present_count / ($present_count + $absent_count)) * 100, 2) . "%" ?></td>
-                                            <td>Present<input type="checkbox" name="attendance" value="1">Absent<input type="checkbox" name="attendance" value="0" ></td>
+            <td>
+                <?php
+                // Calculate attendance percentage
+                $total_attendance = $present_count + $absent_count;
+                $attendance_percentage = $total_attendance != 0 ? round(($present_count / $total_attendance) * 100, 2) : 0;
+                echo $attendance_percentage . "%";
+                ?>
+            </td>
+            <td>Present<input type="checkbox" name="attendance" value="1">Absent<input type="checkbox" name="attendance" value="0"></td>
                                         </tr>
                                     <?php
                                 }

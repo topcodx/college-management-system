@@ -15,7 +15,7 @@
 <?php  
  	if (isset($_POST['btn_save'])) {
 
-		//  $roll_no= $_POST["roll_no"];
+		$roll_no= $_POST["roll_no"];
 
  		$first_name=$_POST["first_name"];
 
@@ -93,7 +93,7 @@
  		else {
  			echo "Your Data has not been submitted";
  		}
- 		$query2="insert into login(user_id,Password,Role,account)values('$email','$password','$role', 'Deactive')";
+ 		$query2="insert into login(user_id,Password,Role)values('$roll_no','$password','$role')";
  		$run2=mysqli_query($con, $query2);
  		if ($run2) {
  			echo "Your Data has been submitted into login";
@@ -184,12 +184,12 @@
 											        <input type="text" name="father_name" class="form-control" required>
 											    </div>
 											</div>
-											<!-- <div class="col-md-4">
+											<div class="col-md-4">
 												<div class="form-group">
 												    <label for="exampleInputPassword1">Student Roll No:</label>
 												    <input type="text" name="roll_no" class="form-control">
 											    </div>
-											</div> -->
+											</div>
 											<div class="col-md-4">
 												<div class="form-group">
 												    <label for="exampleInputPassword1">Applicant Email:*</label>

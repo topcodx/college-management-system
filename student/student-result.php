@@ -114,36 +114,36 @@
 									<td><?php echo $total_marks; ?></td>
 									<td><?php echo $obtain_marks; ?></td>
 									<?php  
-										$marks_grade= $total_marks == true ? ($obtain_marks*100)/$total_marks : "";
-										$marks_grade=round($marks_grade);
-										if ($marks_grade>85) {
-											$final='A+';
-										}
-										else if ($marks_grade>80) {
-											$final='A';										
-										}
-										else if ($marks_grade>75) {
-											$final='B+';
-										}
-										else if ($marks_grade>70) {
-											$final='B';
-										}
-										else if ($marks_grade>65) {
-											$final='C+';
-										}
-										else if ($marks_grade>60) {
-											$final='C';
-										}
-										else if ($marks_grade>55) {
-											$final='D+';
-										}
-										else if ($marks_grade>50) {
-											$final='D';
-										}
-										else {
-											$marks_grade == true ? $final='F' : $final = "0";
-										}
-									?>
+    // Calculate marks grade if total marks is valid
+    if ($total_marks) {
+        $marks_grade = ($obtain_marks * 100) / $total_marks;
+        $marks_grade = round((float) $marks_grade); // Convert to float before rounding
+    } else {
+        $marks_grade = ""; // Handle case where total marks is not valid
+    }
+
+    // Determine the grade based on the marks
+    if ($marks_grade > 85) {
+        $final = 'A+';
+    } else if ($marks_grade > 80) {
+        $final = 'A';										
+    } else if ($marks_grade > 75) {	
+        $final = 'B+';
+    } else if ($marks_grade > 70) {
+        $final = 'B';
+    } else if ($marks_grade > 65) {
+        $final = 'C+';
+    } else if ($marks_grade > 60) {
+        $final = 'C';
+    } else if ($marks_grade > 55) {
+        $final = 'D+';
+    } else if ($marks_grade > 50) {
+        $final = 'D';
+    } else {
+        $final = $marks_grade ? 'F' : "0"; // Consider $marks_grade to decide between 'F' and '0'
+    }
+?>
+
 									<td><?php echo $final ?></td>
 									<td><?php echo $gpa > 0 ? round($total_cgpa=$gpa/$cgpa,2) : "0" ?></td>
 

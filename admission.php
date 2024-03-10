@@ -84,9 +84,6 @@ if(isset($_POST['btn_save'])) {
 		echo '<script>alert("Your Data has not been submitted.");</script>';
 	}
 }
-
-
-
 ?>
 
 <?php
