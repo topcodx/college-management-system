@@ -58,6 +58,7 @@ if(isset($_POST['btn_save3'])) {
 
 .contact-form {
     padding-top: 2rem;
+    margin-left: 50px; 
 }
 
 h5 {
@@ -67,7 +68,6 @@ h5 {
     color:white;
 }
 
-/* Style to match the header color */
 .contact-details h5 {
     display: flex;
     justify-content: center;
@@ -78,6 +78,10 @@ h5 {
     margin-bottom: 15px;
 }
   
+.submit-btn-container {
+            display: flex;
+            justify-content: center;
+        }
     </style>
 </head>
 
@@ -114,7 +118,7 @@ h5 {
                         <label for="message">Message:</label>
                         <textarea class="form-control" name="message" rows="4" required></textarea>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group submit-btn-container " >
                         <input type="submit" class="btn btn-primary px-5" name="btn_save3" value="Submit">
                     </div>
                 </div>
@@ -124,51 +128,7 @@ h5 {
                     </div>
                 </div>
             </div>
-
-
-        <!-- <div class="contact-details form-group">
-            <div class="row">
-                <div class="form-group col-md-8">
-                    <h5><strong>Contact Form</strong></h5>
-                    
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="first_name">First Name:</label>
-                            <input type="text" class="form-control" name="first_name" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="last_name">Last Name:</label>
-                            <input type="text" class="form-control" name="last_name" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="email">Email:</label>
-                            <input type="email" class="form-control" name="email" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="phone_number">Phone Number:</label>
-                            <input type="tel" class="form-control" name="phone_number" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message:</label>
-                        <textarea class="form-control" name="message" rows="4" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-primary px-5" name="btn_save3" value="Submit">
-                    </div>
-                </div>
-            </div>
-            <div class="form-group col-md-4">
-                <img src="./images/contact.jpg" alt="Image" class="img-fluid" style="margin-left:100px;">
-            </div>
-
-        </div> -->
     </form>
-
-
-
     <!-- Link to Bootstrap JavaScript -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
