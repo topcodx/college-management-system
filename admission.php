@@ -161,7 +161,7 @@ if(isset($_POST['btn_save'])) {
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="exampleInputEmail1">application_status Status: </label>
+								<label for="exampleInputEmail1">application Status: </label>
 								<select class="browser-default custom-select" name="application_status">
 									<option>Select Option</option>
 									<option value="Admitted">Admitted</option>

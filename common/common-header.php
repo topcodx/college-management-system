@@ -20,7 +20,7 @@
 include "../connection/connection.php";
 
 
-$userEmail =$_SESSION['LoginAdmin'];
+$userEmail = isset($_SESSION['LoginAdmin']) ? $_SESSION['LoginAdmin'] : '';
 
 $que = "SELECT name FROM change_name WHERE user_email = '$userEmail'";
 $res = mysqli_query($con, $que);
