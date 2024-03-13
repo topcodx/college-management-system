@@ -28,25 +28,17 @@
 
 		$last_name=$_POST['last_name'];
 
-		$father_name=$_POST['father_name'];
-
-		$cnic=$_POST['cnic'];
-
 		$phone_no=$_POST['phone_no'];
 
 		$gender=$_POST['gender'];
 
-		$last_qualification=$_POST['last_qualification'];
-
 		$current_address=$_POST['current_address'];
 
-		$permanent_address=$_POST['permanent_address'];
+		$last_qualification=$_POST['last_qualification'];
 
-		$state=$_POST['state'];
 
-		$place_of_birth=$_POST['place_of_birth'];
 
-		$query="update teacher_info set first_name='$first_name',middle_name='$middle_name',last_name='$last_name',father_name='$father_name',cnic='$cnic',phone_no='$phone_no',gender='$gender',current_address='$current_address',permanent_address='$permanent_address',place_of_birth='$place_of_birth',last_qualification='$last_qualification',state='$state' where teacher_id='$teacher_id'";
+		$query="update teacher_info set first_name='$first_name',middle_name='$middle_name',last_name='$last_name',phone_no='$phone_no',gender='$gender',current_address='$current_address',last_qualification='$last_qualification' where teacher_id='$teacher_id'";
 		$run=mysqli_query($con,$query);
 		if ($run) {  ?>
  			<script type="text/javascript">
@@ -106,30 +98,16 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<label for="exampleInputPassword1">Father Name:*</label>
-										<input type="text" class="form-control" name="father_name"  placeholder="Enter Father Name" value=<?php echo $row['father_name'] ?>>
+										<label for="exampleInputEmail1">Current Address:*</label>
+										<input type="text" class="form-control" name="current_address" value=<?php echo $row['current_address'] ?>>
 									</div>
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="exampleInputEmail1">CNIC:*</label>
-										<input type="text" class="form-control" name="cnic" placeholder="Enter CNIC"value=<?php echo $row['cnic'] ?>>
-									</div>
-								</div>
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="exampleInputPassword1">Mobile:*</label>
 										<input type="text" class="form-control" name="phone_no"  value=<?php echo $row['phone_no'] ?>>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="exampleInputEmail1">Gender</label>
-										<input type="text" class="form-control" name="gender" value=<?php echo $row['gender'] ?>>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -142,31 +120,14 @@
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label for="exampleInputEmail1">Current Address:*</label>
-										<input type="text" class="form-control" name="current_address" value=<?php echo $row['current_address'] ?>>
+										<label for="exampleInputEmail1">Gender</label>
+										<input type="text" class="form-control" name="gender" value=<?php echo $row['gender'] ?>>
 									</div>
 								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="exampleInputPassword1">Permanent Address:*</label>
-										<input type="text" class="form-control" name=" permanent_address"  value=<?php echo $row['permanent_address'] ?>>
-									</div>
-								</div>
+								
 							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="exampleInputEmail1">State Or Province: *</label>
-										<input type="text" class="form-control" name="state" placeholder="State Province" value=<?php echo $row['state'] ?>>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="exampleInputPassword1">Place of Birth:*</label>
-										<input type="text" class="form-control" name="place_of_birth"  value=<?php echo $row['place_of_birth'] ?>>
-									</div>
-								</div>
-							</div>
+					
+							
 						<?php } ?>
 							<div class="row">
 								<div class="col-md-4 offset-5 mt-3">
