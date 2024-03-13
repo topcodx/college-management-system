@@ -69,12 +69,12 @@
               <i class="fa fa-money mr-2" aria-hidden="true"></i> Teacher Salary
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="../admin/student-attendance.php">
               <span data-feather="layers"></span>
               <i class="fa fa-check-square-o mr-2" aria-hidden="true"></i> Student Attendance
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link" href="../admin/teacher-attendance.php">
               <span data-feather="layers"></span>

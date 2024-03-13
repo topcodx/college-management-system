@@ -1,19 +1,16 @@
-<!---------------- Session starts form here ----------------------->
 <?php  
-	session_start();
-	if (!$_SESSION["LoginAdmin"])
-	{
-		header('location:../login/login.php');
-	}
-		require_once "../connection/connection.php";
-	?>
-<!---------------- Session Ends form here ------------------------>
+    session_start();
+    if (!$_SESSION["LoginAdmin"]) {
+        header('location:../login/login.php');
+    }
+    require_once "../connection/connection.php";
+?>
 
 <!--*********************** PHP code starts from here for data insertion into database ******************************* -->
 
 <?php 
     // Check if the form for saving data is submitted
-   /* if (isset($_POST['btn_save'])) {
+    if (isset($_POST['btn_save'])) {
         $teacher_id = $_POST["teacher_id"];
         $basic_salary = $_POST["basic_salary"];
         $medical_allowance = $_POST["medical_allowance"];
@@ -28,9 +25,9 @@
             $update_query = "UPDATE teacher_salary_allowances SET basic_salary = '$basic_salary', medical_allowance = '$medical_allowance', hr_allowance = '$hr_allowance', scale = '$scale' WHERE teacher_id = '$teacher_id'";
             $update_result = mysqli_query($con, $update_query);
             if ($update_result) {
-                echo "Record for this teacher already exists. Record has been updated.";
+                echo "<script>alert('Record for this teacher already exists. Record has been updated.');</script>";
             } else {
-                echo "Failed to update record.";
+                echo "<script>alert('Failed to update record.');</script>";
             }
         } else {
             // If record doesn't exist, insert a new record
@@ -49,65 +46,33 @@
         $teacher_id = $_POST["teacher_id"];
 
         // Check if record exists for the given teacher ID
-        $check_query = "SELECT * FROM teacher_salary_allowances WHERE teacher_id = '$teacher_id'";
+        $check_query = "SELECT * FROM teacher_salary_report WHERE teacher_id = '$teacher_id'";
         $check_result = mysqli_query($con, $check_query);
-        if (mysqli_num_rows($check_result) == 0) {
-            echo "Record for this teacher does not exist. Salary cannot be paid.";
+        if (mysqli_num_rows($check_result) > 0) {
+            echo "Salary for this ID has already been paid.";
         } else {
-            // Insert salary report
-            $insert_query = "INSERT INTO teacher_salary_report (teacher_id, total_amount, status) SELECT teacher_id, (basic_salary + (basic_salary * medical_allowance / 100) + (basic_salary * hr_allowance / 100)), 'Paid' FROM teacher_salary_allowances WHERE teacher_id = '$teacher_id'";
-            $insert_result = mysqli_query($con, $insert_query);
+            // Check if record exists for the given teacher ID in allowances table
+            $check_allowances_query = "SELECT * FROM teacher_salary_allowances WHERE teacher_id = '$teacher_id'";
+            $check_allowances_result = mysqli_query($con, $check_allowances_query);
+            if (mysqli_num_rows($check_allowances_result) == 0) {
+                echo "Record for this teacher does not exist. Salary cannot be paid.";
+            } else {
+                // Insert salary report
+                $insert_query = "INSERT INTO teacher_salary_report (teacher_id, total_amount, status) SELECT teacher_id, (basic_salary + (basic_salary * medical_allowance / 100) + (basic_salary * hr_allowance / 100)), 'Paid' FROM teacher_salary_allowances WHERE teacher_id = '$teacher_id'";
+                $insert_result = mysqli_query($con, $insert_query);
 
-            if ($insert_result) { ?>
-                <script type="text/javascript">
-                    alert("Salary has been paid to ID: <?php echo $teacher_id; ?>");
-                </script>
-            <?php } else { ?>
-                <script type="text/javascript">
-                    alert("Salary has not been paid due to some errors");
-                </script>
-            <?php }
+                if ($insert_result) { ?>
+                    <script type="text/javascript">
+                        alert("Salary has been paid to ID: <?php echo $teacher_id; ?>");
+                    </script>
+                <?php } else { ?>
+                    <script type="text/javascript">
+                        alert("Salary has not been paid due to some errors");
+                    </script>
+                <?php }
+            }
         }
     }
-	*/
-
-	// Check if the form for submitting salary is submitted
-if (isset($_POST['btn_sub'])) {
-    $teacher_id = $_POST["teacher_id"];
-
-    // Check if record exists for the given teacher ID
-    $check_query = "SELECT * FROM teacher_salary_allowances WHERE teacher_id = '$teacher_id'";
-    $check_result = mysqli_query($con, $check_query);
-    if (mysqli_num_rows($check_result) == 0) {
-        echo "Record for this teacher does not exist. Salary cannot be paid.";
-    } else {
-        // Check if salary has already been paid for the given teacher ID
-        $check_paid_query = "SELECT * FROM teacher_salary_report WHERE teacher_id = '$teacher_id'";
-        $check_paid_result = mysqli_query($con, $check_paid_query);
-        if (mysqli_num_rows($check_paid_result) > 0) {
-            ?>
-            <script type="text/javascript">
-                alert("Salary for this ID has already been paid.");
-            </script>
-            <?php
-        } else {
-            // Insert salary report
-            $insert_query = "INSERT INTO teacher_salary_report (teacher_id, total_amount, status) SELECT teacher_id, (basic_salary + (basic_salary * medical_allowance / 100) + (basic_salary * hr_allowance / 100)), 'Paid' FROM teacher_salary_allowances WHERE teacher_id = '$teacher_id'";
-            $insert_result = mysqli_query($con, $insert_query);
-
-            if ($insert_result) { ?>
-                <script type="text/javascript">
-                    alert("Salary has been paid to ID: <?php echo $teacher_id; ?>");
-                </script>
-            <?php } else { ?>
-                <script type="text/javascript">
-                    alert("Salary has not been paid due to some errors");
-                </script>
-            <?php }
-        }
-    }
-}
-
 ?>
 
 <!--*********************** PHP code end from here for data insertion into database ******************************* -->

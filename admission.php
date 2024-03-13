@@ -131,12 +131,12 @@ if(isset($_POST['btn_save'])) {
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-4">
+						<!-- <div class="col-md-4">
 							<div class="form-group">
 								<label for="exampleInputEmail1">Father Name:*</label>
 								<input type="text" name="father_name" class="form-control" required>
 							</div>
-						</div>
+						</div> -->
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="exampleInputPassword1">Applicant Email:*</label>
@@ -149,8 +149,6 @@ if(isset($_POST['btn_save'])) {
 								<input type="number" name="mobile_no" class="form-control" required>
 							</div>
 						</div>
-					</div>
-					<div class="row">
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="exampleInputEmail1">Course which you want?: </label>
@@ -166,6 +164,9 @@ if(isset($_POST['btn_save'])) {
 								</select>
 							</div>
 						</div>
+					</div>
+					<div class="row">
+						
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="exampleInputPassword1">Select Session:</label>
