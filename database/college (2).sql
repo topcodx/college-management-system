@@ -24,6 +24,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `change_name`
+--
+
+CREATE TABLE `change_name` (
+  `sno` int NOT NULL,
+  `name` text COLLATE utf8_unicode_ci,
+  `user_email` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `change_name`
+--
+
+INSERT INTO `change_name` (`sno`, `name`, `user_email`) VALUES
+(1, 'KL UNIVERSITY', 'admin@gmail.com');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `class_result`
 --
 

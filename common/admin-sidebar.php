@@ -93,6 +93,12 @@
               <i class="fa fa-key mr-2" aria-hidden="true"></i> Change Password
             </a>
           </li>
+		  <li class="nav-item">
+            <a class="nav-link" href="../admin/change_university.php">
+              <span data-feather="layers"></span>
+              <i class="fa  fa-pencil mr-2" aria-hidden="true"></i> Change university name
+            </a>
+          </li>
         </ul>
       </div>
     </nav>
