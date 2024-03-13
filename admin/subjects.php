@@ -1,140 +1,166 @@
-<<!---------------- Session starts form here ----------------------->
 <?php  
 	session_start();
-	if (!$_SESSION["LoginAdmin"])
-	{
+	if (!$_SESSION["LoginAdmin"]) {
 		header('location:../login/login.php');
 	}
-		require_once "../connection/connection.php";
-	?>
-<!---------------- Session Ends form here ------------------------>
+	require_once "../connection/connection.php";
+?>
 
 <?php  
 	if (isset($_POST['sub'])) {
-		$subject_code=$_POST['subject_code'];
-		$subject_name=$_POST['subject_name'];
-		$semester=$_POST['semester'];
-		$course_code=$_POST['course_code'];
-		$credit_hours=$_POST['credit_hours'];
+		$subject_code = $_POST['subject_code'];
+		$subject_name = $_POST['subject_name'];
+		$semester = $_POST['semester'];
+		$course_code = $_POST['course_code'];
+		$credit_hours = $_POST['credit_hours'];
 
-		$query="insert into course_subjects(subject_code,subject_name,course_code,semester,credit_hours)values('$subject_code','$subject_name','$course_code','$semester','$credit_hours')";
-		$run=mysqli_query($con,$query);
+		$query = "INSERT INTO course_subjects (subject_code, subject_name, semester, course_code, credit_hours) VALUES ('$subject_code', '$subject_name', '$semester', '$course_code', '$credit_hours')";
+		$run = mysqli_query($con, $query);
 		if ($run) {
-			echo "successfully";
+			echo "Subject added successfully.";
+		} else {
+			echo "Failed to add subject.";
 		}
-		else{
-			echo "not";
+	}
+
+	// Function to update subject details
+	function updateSubject($con, $subject_code, $subject_name, $semester, $course_code, $credit_hours) {
+		$query = "UPDATE course_subjects SET subject_name='$subject_name', semester='$semester', course_code='$course_code', credit_hours='$credit_hours' WHERE subject_code='$subject_code'";
+		$run = mysqli_query($con, $query);
+		return $run;
+	}
+
+	// Check if the form is submitted for updating subject
+	if (isset($_POST['update_sub'])) {
+		$subject_code = $_POST['subject_code'];
+		$subject_name = $_POST['subject_name'];
+		$semester = $_POST['semester'];
+		$course_code = $_POST['course_code'];
+		$credit_hours = $_POST['credit_hours'];
+
+		if (updateSubject($con, $subject_code, $subject_name, $semester, $course_code, $credit_hours)) {
+			echo "Subject updated successfully.";
+		} else {
+			echo "Failed to update subject.";
 		}
+	}
+
+	// Function to get subject details by subject_code
+	function getSubjectDetails($con, $subject_code) {
+		$query = "SELECT * FROM course_subjects WHERE subject_code='$subject_code'";
+		$result = mysqli_query($con, $query);
+		return mysqli_fetch_assoc($result);
 	}
 ?>
 
-
 <!doctype html>
 <html lang="en">
-	<head>
-		<title>Admin - Subjects</title>
-	</head>
-	<body>
-		<?php include('../common/common-header.php') ?>
-		<?php include('../common/admin-sidebar.php') ?>  
+<head>
+	<title>Admin - Subjects</title>
+</head>
+<body>
+	<?php include('../common/common-header.php') ?>
+	<?php include('../common/admin-sidebar.php') ?>  
 
-		<main role="main" class="col-xl-10 col-lg-9 col-md-8 ml-sm-auto px-md-4 mb-2 w-100">
-			<div class="sub-main">
-				<div class="bar-margin text-center d-flex flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 text-white admin-dashboard pl-3">
-					<h4>Subject Management System </h4>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<form action="subjects.php" method="post">
-							<div class="row mt-3">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="exampleInputEmail1">Subject Code: </label>
-										<input type="text" name="subject_code" class="form-control" required placeholder="Enter Subject Code" required>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="exampleInputPassword1">Subject Name:</label>
-										<input type="text" name="subject_name" class="form-control" required placeholder="Enter Subject Name" required>
-									</div>
+	<main role="main" class="col-xl-10 col-lg-9 col-md-8 ml-sm-auto px-md-4 mb-2 w-100">
+		<div class="sub-main">
+			<div class="bar-margin text-center d-flex flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 text-white admin-dashboard pl-3">
+				<h4>Subject Management System </h4>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<form action="subjects.php" method="post">
+						<div class="row mt-3">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="exampleInputEmail1">Subject Code: </label>
+									<input type="text" name="subject_code" class="form-control" required placeholder="Enter Subject Code">
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="exampleInputPassword1">Semester:</label>
-										<input type="text" name="semester" class="form-control" required placeholder="Enter Semester" required>
-									</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="exampleInputPassword1">Subject Name:</label>
+									<input type="text" name="subject_name" class="form-control" required placeholder="Enter Subject Name">
 								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="exampleInputEmail1">Course Code:</label>
-										<select class="browser-default custom-select" name="course_code">
-											<option >Select Course</option>
-											<?php
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="exampleInputPassword1">Semester:</label>
+									<input type="text" name="semester" class="form-control" required placeholder="Enter Semester">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="exampleInputEmail1">Course Code:</label>
+									<select class="browser-default custom-select" name="course_code">
+										<option>Select Course</option>
+										<?php
 											$query="select course_code from courses";
 											$run=mysqli_query($con,$query);
 											while($row=mysqli_fetch_array($run)) {
-											echo	"<option value=".$row['course_code'].">".$row['course_code']."</option>";
+												echo "<option value=".$row['course_code'].">".$row['course_code']."</option>";
 											}
 										?>
-										</select>
-									</div>
+									</select>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="exampleInputPassword1">Credit Hours:</label>
-										<input type="number" name="credit_hours" class="form-control"  placeholder="Enter Subject Credit Hours" required>
-									</div>
-								</div>
-								<div class="col-md-6 mt-4">
-									<div class="form-group pt-2">
-										<input type="submit" name="sub" value="Add Subject" class="btn btn-primary">
-									</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="exampleInputPassword1">Credit Hours:</label>
+									<input type="number" name="credit_hours" class="form-control" placeholder="Enter Subject Credit Hours" required>
 								</div>
 							</div>
-						</form>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12 ml-2">
-						<section class="mt-3">
-							<table class="w-100 table-elements table-three-tr" cellpadding="3">
-								<tr class="table-tr-head table-three text-white">
-									<th>Sr.No</th>
-									<th>Subject Code</th>
-									<th>Subject Name</th>
-									<th>Course Code</th>
-									<th>Semester</th>
-									<th>Credit Hours</th>
-									<th>Action</th>
-								</tr>
-								<?php
-									$sr=1;
-									$query="select subject_code,subject_name,course_code,semester,credit_hours from course_subjects";
-									$run=mysqli_query($con,$query);
-									while($row=mysqli_fetch_array($run)) {
-									echo	"<tr>";
-									echo	"<td>".$sr++."</td>";
-									echo	"<td>".$row['subject_code']."</td>";
-									echo	"<td>".$row['subject_name']."</td>";
-									echo	"<td>".$row['course_code']."</td>";
-									echo	"<td>".$row['semester']."</td>";
-									echo	"<td>".$row['credit_hours']."</td>";
-									echo	"<td width='20'><a class='btn btn-danger' href=delete-function.php?subject_code=".$row['subject_code'].">Delete</a></td>";
-									echo	"</tr>";
-									} 
-								?>
-							</table>				
-						</section>
-					</div>
+							<div class="col-md-6 mt-4">
+								<div class="form-group pt-2">
+									<input type="submit" name="sub" value="Add Subject" class="btn btn-primary">
+								</div>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
-		</main>
-		<script type="text/javascript" src="../bootstrap/js/jquery.min.js"></script>
-		<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
-	</body>
+			<div class="row">
+				<div class="col-md-12 ml-2">
+					<section class="mt-3">
+						<table class="w-100 table-elements table-three-tr" cellpadding="3">
+							<tr class="table-tr-head table-three text-white">
+								<th>Sr.No</th>
+								<th>Subject Code</th>
+								<th>Subject Name</th>
+								<th>Course Code</th>
+								<th>Semester</th>
+								<th>Credit Hours</th>
+								<th>Update</th>
+								<th>Delete</th>
+							</tr>
+							<?php
+								$sr=1;
+								$query="select subject_code,subject_name,course_code,semester,credit_hours from course_subjects";
+								$run=mysqli_query($con,$query);
+								while($row=mysqli_fetch_array($run)) {
+									echo "<tr>";
+									echo "<td>".$sr++."</td>";
+									echo "<td>".$row['subject_code']."</td>";
+									echo "<td>".$row['subject_name']."</td>";
+									echo "<td>".$row['course_code']."</td>";
+									echo "<td>".$row['semester']."</td>";
+									echo "<td>".$row['credit_hours']."</td>";
+									echo "<td width='20'><a class='btn btn-success' href='update-subject.php?subject_code=".$row['subject_code']."'>Update</a></td>";
+									echo "<td width='20'><a class='btn btn-danger' href='delete-function.php?subject_code=".$row['subject_code']."'>Delete</a></td>";
+									echo "</tr>";
+								} 
+							?>
+						</table>				
+					</section>
+				</div>
+			</div>
+		</div>
+	</main>
+	<script type="text/javascript" src="../bootstrap/js/jquery.min.js"></script>
+	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+</body>
 </html>

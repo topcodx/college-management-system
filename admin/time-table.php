@@ -1,4 +1,4 @@
-<<!---------------- Session starts form here ----------------------->
+<!---------------- Session starts form here ----------------------->
 <?php  
 	session_start();
 	if (!$_SESSION["LoginAdmin"])
@@ -277,7 +277,7 @@
 																					<select class="browser-default custom-select" name="day">
 																						<option >Select Week Day</option>
 																						<?php
-																						$teacher_id=$_SESSION['teacher_id'];
+																						// $teacher_id=$_SESSION['teacher_id'];
 																						$query="select * from weekdays";
 																						$run=mysqli_query($con,$query);
 																						while($row=mysqli_fetch_array($run)) {

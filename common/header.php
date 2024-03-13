@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Home-College Of Business Studies</title>
-	<link rel="shortcut icon" href="./Images/icbs_logo.png" type="image/x-icon">
+	<link rel="shortcut icon" href="./images/LOGO1.JPG" type="image/x-icon">
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/footer.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -15,7 +15,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark header-back sticky-top header-navbar-fonts">
 	<a class="navbar-brand d-flex align-items-center" href="index.php">
 		<img src="images/LOGO1.JPG" class="logo-image" width="50" height="50">
-		<h3 class="text-light text-uppercase ml-2">VMJ UNIVERCITY</h3>
+		<h3 class="text-light text-uppercase ml-2">VMJ UNIVERSITY</h3>
 	</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 	<span class="navbar-toggler-icon"></span>
@@ -30,6 +30,9 @@
 			</li>
 			<li class="nav-item active">
 				<a class="nav-link" href="admission.php">ADMISSION<span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item active">
+				<a class="nav-link" href="contactus.php">CONTACT US<span class="sr-only">(current)</span></a>
 			</li>
 			<li class="nav-item active">
 				<a class="nav-link" href="login/login.php"><i class="fa fa-sign-in text-white fa-lg" aria-hidden="true"></i><span class="sr-only">(current)</span></a>

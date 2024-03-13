@@ -1,4 +1,4 @@
-<<!---------------- Session starts form here ----------------------->
+<!---------------- Session starts form here ----------------------->
 <?php  
 	session_start();
 	if (!$_SESSION["LoginAdmin"])
@@ -56,7 +56,7 @@
 								$message = $error_message;
 							}
 						?>
-						<h5 class="py-2 pl-3 <?php echo $bg_color; ?>">
+						<!-- <h5 class="py-2 pl-3 <?php echo $bg_color; ?>"> -->
 							
 							<?php echo $message ?>
 						</h5>

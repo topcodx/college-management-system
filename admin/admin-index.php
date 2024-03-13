@@ -8,7 +8,7 @@
 		require_once "../connection/connection.php";
 	?>
 <!---------------- Session Ends form here ------------------------>
-<title>Admin - ICBS</title>
+<title>Admin - VMJ</title>
 	<?php include('../common/common-header.php') ?>
 	<?php include('../common/admin-sidebar.php') ?>  
 		<main role="main" class="col-xl-10 col-lg-9 col-md-8 ml-sm-auto px-md-4 mb-2 w-100 page-content-index">

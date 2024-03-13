@@ -27,6 +27,19 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="../admin/manage-accounts.php">
+              <span data-feather="layers"></span>
+              <i class="fa fa-key mr-2" aria-hidden="true"></i> Manage Account
+            </a>
+          </li>
+          <li class="nav-item">
+    <a class="nav-link" href="../admin/contact.php">
+        <span data-feather="layers"></span>
+        <i class="fa fa-handshake-o" aria-hidden="true"></i> Contact
+    </a>
+</li>
+
+          <li class="nav-item">
             <a class="nav-link" href="../admin/courses.php">
               <span data-feather="users"></span>
               <i class="fa fa-book mr-2" aria-hidden="true"></i>Courses
@@ -56,12 +69,12 @@
               <i class="fa fa-money mr-2" aria-hidden="true"></i> Teacher Salary
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="../admin/student-attendance.php">
               <span data-feather="layers"></span>
               <i class="fa fa-check-square-o mr-2" aria-hidden="true"></i> Student Attendance
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link" href="../admin/teacher-attendance.php">
               <span data-feather="layers"></span>
@@ -75,16 +88,15 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../admin/manage-accounts.php">
-              <span data-feather="layers"></span>
-              <i class="fa fa-key mr-2" aria-hidden="true"></i> Manage Account
-            </a>
-          </li>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="../admin/admin-password.php">
               <span data-feather="layers"></span>
               <i class="fa fa-key mr-2" aria-hidden="true"></i> Change Password
+            </a>
+          </li>
+		  <li class="nav-item">
+            <a class="nav-link" href="../admin/change_university.php">
+              <span data-feather="layers"></span>
+              <i class="fa  fa-pencil mr-2" aria-hidden="true"></i> Change university name
             </a>
           </li>
         </ul>

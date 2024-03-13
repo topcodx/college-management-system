@@ -14,12 +14,33 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
- 
+  <?php
+
+include "../connection/connection.php";
+
+
+$userEmail =$_SESSION['LoginAdmin'];
+
+$que = "SELECT name FROM change_name WHERE user_email = '$userEmail'";
+$res = mysqli_query($con, $que);
+
+if (!$res) {
+    die("Query failed: " . mysqli_error($con));
+}
+
+$row = mysqli_fetch_assoc($res);
+if ($row) {
+    $name = $row['name'];
+} else {
+    $name = "VMJ UNIVERCITY";
+}
+
+?>
 
     <nav class="navbar navbar-expand-lg navbar-dark header-back sticky-top header-navbar-fonts">
       <a class="navbar-brand d-flex align-items-center" href="../index.php">
         <img src="../images/LOGO1.JPG" class="logo-image" width="50" height="50">
-        <h3 class="text-light text-uppercase ml-2">VMJ UNIVERCITY</h3>
+        <h3 class="text-light text-uppercase ml-2"><?php echo $name; ?></h3>
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -34,6 +55,9 @@
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="../admission.php">ADMISSION<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="../contactus.php">CONTACT US<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="../login/logout.php"><i class="fa fa-sign-out text-white fa-lg" aria-hidden="true"></i><span class="sr-only">(current)</span></a>
