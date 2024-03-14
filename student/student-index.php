@@ -160,7 +160,7 @@
 								<div class="collapse show mt-2" id="collapsefour">
 									<table class="w-100 table-elements table-one-tr"cellpadding="2">
 										<tr class="pt-5 table-one text-white" style="height: 32px;">
-											<th>Roll No</th>
+											<th>Email</th>
 											<th>Present</th>
 											<th>Absent</th>
 											<th>Percentage</th>

@@ -237,10 +237,7 @@
                                                 <div class="modal-body" 
                                                 <input type="hidden" name="id" id="updateId">
                                                     <!-- Other form fields -->
-                                                    <button type="submit" class="btn btn-primary"
-                                                        name="btn_update">Update Data</button>
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal">Close</button>
+                                                    
                                                     <form action="time-table.php" id="updateForm" method="post">
                                                         <div class="row mt-3">
                                                             <div class="col-md-6">
