@@ -1,7 +1,7 @@
 <!-- PHP Starts Here -->
-<?php 
+<?php
 session_start();
-    require_once "../connection/connection.php"; 
+    require_once "../connection/connection.php";
     $message="Email Or Password Does Not Match";
     if(isset($_POST["btnlogin"]))
     {
@@ -30,12 +30,17 @@ session_start();
             }
         }
         else
-        { 
+        {
             header("Location: login.php");
         }
     }
 ?>
+<?php
+    // Adjust the path to helper.php based on its location relative to index.php
+	require_once "../common/helper.php";
 
+    $universityLogo = getUniversityLogo('University_logo');
+?>
 <!doctype html>
 <html lang="en">
 	<head>
@@ -45,7 +50,7 @@ session_start();
 		<?php include('../common/common-header.php') ?>
         <div class="login-div mt-3 rounded">
             <div class="logo-div text-center">
-                <img src="../images/LOGO1.JPG" alt="" class="align-items-center" width="100" height="100">
+                <img src="<?php echo $universityLogo; ?>" alt="" class="align-items-center" width="100" height="100">
             </div>
             <div class="login-padding">
                 <h2 class="text-center text-white">LOGIN</h2>

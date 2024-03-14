@@ -23,22 +23,25 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
+
 --
--- Table structure for table `change_name`
+-- Table structure for table `setting`
 --
 
-CREATE TABLE `change_name` (
+CREATE TABLE `setting` (
   `sno` int NOT NULL,
-  `name` text COLLATE utf8_unicode_ci,
-  `user_email` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL
+  `key` text COLLATE utf8_unicode_ci NOT NULL,
+  `value` text COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `change_name`
+-- Dumping data for table `setting`
 --
 
-INSERT INTO `change_name` (`sno`, `name`, `user_email`) VALUES
-(1, 'KL UNIVERSITY', 'admin@gmail.com');
+INSERT INTO `setting` (`sno`, `key`, `value`) VALUES
+(1, 'University_name', 'JK UNIVERSITY'),
+(2, 'University_logo', '/var/www/html/college-management-system/images/logo.jpg');
+
 
 -- --------------------------------------------------------
 
