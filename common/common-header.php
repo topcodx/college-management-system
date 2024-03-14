@@ -16,32 +16,21 @@
   </head>
   <body>
   <?php
+    // Include helper.php file
+	require_once "../common/helper.php";
+	$universityLogo = getUniversityLogo('University_logo');
 
-include "../connection/connection.php";
 
+    // Usage of functions
+   
 
-$userEmail = isset($_SESSION['LoginAdmin']) ? $_SESSION['LoginAdmin'] : '';
-
-$que = "SELECT name FROM change_name WHERE user_email = '$userEmail'";
-$res = mysqli_query($con, $que);
-
-if (!$res) {
-    die("Query failed: " . mysqli_error($con));
-}
-
-$row = mysqli_fetch_assoc($res);
-if ($row) {
-    $name = $row['name'];
-} else {
-    $name = "VMJ UNIVERCITY";
-}
-
-?>
+   ;
+    ?>
 
     <nav class="navbar navbar-expand-lg navbar-dark header-back sticky-top header-navbar-fonts">
       <a class="navbar-brand d-flex align-items-center" href="../index.php">
-        <img src="../images/LOGO1.JPG" class="logo-image" width="50" height="50">
-        <h3 class="text-light text-uppercase ml-2"><?php echo $name; ?></h3>
+        <img src="<?php echo $universityLogo; ?>" class="logo-image" width="50" height="50">
+        <h3 class="text-light text-uppercase ml-2"><?php echo getUniversityName('University_name'); ?></h3>
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

@@ -94,9 +94,9 @@
             </a>
           </li>
 		  <li class="nav-item">
-            <a class="nav-link" href="../admin/change_university.php">
+            <a class="nav-link" href="../admin/setting.php">
               <span data-feather="layers"></span>
-              <i class="fa  fa-pencil mr-2" aria-hidden="true"></i> Change university name
+              <i class="fa fa-cog mr-2" aria-hidden="true"></i> Setting
             </a>
           </li>
         </ul>
