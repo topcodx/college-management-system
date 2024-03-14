@@ -1,4 +1,3 @@
-
 <?php
 include('common/header.php');
 require_once "connection/connection.php";
@@ -7,40 +6,31 @@ require_once "connection/connection.php";
 if(isset($_POST['btn_save'])) {
 	
 	$first_name=$_POST["first_name"];
-
- 		$middle_name=$_POST["middle_name"];
- 		
- 		$last_name=$_POST["last_name"];
- 		 		
- 		$email=$_POST["email"];
- 		
- 		$mobile_no=$_POST["mobile_no"];
-
- 		$course_code=$_POST['course_code'];
-
- 		$session=$_POST['session'];
-
-		 $profile_image = $_FILES['profile_image']['name'];$tmp_name=$_FILES['profile_image']['tmp_name'];$path = "images/".$profile_image;move_uploaded_file($tmp_name, $path);
-
- 		$application_status=$_POST["application_status"];
- 		
- 		$cnic=$_POST["cnic"];
- 		
- 		$dob=$_POST["dob"];
- 		 		
- 		$gender=$_POST["gender"];
- 		
-		$current_address=$_POST["current_address"];
- 		 	 		
- 		$matric_complition_date=$_POST["matric_complition_date"];
- 		
-		$matric_certificate = $_FILES['matric_certificate']['name'];$tmp_name=$_FILES['matric_certificate']['tmp_name'];$path = "images/".$matric_certificate;move_uploaded_file($tmp_name, $path);
-
- 		$fa_complition_date=$_POST["fa_complition_date"];
-
-		$fa_certificate = $_FILES['fa_certificate']['name'];$tmp_name=$_FILES['fa_certificate']['tmp_name'];$path = "images/".$fa_certificate;move_uploaded_file($tmp_name, $path);
-
-
+	$middle_name=$_POST["middle_name"];
+	$last_name=$_POST["last_name"];
+	$email=$_POST["email"];
+	$mobile_no=$_POST["mobile_no"];
+	$course_code=$_POST['course_code'];
+	$session=$_POST['session'];
+	$profile_image = $_FILES['profile_image']['name'];
+	$tmp_name=$_FILES['profile_image']['tmp_name'];
+	$path = "images/".$profile_image;
+	move_uploaded_file($tmp_name, $path);
+	$application_status=$_POST["application_status"];
+	$cnic=$_POST["cnic"];
+	$dob=$_POST["dob"];
+	$gender=$_POST["gender"];
+	$current_address=$_POST["current_address"];
+	$matric_complition_date=$_POST["matric_complition_date"];
+	$matric_certificate = $_FILES['matric_certificate']['name'];
+	$tmp_name=$_FILES['matric_certificate']['tmp_name'];
+	$path = "images/".$matric_certificate;
+	move_uploaded_file($tmp_name, $path);
+	$fa_complition_date=$_POST["fa_complition_date"];
+	$fa_certificate = $_FILES['fa_certificate']['name'];
+	$tmp_name=$_FILES['fa_certificate']['tmp_name'];
+	$path = "images/".$fa_certificate;
+	move_uploaded_file($tmp_name, $path);
 
 	$randDom = rand();
     $query = "INSERT INTO student_info (roll_no, first_name, middle_name, last_name, email, mobile_no, course_code, session, profile_image, application_status, cnic, dob, gender,current_address, matric_complition_date, matric_certificate, fa_complition_date, fa_certificate) 
@@ -55,18 +45,26 @@ if(isset($_POST['btn_save'])) {
     $query2 = "INSERT INTO login (user_id, Password, Role, account) VALUES ('$randDom', '$password', '$role', 'Deactive')";
     $run2 = mysqli_query($con, $query2);
 
-	if ($run2) {
-		echo '<script>alert("Your Data has been submitted.");</script>';
+	if ($run && $run2) {
+		// Fetch and display user_id and password
+		$query3 = "SELECT user_id, Password FROM login WHERE user_id = '$randDom'";
+		$result = mysqli_query($con, $query3);
+		$row = mysqli_fetch_assoc($result);
+		if ($row) {
+			$user_id = $row['user_id'];
+			$password = $row['Password'];
+			echo '<div style = "background-color:#5e020af5;color:white;display:flex;justify-content:center;margin:50px;">';
+			echo "<b>User ID: $user_id </b>";
+			echo ' ';
+			echo "<b>Password: $password</b>";
+			echo '</div>';
+		}
 	} else {
 		echo '<script>alert("Your Data has not been submitted.");</script>';
 	}
 }
 ?>
 
-<?php
-
-
-?>
 	<!DOCTYPE html>
 <html>
 <head>
