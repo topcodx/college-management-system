@@ -24,19 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 
---
--- Table structure for table `setting`
---
-
-CREATE TABLE `setting` (
-  `sno` int NOT NULL,
-  `key` text COLLATE utf8_unicode_ci NOT NULL,
-  `value` text COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `setting`
---
 
 INSERT INTO `setting` (`sno`, `key`, `value`) VALUES
 (1, 'University_name', 'JK UNIVERSITY'),

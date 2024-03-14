@@ -14,11 +14,10 @@ function getUniversityName($key) {
         return ($value !== null) ? $value : "VMJ UNIVERSITY";
 		mysqli_stmt_close($stmt);
     } else {
-        return "Error executing query";
+        return null;
     }
 }
-?>
-<?php
+
 function getUniversityLogo($key) {
     global $con; 
     $query = "SELECT `value` FROM `setting` WHERE `key` = ?";
@@ -32,11 +31,10 @@ function getUniversityLogo($key) {
         mysqli_stmt_close($stmt);
         
         // Return the image path
-        return 'http://localhost/college-management-system/images/' . basename($value);
+        return $value;
     } else {
         // Return an error message if query fails
-        return "Error executing query";
+        return null;
     }
 }
 ?>
-

@@ -30,7 +30,6 @@
 	$query="select * from student_info where roll_no='$roll_no'";
 	$run=mysqli_query($con,$query);
 	while ($row=mysqli_fetch_array($run)) {
-		
 		?>
 		<div class="container  mt-1 border border-secondary mb-1">
 			<div class="row text-white bg-primary pt-5">

@@ -6,7 +6,7 @@ if (!$_SESSION["LoginAdmin"]) {
 require_once "../connection/connection.php";
 require_once "../common/helper.php";
 $message = "";
-
+$bg_color = "";
 
 if (isset($_POST['submit'])) {
     $uni_name = $_POST['uni_name'];
@@ -15,24 +15,24 @@ if (isset($_POST['submit'])) {
     $img = $_FILES['img']['name'];
     $temp_file = $_FILES['img']['tmp_name'];
 
-    $upload_path = '/var/www/html/college-management-system/images/' . $img;
+    $upload_path = $_SERVER['DOCUMENT_ROOT'].'/college-management-system/images/' . $img;
+	$uploadImage = '/college-management-system/images/' . $img;
 
     // Move uploaded file to the destination
     move_uploaded_file($temp_file, $upload_path);
 
     // Check if the setting already exists for University Name
     $check_query_name = "SELECT `value` FROM `setting` WHERE `key` = 'University_name'";
-    $check_stmt_name = $con->prepare($check_query_name);
-    $check_stmt_name->execute();
-    $check_result_name = $check_stmt_name->get_result();
+    $check_stmt_name = mysqli_query($con, $check_query_name);
+
 
     // Check if the setting already exists for University Logo
-    $check_query_logo = "SELECT `value` FROM `setting` WHERE `key` = 'University_logo'";
-    $check_stmt_logo = $con->prepare($check_query_logo);
-    $check_stmt_logo->execute();
-    $check_result_logo = $check_stmt_logo->get_result();
+	$check_query_logo = "SELECT `value` FROM `setting` WHERE `key` = 'University_name'";
+    $check_stmt_logo = mysqli_query($con, $check_query_logo);
 
-    if ($check_result_name !== false && $check_result_logo !== false) {
+
+    if (mysqli_num_rows($check_stmt_name) > 0 && mysqli_num_rows($check_stmt_logo) > 0) {
+
         // Update the existing settings for University Name
         $update_query_name = "UPDATE `setting` SET `value` = ? WHERE `key` = 'University_name'";
         $update_stmt_name = $con->prepare($update_query_name);
@@ -42,13 +42,14 @@ if (isset($_POST['submit'])) {
         // Update the existing settings for University Logo
         $update_query_logo = "UPDATE `setting` SET `value` = ? WHERE `key` = 'University_logo'";
         $update_stmt_logo = $con->prepare($update_query_logo);
-        $update_stmt_logo->bind_param("s", $upload_path); // Use the image path here
+        $update_stmt_logo->bind_param("s", $uploadImage); // Use the image path here
         $update_stmt_logo->execute();
 
         if ($update_stmt_name->affected_rows > 0 && $update_stmt_logo->affected_rows > 0) {
             $message = "Settings updated successfully";
         }
     } else {
+		
         // Insert new settings for University Name
         $insert_query_name = "INSERT INTO `setting` (`key`, `value`) VALUES ('University_name', ?)";
         $insert_stmt_name = $con->prepare($insert_query_name);
@@ -58,7 +59,7 @@ if (isset($_POST['submit'])) {
         // Insert new settings for University Logo
         $insert_query_logo = "INSERT INTO `setting` (`key`, `value`) VALUES ('University_logo', ?)";
         $insert_stmt_logo = $con->prepare($insert_query_logo);
-        $insert_stmt_logo->bind_param("s", $upload_path); // Use the image path here
+        $insert_stmt_logo->bind_param("s", $uploadImage); // Use the image path here
         $insert_stmt_logo->execute();
 
         if ($insert_stmt_name->affected_rows > 0 && $insert_stmt_logo->affected_rows > 0) {
@@ -112,17 +113,16 @@ if (isset($_POST['submit'])) {
 												value="<?php echo getUniversityName('University_name')?>">
 										</div>
 									</div>
+									
 									<div class="col-md-6">
 										<div class="form-group">
 											<label for="img">Logo</label><br>
 											<div class="input-group">
 												<div class="custom-file">
 													<input type="file" class="custom-file-input" id="img" name="img"
-														required>
+														<?php echo getUniversityLogo('University_logo') != null ? '' : 'required'; ?>
+														>
 													<label class="custom-file-label" for="img">Choose file</label>
-												</div>
-												<div class="input-group-append">
-													<i class="fas fa-plus"></i>
 												</div>
 											</div>
 										</div>
