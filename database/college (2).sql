@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 13, 2024 at 05:43 AM
+-- Generation Time: Mar 14, 2024 at 10:07 AM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.13
 
@@ -20,15 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `college`
 --
-
--- --------------------------------------------------------
-
-
-
-INSERT INTO `setting` (`sno`, `key`, `value`) VALUES
-(1, 'University_name', 'JK UNIVERSITY'),
-(2, 'University_logo', '/var/www/html/college-management-system/images/logo.jpg');
-
 
 -- --------------------------------------------------------
 
@@ -180,17 +171,10 @@ CREATE TABLE IF NOT EXISTS `courses` (
 --
 
 INSERT INTO `courses` (`course_code`, `course_name`, `semester_or_year`, `no_of_year`) VALUES
-('AHL', 'Allied Health Science', 'Semester', 4),
-('B.Arch', 'Bachular in Architecture', 'Semester', 5),
 ('b.com', 'batulare of computer', '2', 5),
-('B.Fashion', 'Bachular in Fashion and Design', 'Semester', 4),
 ('BA', 'BA', '3', 5),
-('BBA', 'Bachular in Business Administration', 'Semester', 2),
-('BSAI', 'Bachular in Artificial Inteligence', 'Semester', 2),
-('BSEE', 'Bachular in Electrical Engineering', 'Semester', 4),
 ('ca', 'ca', '2', 1),
 ('M.Com', 'Master in Commerce', 'Semester', 2),
-('MCS', 'Master in Computer Science', 'Semester', 2),
 ('MIT', 'Master in Information Technology', 'Semester', 2),
 ('oop', 'object oriented programming', '2', 1),
 ('wd', 'web designing', '2', 1);
@@ -217,14 +201,14 @@ CREATE TABLE IF NOT EXISTS `course_subjects` (
 --
 
 INSERT INTO `course_subjects` (`subject_code`, `subject_name`, `course_code`, `semester`, `dept_id`, `credit_hours`) VALUES
-('DBMS', 'Database Management System', 'MCS', 2, 1, 4),
-('DLD', 'Data Logic and Design', 'MCS', 2, 1, 3),
+('DLD', 'Data Logic and Designing', 'MIT', 4, 1, 2),
 ('Ds', 'Discrete Structure', 'MCS', 1, 1, 3),
 ('I2C', 'Introduction to Computer Science', 'MCS', 1, 1, 4),
-('iot', 'introductin', 'MCS', 2, NULL, 2),
+('iot', 'introductining', 'MCS', 3, NULL, 2),
 ('ITP', 'IT Project Management System', 'MIT', 2, 1, 3),
 ('MBAD', 'Mobile Application Development', 'MIT', 2, 1, 4),
-('OOP', 'Object Oriented Programming', 'MCS', 2, 1, 4),
+('OOP', 'Object Oriented ', 'M.Com', 23, 1, 4),
+('wa', 'web ', 'AHL', 2, NULL, 2),
 ('wd', 'Web Designing', 'MCS', 2, NULL, 2);
 
 -- --------------------------------------------------------
@@ -241,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `login` (
   `Role` varchar(10) NOT NULL,
   `account` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'Deactivate',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `login`
@@ -250,21 +234,8 @@ CREATE TABLE IF NOT EXISTS `login` (
 INSERT INTO `login` (`ID`, `user_id`, `Password`, `Role`, `account`) VALUES
 (2, 'admin@gmail.com', 'VMJ', 'Admin', 'Activate'),
 (5, 'staff1@gmail.com', 'VMJ', 'Teacher', 'Activate'),
-(6, 'vmj@gmail.com', 'teacher123*', 'Teacher', 'Activate'),
-(20, '222@gmail.com', 'student123*', 'Student', 'Activate'),
-(21, 'abc@gmail.com', 'teacher123*', 'Teacher', 'Deactivate'),
-(22, '125@gmail.com', 'student123*', 'Student', 'Activate'),
-(23, 'vidhi@gmail.com', 'student123*', 'Student', 'Activate'),
-(24, '111@GMAIL.COM', 'student123*', 'Student', 'Deactive'),
-(25, '', 'student123*', 'Student', 'Deactivate'),
-(26, '65', 'student123*', 'Student', 'Deactivate'),
-(27, 'VIDHI@GMAIL.COM', 'student123*', 'Student', 'Activate'),
-(28, '50', 'student123*', 'Student', 'Deactivate'),
-(29, '1', 'student123*', 'Student', 'Activate'),
-(30, '2', 'student123*', 'Student', 'Activate'),
-(31, '142@gmail.com', 'teacher123*', 'Teacher', 'Deactivate'),
-(32, 'vidhiabc@gmail.com', 'student123*', 'Student', 'Deactive'),
-(33, 'ankita@gmail.com', 'student123*', 'Student', 'Activate');
+(43, '1', 'student123*', 'Student', 'Activate'),
+(46, '485469697', 'student123*', 'Student', 'Activate');
 
 -- --------------------------------------------------------
 
@@ -315,6 +286,28 @@ INSERT INTO `sessions` (`session_id`, `session`, `created_date`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `setting`
+--
+
+DROP TABLE IF EXISTS `setting`;
+CREATE TABLE IF NOT EXISTS `setting` (
+  `sno` int NOT NULL AUTO_INCREMENT,
+  `key` text NOT NULL,
+  `value` text NOT NULL,
+  PRIMARY KEY (`sno`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `setting`
+--
+
+INSERT INTO `setting` (`sno`, `key`, `value`) VALUES
+(1, 'University_name', 'VMJ UNIVERSITY'),
+(2, 'University_logo', '/college-management-system/images/LOGO1.JPG');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `student_attendance`
 --
 
@@ -328,7 +321,7 @@ CREATE TABLE IF NOT EXISTS `student_attendance` (
   `attendance` int NOT NULL,
   `attendance_date` varchar(11) NOT NULL,
   PRIMARY KEY (`attendance_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `student_attendance`
@@ -356,7 +349,9 @@ INSERT INTO `student_attendance` (`attendance_id`, `course_code`, `subject_code`
 (19, 'MCS', 'OOP', 2, '2', 1, '10-03-24'),
 (20, 'MCS', 'OOP', 2, '1', 0, '10-03-24'),
 (21, 'MCS', 'OOP', 2, '2', 0, '12-03-24'),
-(22, 'MCS', 'OOP', 2, '1', 0, '12-03-24');
+(22, 'MCS', 'OOP', 2, '1', 0, '12-03-24'),
+(23, 'MCS', 'OOP', 2, '2', 0, '14-03-24'),
+(24, 'MCS', 'OOP', 2, '1', 1, '14-03-24');
 
 -- --------------------------------------------------------
 
@@ -426,7 +421,7 @@ CREATE TABLE IF NOT EXISTS `student_fee` (
   `status` varchar(10) NOT NULL,
   PRIMARY KEY (`fee_voucher`),
   KEY `roll_no` (`roll_no`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `student_fee`
@@ -444,7 +439,10 @@ INSERT INTO `student_fee` (`fee_voucher`, `roll_no`, `amount`, `posting_date`, `
 (9, '2', 10000, '2024-03-10 15:50:02', 'Paid'),
 (10, '1', 2, '2024-03-12 05:26:38', 'Paid'),
 (11, '67', 5000, '2024-03-12 08:43:34', 'Paid'),
-(12, '2', 5000, '2024-03-12 08:44:44', 'Paid');
+(12, '2', 5000, '2024-03-12 08:44:44', 'Paid'),
+(13, '69', 500, '2024-03-14 06:30:46', 'Paid'),
+(14, '71', 5000, '2024-03-14 06:33:00', 'Paid'),
+(15, '2', 5000, '2024-03-14 06:40:54', 'Paid');
 
 -- --------------------------------------------------------
 
@@ -454,7 +452,7 @@ INSERT INTO `student_fee` (`fee_voucher`, `roll_no`, `amount`, `posting_date`, `
 
 DROP TABLE IF EXISTS `student_info`;
 CREATE TABLE IF NOT EXISTS `student_info` (
-  `roll_no` int NOT NULL AUTO_INCREMENT,
+  `roll_no` int NOT NULL,
   `first_name` varchar(30) NOT NULL,
   `middle_name` varchar(30) NOT NULL,
   `last_name` varchar(30) NOT NULL,
@@ -491,17 +489,15 @@ CREATE TABLE IF NOT EXISTS `student_info` (
   `state` varchar(20) NOT NULL,
   `admission_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`roll_no`)
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `student_info`
 --
 
 INSERT INTO `student_info` (`roll_no`, `first_name`, `middle_name`, `last_name`, `father_name`, `email`, `mobile_no`, `course_code`, `session`, `profile_image`, `prospectus_issued`, `prospectus_amount`, `form_b`, `applicant_status`, `application_status`, `cnic`, `dob`, `other_phone`, `gender`, `permanent_address`, `current_address`, `place_of_birth`, `matric_complition_date`, `matric_awarded_date`, `matric_certificate`, `fa_complition_date`, `fa_awarded_date`, `fa_certificate`, `ba_complition_date`, `ba_awarded_date`, `ba_certificate`, `semester`, `total_marks`, `obtain_marks`, `state`, `admission_date`) VALUES
-(1, '1234', '1234', '1234', '1234', '1234@GMAIL.COM', '147852369', 'Select Cour', 'Select Ses', '', 'Select Opt', 'Select Opt', '', 'Select Option', 'Select Option', '', '', '', 'Select Gen', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, '', '2024-03-10 14:54:05'),
-(2, '123', '123', '123', '123', '123@gmail.com', '7412589630', 'Select Cour', 'Select Ses', '', 'Select Opt', 'Select Opt', '', 'Select Option', 'Select Option', '', '', '', 'Select Gen', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, '', '2024-03-10 15:46:43'),
-(67, 'vidhi', 'jogani', 'nareshbhai', 'nareshbahi', 'vidhiabc@gmail.com', '7894563210', 'BBA', 'S19', 'Screenshot 2023-03-18 192910.png', 'Yes', 'Yes', 'form is completed', 'Admitted', 'Approved', '147852369784', '', '', 'Select Gen', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, '', '2024-03-12 07:53:52'),
-(68, 'ankita ', 'dave', 's', 's', 'ankita@gmail.com', '7412589630', 'Select Cour', 'Select Ses', '', 'Select Opt', 'Select Opt', '', 'Select Option', 'Select Option', '', '', '', 'Select Gen', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, '', '2024-03-12 08:16:38');
+(1, 'vidhi', 'jogani', 'nareshbhai', '', 'vidhi@gmail.com', '7046650409', 'Select Cour', 'Select Ses', 'student.jpg', '', '', '', '', 'Select Option', '', '', '', 'Select Gen', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, '', '2024-03-14 08:52:05'),
+(485469697, '1', '1', '1', '', '111@gmail.com', '7410258963', 'b.com', 'Select Ses', '', '', '', '', '', 'Select Option', '', '', '', 'Select Gen', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, '', '2024-03-14 10:02:26');
 
 -- --------------------------------------------------------
 
@@ -517,20 +513,6 @@ CREATE TABLE IF NOT EXISTS `teacher_attendance` (
   `attendance_date` varchar(11) NOT NULL,
   PRIMARY KEY (`attendance_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `teacher_attendance`
---
-
-INSERT INTO `teacher_attendance` (`attendance_id`, `teacher_id`, `attendance`, `attendance_date`) VALUES
-(1, '3', 1, '09-03-20'),
-(2, '3', 1, '10-03-20'),
-(3, '3', 1, '11-04-20'),
-(4, '3', 1, '30-03-20'),
-(5, '2', 0, '30-03-20'),
-(6, '2', 1, '08-03-24'),
-(7, '6', 1, '10-03-24'),
-(8, '2', 1, '12-03-24');
 
 -- --------------------------------------------------------
 
@@ -699,21 +681,26 @@ CREATE TABLE IF NOT EXISTS `time_table` (
   `subject_code` varchar(20) NOT NULL,
   `room_no` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `time_table`
 --
 
 INSERT INTO `time_table` (`id`, `course_code`, `semester`, `timing_from`, `timing_to`, `day`, `subject_code`, `room_no`) VALUES
-(1, 'MCS', 2, '14:01', '15:01', '2', 'OOP', 3),
-(2, 'MCS', 2, '18:00', '21:00', '2', 'DBMS', 21),
+(1, 'M.Com', 2, '18:48', '18:49', '3', 'OOP', 15),
+(2, 'MIT', 2, '18:36', '18:38', '3', 'DBMS', 3),
 (3, 'MCS', 2, '17:02', '18:02', '1', 'DLD', 3),
-(4, 'MCS', 2, '18:00', '21:00', '4', 'SE', 21),
-(5, 'MCS', 2, '18:00', '21:00', '5', 'WEB', 21),
+(4, 'M.Com', 4, '17:32', '17:35', '1', 'SE', 5),
+(5, 'b.com', 2, '11:47', '12:47', '3', 'OOP', 15),
 (6, 'MIT', 2, '18:00', '21:00', '4', 'MBAD', 12),
 (7, 'M.Com', 2, '14:00', '15:00', '7', 'CSPD', 2),
-(8, 'MCS', 2, '13:58', '15:58', '1', 'CSPD', 2);
+(8, 'MCS', 2, '13:58', '15:58', '1', 'CSPD', 2),
+(9, 'b.com', 2, '11:47', '12:47', '3', 'OOP', 15),
+(10, 'b.com', 2, '11:47', '12:47', '3', 'OOP', 15),
+(11, 'ca', 2, '15:34', '17:35', '4', 'MBAD', 12),
+(12, 'B.Fashion', 4, '10:58', '10:59', '1', 'Ds', 5),
+(13, 'BSAI', 4, '11:40', '12:40', '1', 'DLD', 1);
 
 -- --------------------------------------------------------
 

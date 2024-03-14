@@ -42,8 +42,9 @@ if(isset($_POST['btn_save'])) {
 
 
 
-    $query = "INSERT INTO student_info (first_name, middle_name, last_name, email, mobile_no, course_code, session, profile_image, application_status, cnic, dob, gender,current_address, matric_complition_date, matric_certificate, fa_complition_date, fa_certificate) 
-    VALUES ('$first_name', '$middle_name', '$last_name', '$email', '$mobile_no', '$course_code', '$session', '$profile_image', '$application_status', '$cnic', '$dob', '$gender', '$current_address', '$matric_complition_date', '$matric_certificate', '$fa_complition_date', '$fa_certificate')";
+	$randDom = rand();
+    $query = "INSERT INTO student_info (roll_no, first_name, middle_name, last_name, email, mobile_no, course_code, session, profile_image, application_status, cnic, dob, gender,current_address, matric_complition_date, matric_certificate, fa_complition_date, fa_certificate) 
+    VALUES ('$randDom', '$first_name', '$middle_name', '$last_name', '$email', '$mobile_no', '$course_code', '$session', '$profile_image', '$application_status', '$cnic', '$dob', '$gender', '$current_address', '$matric_complition_date', '$matric_certificate', '$fa_complition_date', '$fa_certificate')";
     
     $run = mysqli_query($con, $query);
 
@@ -51,7 +52,7 @@ if(isset($_POST['btn_save'])) {
     $password = mysqli_real_escape_string($con, $_POST['password']); // Assuming you have a password field in your form
     $role = mysqli_real_escape_string($con, $_POST['role']); // Assuming you have a role field in your form
 
-    $query2 = "INSERT INTO login (user_id, Password, Role, account) VALUES ('$email', '$password', '$role', 'Deactive')";
+    $query2 = "INSERT INTO login (user_id, Password, Role, account) VALUES ('$randDom', '$password', '$role', 'Deactive')";
     $run2 = mysqli_query($con, $query2);
 
 	if ($run2) {
@@ -239,7 +240,7 @@ if(isset($_POST['btn_save'])) {
 														Hidden Values are end here
 					_________________________________________________________________________________ -->
 					<div class="modal-footer">
-						<input type="submit" class="btn btn-primary px-5" name="btn_save" value="submit">
+						<input type="submit" class="btn btn-primary px-5" name="btn_save" value="Submit">
 					</div>
 				</form>
 			</div>
