@@ -7,11 +7,10 @@ if (!isset($_SESSION["LoginAdmin"])) {
 require_once "../connection/connection.php";
 
 // Initialize $CourseDetails variable
-// $CourseDetails = array();
+$CourseDetails = array();
 
 // Function to get subject details by course_code
 function getCourseDetails($con, $course_code) {
-    // $course_code = mysqli_real_escape_string($con, $course_code);
     $query = "SELECT * FROM courses WHERE course_code='$course_code'";
     $result = mysqli_query($con, $query);
     return mysqli_fetch_assoc($result);
@@ -26,11 +25,10 @@ if(isset($_GET['course_code'])) {
 
 // Check if form is submitted for updating subject
 if(isset($_POST['update_sub'])) {
-   $course_code =$_POST['course_code'];
+   $course_code = $_POST['course_code'];
    $course_name = $_POST['course_name'];
    $semester_or_year = $_POST['semester_or_year'];
    $no_of_year = $_POST['no_of_year'];
-
 
     // Update subject details in database
     $query = "UPDATE courses SET course_name='$course_name', semester_or_year='$semester_or_year', no_of_year=$no_of_year WHERE course_code='$course_code'";
@@ -45,7 +43,6 @@ if(isset($_POST['update_sub'])) {
         // Print MySQL error message if update fails
         echo "Failed to update course. Error: " . mysqli_error($con);
     }
-   
 }
 ?>
 
@@ -64,6 +61,9 @@ if(isset($_POST['update_sub'])) {
             <form action="update-course.php" method="post">
                 
                 <input type="hidden" name="course_code" value="<?php echo isset($CourseDetails['course_code']) ? htmlspecialchars($CourseDetails['course_code']) : ''; ?>">
+                <input type="hidden" name="course_name" value="<?php echo isset($CourseDetails['course_name']) ? htmlspecialchars($CourseDetails['course_name']) : ''; ?>">
+                <input type="hidden" name="semester_or_year" value="<?php echo isset($CourseDetails['semester_or_year']) ? htmlspecialchars($CourseDetails['semester_or_year']) : ''; ?>">
+                <input type="hidden" name="no_of_year" value="<?php echo isset($CourseDetails['no_of_year']) ? intval($CourseDetails['no_of_year']) : ''; ?>">
                 
                 <div class="form-group">
                     <label for="course_name">Course Name:</label>

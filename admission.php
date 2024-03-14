@@ -84,7 +84,6 @@ if(isset($_POST['btn_save'])) {
 		<div class="row m-3">
 			<div class="col-md-12">
 				<form action="" method="POST" enctype="multipart/form-data">
-				<!-- <form action="./login/login.php" method="POST" enctype="multipart/form-data"> -->
 					<div class="row mt-3">
 						<div class="col-md-4">
 							<div class="form-group">
