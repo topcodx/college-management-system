@@ -6,6 +6,7 @@ if (!isset($_SESSION["LoginAdmin"])) {
 }
 require_once "../connection/connection.php";
 
+
 // Function to get subject details by subject_code
 function getSubjectDetails($con, $subject_code) {
     $query = "SELECT * FROM course_subjects WHERE subject_code='$subject_code'";
