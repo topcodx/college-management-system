@@ -27,8 +27,7 @@ if (isset($_POST['sub'])) {
             alert("Student data has not been updated due to some errors");
         </script>
     <?php }
-   print_r($run);
-   exit();
+  
 }
 ?>
 
