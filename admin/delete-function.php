@@ -5,6 +5,10 @@ if (!$_SESSION["LoginAdmin"])
 	header('location:../login/login.php');
 }
 	require_once "../connection/connection.php";
+
+	 // Include helper.php file
+	 require_once "../common/helper.php";
+	 $universityLogo = getUniversityLogo('University_logo');
 ?>
 	<?php 
 	if (isset($_GET['roll_no'])) {

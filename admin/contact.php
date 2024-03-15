@@ -5,6 +5,9 @@
 		header('location:../login/login.php');
 	}
     require_once "../connection/connection.php";
+     // Include helper.php file
+		 require_once "../common/helper.php";
+		 $universityLogo = getUniversityLogo('University_logo');
 
     $alert_message = ""; // Initialize the alert message variable
 
@@ -44,6 +47,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href=" <?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>" type="image/x-icon">
+
     <title>Contact Form Submissions</title>
     <!-- Link to Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">

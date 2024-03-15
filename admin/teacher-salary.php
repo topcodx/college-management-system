@@ -4,6 +4,10 @@
         header('location:../login/login.php');
     }
     require_once "../connection/connection.php";
+
+	// Include helper.php file
+	require_once "../common/helper.php";
+	$universityLogo = getUniversityLogo('University_logo');
 ?>
 
 <!--*********************** PHP code starts from here for data insertion into database ******************************* -->
@@ -81,6 +85,8 @@
 <!doctype html>
 <html lang="en">
 	<head>
+	<link rel="shortcut icon" href=" <?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>" type="image/x-icon">
+
 		<title>Admin - Teacher Salary</title>
 	</head>
 	<body>

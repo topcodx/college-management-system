@@ -6,6 +6,10 @@
 		exit(); // Terminate script execution after redirection
 	}
 	require_once "../connection/connection.php";
+
+	 // Include helper.php file
+	 require_once "../common/helper.php";
+	 $universityLogo = getUniversityLogo('University_logo');
 ?>
 <!---------------- Session ends here ------------------------>
 
@@ -57,6 +61,8 @@
 <!doctype html>
 <html lang="en">
 <head>
+<link rel="shortcut icon" href=" <?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>" type="image/x-icon">
+
 	<title>Admin - Courses</title>
 </head>
 <body>

@@ -7,6 +7,10 @@
 	}
 		require_once "../connection/connection.php";
 		$_SESSION['LoginTeacher']="";
+
+        // Include helper.php file
+        require_once "../common/helper.php";
+        $universityLogo = getUniversityLogo('University_logo');
 	?>
 <!---------------- Session Ends form here ------------------------>
 
@@ -122,6 +126,7 @@
 <html lang="en">
 
 <head>
+    <link rel="shortcut icon" href=" <?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>" type="image/x-icon">
     <title>Admin - Register Teacher</title>
 </head>
 

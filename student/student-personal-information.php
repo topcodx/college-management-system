@@ -7,6 +7,10 @@ require_once "../connection/connection.php";
 
 $roll_no = $_SESSION['LoginStudent'];
 
+// Include helper.php file
+require_once "../common/helper.php";
+$universityLogo = getUniversityLogo('University_logo');
+
 if (isset($_POST['sub'])) {
     // Check if the form fields are set before accessing them
     $first_name = isset($_POST['first_name']) ? $_POST['first_name'] : '';
@@ -35,6 +39,8 @@ if (isset($_POST['sub'])) {
 <html lang="en">
 
 <head>
+<link rel="shortcut icon" href=" <?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>" type="image/x-icon">
+
     <title>Student Personal Information</title>
 </head>
 

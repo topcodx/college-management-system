@@ -1,11 +1,15 @@
-
+<?php
+    // Include helper.php file
+	require_once "../common/helper.php";
+	$universityLogo = getUniversityLogo('University_logo');
+?>
 <!doctype html>
 <html lang="en">
 	<head>
     <meta charset="utf-8">
-    <link rel="shortcut icon" href="$baseUrl/../Images/icbs_logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href=" <?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>" type="image/x-icon">
     
-    <!-- css style goes here -->
+      <!-- css style goes here -->
 
       <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
       <link rel="stylesheet" type="text/css" href="../css/footer.css">
@@ -15,17 +19,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
-  <?php
-    // Include helper.php file
-	require_once "../common/helper.php";
-	$universityLogo = getUniversityLogo('University_logo');
-
-
-    // Usage of functions
-   
-
-   ;
-    ?>
+  
 
     <nav class="navbar navbar-expand-lg navbar-dark header-back sticky-top header-navbar-fonts">
       <a class="navbar-brand d-flex align-items-center" href="../index.php">

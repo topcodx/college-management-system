@@ -26,22 +26,13 @@ if(isset($_POST['btn_save3'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html >
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact us</title>
-    <!-- Link to Font Awesome CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
-
-    <!-- Link to Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-    <style>
-    /* Style for contact details box */
-    .contact-details {
+<title>Contact us</title>
+<style>
+/* Style for contact details box */
+.contact-details {
     background-color: #5e0209;
     padding: 50px;
     border-radius: 5px;
@@ -79,10 +70,10 @@ h5 {
 }
   
 .submit-btn-container {
-            display: flex;
-            justify-content: center;
-        }
-    </style>
+        display: flex;
+        justify-content: center;
+    }
+</style>
 </head>
 
 <body>
@@ -111,7 +102,7 @@ h5 {
                         </div>
                         <div class="form-group col-md-6">
                             <label for="phone_number">Phone Number:</label>
-                            <input type="tel" class="form-control" name="phone_number" required>
+                            <input type="number" class="form-control" name="phone_number" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -129,8 +120,6 @@ h5 {
                 </div>
             </div>
     </form>
-    <!-- Link to Bootstrap JavaScript -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

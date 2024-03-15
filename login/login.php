@@ -2,6 +2,9 @@
 session_start();
 require_once "../connection/connection.php";
 $message = ""; // Initialize the message variable
+// Include helper.php file
+require_once "../common/helper.php";
+$universityLogo = getUniversityLogo('University_logo');
 
 if(isset($_POST["btnlogin"])) {
     $username = $_POST["email"];
@@ -39,6 +42,8 @@ if(isset($_POST["btnlogin"])) {
 <!doctype html>
 <html lang="en">
 <head>
+<link rel="shortcut icon" href=" <?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>" type="image/x-icon">
+
     <title>Login - VMJ</title>
 </head>
 <body class="login-background">

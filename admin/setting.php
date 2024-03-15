@@ -5,6 +5,10 @@ if (!$_SESSION["LoginAdmin"]) {
 }
 require_once "../connection/connection.php";
 require_once "../common/helper.php";
+
+ // Include helper.php file
+ require_once "../common/helper.php";
+ $universityLogo = getUniversityLogo('University_logo');
 $message = "";
 $bg_color = "";
 
@@ -39,6 +43,11 @@ if (isset($_POST['submit'])) {
         $update_stmt_name->bind_param("s", $uni_name);
         $update_stmt_name->execute();
 
+		
+		if(empty($img)){
+			$uploadImage = getUniversityLogo('University_logo');
+		}
+		
         // Update the existing settings for University Logo
         $update_query_logo = "UPDATE `setting` SET `value` = ? WHERE `key` = 'University_logo'";
         $update_stmt_logo = $con->prepare($update_query_logo);
@@ -72,6 +81,8 @@ if (isset($_POST['submit'])) {
 <html lang="en">
 
 <head>
+<link rel="shortcut icon" href=" <?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>" type="image/x-icon">
+
 	<title>Admin - Manage Accounts</title>
 	<!-- Include jQuery -->
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

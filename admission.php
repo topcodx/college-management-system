@@ -2,6 +2,8 @@
 include('common/header.php');
 require_once "connection/connection.php";
 
+
+
 // Check if the form has been submitted
 if(isset($_POST['btn_save'])) {
 	
@@ -51,16 +53,19 @@ if(isset($_POST['btn_save'])) {
 		$result = mysqli_query($con, $query3);
 		$row = mysqli_fetch_assoc($result);
 		if ($row) {
-			$user_id = $row['user_id'];
+			$userId = $row['user_id'];
 			$password = $row['Password'];
-			echo '<div style = "background-color:#5e020af5;color:white;display:flex;justify-content:center;margin:50px;">';
-			echo "<b>User ID: $user_id </b>";
-			echo ' ';
-			echo "<b>Password: $password</b>";
-			echo '</div>';
+			echo "<div style='background-color: #4CAF50; color: white; display: flex; justify-content: center; align-items: center; padding: 20px; margin: 18px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);'>
+						<div style='text-align: center;'> 
+							<h2 style='margin-bottom: 10px;'>Success!</h2>
+							<p style='margin: 0;'><strong>Your data has been successfully submitted.</strong></p>
+							<div style='margin-top: 10px;'>
+								<p style='margin: 5px 0;'><strong>User ID:</strong> $userId </p>
+								<p style='margin: 5px 0;'><strong>Password:</strong> $password</p>
+							</div>
+						</div>
+					</div>";
 		}
-	} else {
-		echo '<script>alert("Your Data has not been submitted.");</script>';
 	}
 }
 ?>
@@ -68,6 +73,7 @@ if(isset($_POST['btn_save'])) {
 	<!DOCTYPE html>
 <html>
 <head>
+	
 	<title>Registration form</title>
 </head>
 <body>

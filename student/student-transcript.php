@@ -6,6 +6,10 @@
 		header('location:../login/login.php');
 	}
 		require_once "../connection/connection.php";
+
+        // Include helper.php file
+		require_once "../common/helper.php";
+		$universityLogo = getUniversityLogo('University_logo');
 ?>
 <!---------------- Session Ends form here ------------------------>
 <?php
@@ -133,6 +137,7 @@
         return $gpa;
     }
 ?>
+<link rel="shortcut icon" href=" <?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>" type="image/x-icon">
 
     <title>Student - Transcript</title>
 
