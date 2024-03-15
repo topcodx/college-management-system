@@ -66,3 +66,19 @@ if (!$_SESSION["LoginAdmin"])
 		}
 	}
 ?>
+
+<!--------------------------------Delete Time table-------------------------------------------->
+
+<?php 
+	if (isset($_GET['course_code'])) {
+		$course_code=$_GET['course_code'];
+		$query3="delete from time_table where course_code='$course_code'";
+		$run3=mysqli_query($con,$query3);
+		if ($run3) {
+			header('Location: time-table.php');
+		}
+		else{
+			echo "Record not deleted";
+		}
+	}
+?>

@@ -8,8 +8,8 @@
 	require_once "../connection/connection.php";
 
     // Include helper.php file
-		require_once "../common/helper.php";
-		$universityLogo = getUniversityLogo('University_logo');
+	require_once "../common/helper.php";
+	$universityLogo = getUniversityLogo('University_logo');
 ?>
 <!---------------- Session Ends form here ------------------------>
 
@@ -365,7 +365,7 @@
                             <div class="col-md-12">
                                 <table class="w-100 table-elements table-three-tr" cellpadding="3">
                                     <tr class="table-tr-head table-three text-white">
-                                        <td colspan="7" class="text-center text-white">
+                                        <td colspan="8" class="text-center text-white">
                                             <h4>Classes Time Table</h4>
                                         </td>
                                     </tr>
@@ -377,6 +377,7 @@
                                         <th>Subject</th>
                                         <th>Room No</th>
                                         <th>Update</th>
+                                        <th>Delete
                                     </tr>
                                     <?php  
 										$query="select id,course_code,TIME_FORMAT(timing_from,'%h:%i %p') as timing_from,TIME_FORMAT(timing_to,'%h:%i %p') as timing_to,semester,day_name,day_id,day,subject_code,room_no from time_table tt inner join weekdays wd on tt.day=wd.day_id";
@@ -391,7 +392,9 @@
 											echo "<td>".$row["room_no"]."</td>";
 											// Add update button with data attributes to capture ID and other data
                                             
-											echo "<td><button class='btn btn-success update-btn' data-id='".$row["id"]."' data-course='".$row["course_code"]."' data-semester='".$row["semester"]."' data-timing-from='".$row["timing_from"]."' data-timing-to='".$row["timing_to"]."' data-day='".$row["day_id"]."' data-subject='".$row["subject_code"]."' data-room='".$row["room_no"]."'>Update</button></td>";
+											echo "<td width='20'><button class='btn btn-success update-btn' data-id='".$row["id"]."' data-course='".$row["course_code"]."' data-semester='".$row["semester"]."' data-timing-from='".$row["timing_from"]."' data-timing-to='".$row["timing_to"]."' data-day='".$row["day_id"]."' data-subject='".$row["subject_code"]."' data-room='".$row["room_no"]."'>Update</button></td>";
+                                            echo "<td width='20'><a class='btn btn-danger' href='delete-function.php?course_code=".$row['course_code']."'>Delete</a></td>";
+
 											echo "</tr>";
 										}
 									?>
