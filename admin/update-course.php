@@ -2,11 +2,15 @@
 session_start();
 require_once "../connection/connection.php";
 
+// Include helper.php file
+require_once "../common/helper.php";
+$universityLogo = getUniversityLogo('University_logo');
+
 // Initialize $CourseDetails variable
 $CourseDetails = array();
 
 // Function to get course details by course_code
-function getCourseDetails($con, $course_code) {
+function getCoursesDetails($con, $course_code) {
     $query = "SELECT * FROM courses WHERE course_code=?";
     $stmt = mysqli_prepare($con, $query);
     mysqli_stmt_bind_param($stmt, "s", $course_code);
@@ -19,7 +23,7 @@ function getCourseDetails($con, $course_code) {
 if (isset($_GET['course_code'])) {
     $course_code = $_GET['course_code'];
     // Fetch course details by course_code
-    $CourseDetails = getCourseDetails($con, $course_code);
+    $CourseDetails = getCoursesDetails($con, $course_code);
 }
 
 // Check if form is submitted for updating course
@@ -56,6 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!doctype html>
 <html lang="en">
 <head>
+<link rel="shortcut icon" href=" <?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>" type="image/x-icon">
+
     <title>Update Course</title>
 </head>
 <body>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 14, 2024 at 12:20 PM
+-- Generation Time: Mar 15, 2024 at 08:09 AM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.13
 
@@ -38,7 +38,14 @@ CREATE TABLE IF NOT EXISTS `class_result` (
   `obtain_marks` varchar(11) NOT NULL,
   `result_date` varchar(10) NOT NULL,
   PRIMARY KEY (`class_result_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `class_result`
+--
+
+INSERT INTO `class_result` (`class_result_id`, `roll_no`, `course_code`, `subject_code`, `semester`, `total_marks`, `obtain_marks`, `result_date`) VALUES
+(90, '607980501', 'wd', 'WD', '4', '100', '50', '15-03-24');
 
 -- --------------------------------------------------------
 
@@ -55,7 +62,15 @@ CREATE TABLE IF NOT EXISTS `contact` (
   `phone_number` int NOT NULL,
   `message` varchar(500) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `contact`
+--
+
+INSERT INTO `contact` (`id`, `first_name`, `last_name`, `email`, `phone_number`, `message`) VALUES
+(22, 'vidhi', 'jogani', 'vidhi@gmail.com', 2147483647, 'call me.'),
+(23, 'sadasd', 'asd', 'asd@gmail.com', 234234234, '32423');
 
 -- --------------------------------------------------------
 
@@ -80,6 +95,7 @@ INSERT INTO `courses` (`course_code`, `course_name`, `semester_or_year`, `no_of_
 ('BA', 'BA', '3', 5),
 ('ca', 'ca', '2', 1),
 ('M.Com', 'Master in Commerce', 'Semester', 2),
+('MCS', 'Master of Computer Science', '4', 2),
 ('MIT', 'Master in Information Technology', 'Semester', 2),
 ('oop', 'object oriented programming', '2', 1),
 ('wd', 'web designing', '2', 1);
@@ -106,12 +122,10 @@ CREATE TABLE IF NOT EXISTS `course_subjects` (
 --
 
 INSERT INTO `course_subjects` (`subject_code`, `subject_name`, `course_code`, `semester`, `dept_id`, `credit_hours`) VALUES
-('DLD', 'Data Logic and Designing', 'MIT', 4, 1, 2),
-('Ds', 'Discrete Structure', 'MCS', 1, 1, 3),
-('I2C', 'Introduction to Computer Science', 'MCS', 1, 1, 4),
-('ITP', 'IT Project Management System', 'MIT', 2, 1, 3),
-('MBAD', 'Mobile Application Development', 'MIT', 2, 1, 4),
-('OOP', 'Object Oriented ', 'M.Com', 23, 1, 4);
+('MBAD', 'Mobile Application Development', 'MIT', 3, 1, 4),
+('OOP', 'Object Oriented ', 'M.Com', 23, 1, 4),
+('OS', 'Operating System', 'MCS', 2, NULL, 2),
+('WD', 'Web Designing', 'wd', 4, NULL, 3);
 
 -- --------------------------------------------------------
 
@@ -127,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `login` (
   `Role` varchar(10) NOT NULL,
   `account` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'Deactivate',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `login`
@@ -136,7 +150,13 @@ CREATE TABLE IF NOT EXISTS `login` (
 INSERT INTO `login` (`ID`, `user_id`, `Password`, `Role`, `account`) VALUES
 (2, 'admin@gmail.com', 'VMJ', 'Admin', 'Activate'),
 (5, 'staff1@gmail.com', 'VMJ', 'Teacher', 'Activate'),
-(70, '607980501', 'student123*', 'Student', 'Activate');
+(70, '607980501', 'student123*', 'Student', 'Activate'),
+(71, '815412342', 'student123*', 'Student', 'Activate'),
+(72, '754125997', 'student123*', 'Student', 'Activate'),
+(73, '123716694', 'student123*', 'Student', 'Deactive'),
+(74, '', 'student123*', 'Student', 'Deactivate'),
+(75, '147852369', 'student123*', 'Student', 'Activate'),
+(76, '1522727658', 'student123*', 'Student', 'Deactive');
 
 -- --------------------------------------------------------
 
@@ -242,7 +262,7 @@ CREATE TABLE IF NOT EXISTS `student_courses` (
   `assign_date` varchar(10) NOT NULL,
   PRIMARY KEY (`student_course_id`),
   KEY `course_code` (`course_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `student_courses`
@@ -251,7 +271,21 @@ CREATE TABLE IF NOT EXISTS `student_courses` (
 INSERT INTO `student_courses` (`student_course_id`, `course_code`, `semester`, `dept_id`, `roll_no`, `subject_code`, `session`, `assign_date`) VALUES
 (29, 'MCS', 1, 1, '607980501', 'Ds', '', '14-03-24'),
 (30, 'MCS', 1, 1, '607980501', 'I2C', '', '14-03-24'),
-(31, 'M.Com', 2, 1, '607980501	', 'OOP', '', '14-03-24');
+(31, 'M.Com', 2, 1, '607980501	', 'OOP', '', '14-03-24'),
+(32, 'MIT', 5, 1, '607980501	', 'MBAD', '', '15-03-24'),
+(33, 'wd', 4, 1, '607980501', 'WD', '', '15-03-24'),
+(34, 'M.Com', 23, 1, '607980501', 'OOP', '', '15-03-24'),
+(35, 'MCS', 4, 1, 'Master of ', 'OOP', '', '15-03-24'),
+(36, 'MIT', 3, 1, '607980501', 'MBAD', '', '15-03-24'),
+(37, 'MCS', 2, 1, '607980501', 'OS', '', '15-03-24'),
+(38, 'MCS', 1, 1, '607980501', 'OOP', '', '15-03-24'),
+(39, 'M.Com', 23, 1, '607980501', 'OOP', '', '15-03-24'),
+(40, 'MCS', 2, 1, '607980501', 'OS', '', '15-03-24'),
+(41, 'MIT', 3, 1, '607980501', 'MBAD', '', '15-03-24'),
+(42, 'MCS', 2, 1, '123716694', 'OS', '', '15-03-24'),
+(43, 'MIT', 3, 1, '147852369', 'MBAD', '', '15-03-24'),
+(44, 'MIT', 3, 1, '147852369', 'MBAD', '', '15-03-24'),
+(45, 'MIT', 3, 1, '147852369', 'OOP', '', '15-03-24');
 
 -- --------------------------------------------------------
 
@@ -268,7 +302,14 @@ CREATE TABLE IF NOT EXISTS `student_fee` (
   `status` varchar(10) NOT NULL,
   PRIMARY KEY (`fee_voucher`),
   KEY `roll_no` (`roll_no`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `student_fee`
+--
+
+INSERT INTO `student_fee` (`fee_voucher`, `roll_no`, `amount`, `posting_date`, `status`) VALUES
+(16, '147852369', 5000, '2024-03-15 07:31:02', 'Paid');
 
 -- --------------------------------------------------------
 
@@ -322,7 +363,12 @@ CREATE TABLE IF NOT EXISTS `student_info` (
 --
 
 INSERT INTO `student_info` (`roll_no`, `first_name`, `middle_name`, `last_name`, `father_name`, `email`, `mobile_no`, `course_code`, `session`, `profile_image`, `prospectus_issued`, `prospectus_amount`, `form_b`, `applicant_status`, `application_status`, `cnic`, `dob`, `other_phone`, `gender`, `permanent_address`, `current_address`, `place_of_birth`, `matric_complition_date`, `matric_awarded_date`, `matric_certificate`, `fa_complition_date`, `fa_awarded_date`, `fa_certificate`, `ba_complition_date`, `ba_awarded_date`, `ba_certificate`, `semester`, `total_marks`, `obtain_marks`, `state`, `admission_date`) VALUES
-(607980501, 'jogani', 'vidhi', 'nareshbhai', '', 'vidhi@gmail.com', '7046650409', 'MIT', 'S19', 'user1.jpg', '', '', '', '', 'Admitted', '', '', '', 'Select Gen', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, '', '2024-03-14 11:00:41');
+(123716694, 'jogani', 'bhavy', 'nareshbhai', '', 'bhavy@gmail.com', '1478520369', 'MCS', 'S19', 'user.jpg', '', '', '', '', 'Admitted', '', '', '', 'Select Gen', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, '', '2024-03-15 07:24:10'),
+(147852369, 'desai', 'gopi', 'sureshbhai', '', 'gopi@gmail.com', '1478523690', 'MIT', 'S19', 'user.jpg', '', '', '', '', 'Approved', '', '2024-03-01', '', 'Select Gen', '', 'kamrej', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, '', '2024-03-15 07:27:19'),
+(607980501, 'jogani', 'vidhi', 'nareshbhai', '', 'vidhi@gmail.com', '7046650409', 'MIT', 'S19', 'user1.jpg', '', '', '', '', 'Admitted', '', '', '', 'Select Gen', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, '', '2024-03-14 11:00:41'),
+(754125997, '111', '222', '333', '', 'test@gmail.com', '7410258963', 'Select Cour', 'Select Ses', '', '', '', '', '', 'Select Option', '', '', '', 'Select Gen', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, '', '2024-03-15 05:16:30'),
+(815412342, 'anghan', 'janvi', 's', '', 'janvi@gmail.com', '7412589630', 'M.Com', 'S19', 'user1.jpg', '', '', '', '', 'Admitted', '', '', '', 'Select Gen', '', 'varchha', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, '', '2024-03-15 04:52:22'),
+(1522727658, '11', '22', '33', '', '11@gmail.com', '147850369', 'M.Com', 'Select Ses', '', '', '', '', '', 'Select Option', '', '', '', 'Select Gen', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, '', '2024-03-15 08:06:42');
 
 -- --------------------------------------------------------
 
@@ -451,7 +497,7 @@ CREATE TABLE IF NOT EXISTS `teacher_salary_allowances` (
 --
 
 INSERT INTO `teacher_salary_allowances` (`teacher_id`, `basic_salary`, `medical_allowance`, `hr_allowance`, `scale`) VALUES
-(2, 500, 100, 30, 20);
+(2, 500, 200, 300, 100);
 
 -- --------------------------------------------------------
 
@@ -494,26 +540,17 @@ CREATE TABLE IF NOT EXISTS `time_table` (
   `subject_code` varchar(20) NOT NULL,
   `room_no` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `time_table`
 --
 
 INSERT INTO `time_table` (`id`, `course_code`, `semester`, `timing_from`, `timing_to`, `day`, `subject_code`, `room_no`) VALUES
-(1, 'M.Com', 2, '18:48', '18:49', '3', 'OOP', 15),
+(1, 'M.Com', 4, '12:51', '11:53', '2', 'Ds', 3),
 (2, 'MIT', 2, '18:36', '18:38', '3', 'DBMS', 3),
 (3, 'MCS', 2, '17:02', '18:02', '1', 'DLD', 3),
-(4, 'M.Com', 4, '17:32', '17:35', '1', 'SE', 5),
-(5, 'b.com', 2, '11:47', '12:47', '3', 'OOP', 15),
-(6, 'MIT', 2, '18:00', '21:00', '4', 'MBAD', 12),
-(7, 'M.Com', 2, '14:00', '15:00', '7', 'CSPD', 2),
-(8, 'MCS', 2, '13:58', '15:58', '1', 'CSPD', 2),
-(9, 'b.com', 2, '11:47', '12:47', '3', 'OOP', 15),
-(10, 'b.com', 2, '11:47', '12:47', '3', 'OOP', 15),
-(11, 'ca', 2, '15:34', '17:35', '4', 'MBAD', 12),
-(12, 'B.Fashion', 4, '10:58', '10:59', '1', 'Ds', 5),
-(13, 'BSAI', 4, '11:40', '12:40', '1', 'DLD', 1);
+(16, 'BA', 23, '13:11', '15:11', '1', 'MBAD', 23);
 
 -- --------------------------------------------------------
 

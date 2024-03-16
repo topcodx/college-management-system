@@ -73,9 +73,14 @@ if (isset($_POST['submit'])) {
 
         if ($insert_stmt_name->affected_rows > 0 && $insert_stmt_logo->affected_rows > 0) {
             $message = "Settings inserted successfully";
+			header("Location: settig.php");
+			exit();
+		} else {
+			echo "Failed to update ";
+		 }
         }
     }
-}
+
 ?>
 <!doctype html>
 <html lang="en">
