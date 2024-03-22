@@ -20,9 +20,9 @@
 		$query = "INSERT INTO course_subjects (subject_code, subject_name, semester, course_code, credit_hours) VALUES ('$subject_code', '$subject_name', '$semester', '$course_code', '$credit_hours')";
 		$run = mysqli_query($con, $query);
 		if ($run) {
-			echo "Subject added successfully.";
-		} else {
-			echo "Failed to add subject.";
+			echo "<div class='alert alert-success' role='alert'>Subject added successfully. </div>";
+		} else { 
+			echo "<div class='alert alert-danger' role='alert'>Failed to add subject</div>";
 		}
 	}
 
@@ -42,10 +42,11 @@
 		$credit_hours = $_POST['credit_hours'];
 
 		if (updateSubject($con, $subject_code, $subject_name, $semester, $course_code, $credit_hours)) {
-			echo "Subject updated successfully.";
-		} else {
-			echo "Failed to update subject.";
+			echo "<div class='alert alert-success' role='alert'>Subject updated successfully </div>";
+		} else { 
+			echo "<div class='alert alert-danger' role='alert'>Failed to update subject.</div>";
 		}
+
 	}
 
 	// Function to get subject details by subject_code

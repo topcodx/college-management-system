@@ -13,48 +13,50 @@
 <!---------------- Session Ends form here ------------------------>
 
 
+
 <?php 
- 
-	$teacher_id=$_SESSION['LoginTeacher'];
-	$query1="select * from teacher_info where email='$teacher_id'";
-	$run1=mysqli_query($con,$query1);
-	while ($row=mysqli_fetch_array($run1)){
-		$teacher_id=$row['teacher_id'];
-	}
+    
+    $teacher_id=$_SESSION['LoginTeacher'];
+    $query1="select * from teacher_info where email='$teacher_id'";
+    $run1=mysqli_query($con,$query1);
+    while ($row=mysqli_fetch_array($run1)){
+        $teacher_id=$row['teacher_id'];
+    }
 
 
-	if (isset($_POST['sub'])) {
+    if (isset($_POST['sub'])) {
 
-		$first_name=$_POST['first_name'];
+        $first_name=$_POST['first_name'];
 
-		$middle_name=$_POST['middle_name'];
+        $middle_name=$_POST['middle_name'];
 
-		$last_name=$_POST['last_name'];
+        $last_name=$_POST['last_name'];
 
-		$phone_no=$_POST['phone_no'];
+        $phone_no=$_POST['phone_no'];
 
-		$gender=$_POST['gender'];
+        $gender=$_POST['gender'];
 
-		$current_address=$_POST['current_address'];
+        $current_address=$_POST['current_address'];
 
-		$last_qualification=$_POST['last_qualification'];
+        $last_qualification=$_POST['last_qualification'];
 
 
 
-		$query="update teacher_info set first_name='$first_name',middle_name='$middle_name',last_name='$last_name',phone_no='$phone_no',gender='$gender',current_address='$current_address',last_qualification='$last_qualification' where teacher_id='$teacher_id'";
-		$run=mysqli_query($con,$query);
-		if ($run) {  ?>
- 			<script type="text/javascript">
- 				alert("Teacher data has been updated");
- 			</script>
- 		<?php }
- 		else { ?>
- 			<script type="text/javascript">
- 				alert("Teacher data has not been updated paid due to some errors");
- 			</script>
- 		<?php }
-	}
+        $query="update teacher_info set first_name='$first_name',middle_name='$middle_name',last_name='$last_name',phone_no='$phone_no',gender='$gender',current_address='$current_address',last_qualification='$last_qualification' where teacher_id='$teacher_id'";
+        $run=mysqli_query($con,$query);
+        if ($run) {  ?>
+            <div class="alert alert-success" role="alert">
+                Teacher data has been updated
+            </div>
+        <?php }
+        else { ?>
+            <div class="alert alert-danger" role="alert">
+                Teacher data has not been updated paid due to some errors
+            </div>
+        <?php }
+    }
 ?>
+
 
 
 <!doctype html>
@@ -81,56 +83,56 @@
 								$run=mysqli_query($con,$query);
 								while ($row=mysqli_fetch_array($run)) {?>
 							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="exampleInputEmail1">First Name:*</label>
-										<input type="text" class="form-control" name="first_name" value=<?php echo $row['first_name'] ?>>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="exampleInputPassword1">Middle Name:*</label>
-										<input type="text" class="form-control" name="middle_name"value=<?php echo $row['middle_name'] ?>>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="exampleInputEmail1">Last Name:*</label>
-										<input type="text" class="form-control" name="last_name"value=<?php echo $row['last_name'] ?>>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="exampleInputEmail1">Current Address:*</label>
-										<input type="text" class="form-control" name="current_address" value=<?php echo $row['current_address'] ?>>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="exampleInputPassword1">Mobile:*</label>
-										<input type="text" class="form-control" name="phone_no"  value=<?php echo $row['phone_no'] ?>>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="exampleInputPassword1">Qualifiacation</label>
-										<input type="text" class="form-control" name="last_qualification"  placeholder="Last Qualifiacation" value=<?php echo $row['last_qualification'] ?>>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="exampleInputEmail1">Gender</label>
-										<input type="text" class="form-control" name="gender" value=<?php echo $row['gender'] ?>>
-									</div>
-								</div>
-								
-							</div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="exampleInputEmail1">First Name:*</label>
+            <input type="text" class="form-control" name="first_name" value="<?php echo $row['first_name'] ?>" required>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="exampleInputPassword1">Middle Name:*</label>
+            <input type="text" class="form-control" name="middle_name" value="<?php echo $row['middle_name'] ?>" required>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Last Name:*</label>
+            <input type="text" class="form-control" name="last_name" value="<?php echo $row['last_name'] ?>" required>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Current Address:*</label>
+            <input type="text" class="form-control" name="current_address" value="<?php echo $row['current_address'] ?>" required>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="exampleInputPassword1">Mobile:*</label>
+            <input type="number" class="form-control" name="phone_no" value="<?php echo $row['phone_no'] ?>" required>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="exampleInputPassword1">Qualification</label>
+            <input type="text" class="form-control" name="last_qualification" placeholder="Last Qualification" value="<?php echo $row['last_qualification'] ?>" required>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Gender</label>
+            <input type="text" class="form-control" name="gender" value="<?php echo $row['gender'] ?>" required>
+        </div>
+    </div>
+</div>
+
 					
 							
 						<?php } ?>

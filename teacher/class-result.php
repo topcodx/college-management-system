@@ -35,6 +35,11 @@ if (isset($_POST['sub'])) {
 	<link rel="shortcut icon" href=" <?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>" type="image/x-icon">
 
 		<title>Class - Result</title>
+		<style>
+        .error-message {
+            color: red;
+        }
+    </style>
 	</head>
 	<body>
 		<?php include('../common/common-header.php') ?>
@@ -136,7 +141,13 @@ if (isset($_POST['sub'])) {
 											<td><?php echo $row['first_name']." ".$row['middle_name']." ".$row['last_name'] ?></td>
 											<td class="text-center"><?php echo "100" ?></td>
 											<input type="hidden" name="total_marks[]" value="100" >
-											<td><input type="text" name="obtain_marks[]" placeholder="Plz Enter Obtain Marks" class="form-control"></td>
+											<!-- <td><input type="text" name="obtain_marks[]" placeholder="Plz Enter Obtain Marks" class="form-control"></td> -->
+											<td>
+    <input type="text" name="obtain_marks[]" placeholder="Please enter obtained marks" class="form-control" oninput="validateMarks(this)">
+    <span class="error-message"></span>
+</td>
+
+
 											<input type="hidden" name="count" value="<?php echo $count ?>">
 											
 										</tr>
@@ -145,7 +156,7 @@ if (isset($_POST['sub'])) {
 									}
 									}
 								?>
-								<input type="submit" name="sub">
+<input type="submit" name="sub" class="btn btn-success px-4 ml-4">
 
 								</form>
 							</table>				
@@ -154,6 +165,27 @@ if (isset($_POST['sub'])) {
 				</div>
 			</div>
 		</main>
+		<script type="text/javascript">
+        // JavaScript function to validate obtained marks
+        function validateMarks(input) {
+            // Get the input value
+            var obtainedMarks = input.value;
+
+            // Get the span element for error message
+            var errorMessageSpan = input.nextElementSibling;
+
+            // Check if the obtained marks are negative
+            if (obtainedMarks < 0) {
+                // If negative, display an error message in red color
+                errorMessageSpan.innerHTML = "Please enter a non-negative value for obtained marks.";
+                input.style.borderColor = "red";
+            } else {
+                // If valid, clear the error message and reset the input style
+                errorMessageSpan.innerHTML = "";
+                input.style.borderColor = ""; // Reset border color
+            }
+        }
+    </script>
 		<script type="text/javascript" src="../bootstrap/js/jquery.min.js"></script>
 		<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
 	</body>

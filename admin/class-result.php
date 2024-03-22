@@ -13,25 +13,31 @@
 <!---------------- Session Ends form here ------------------------>
 
 <?php
-	$message = "";
-	$success_message = "";
-	$error_message = "";
-	if (isset($_POST['sub'])) {
-		$count=$_POST['count'];
-		for ($i=0; $i < $count; $i++) { 
-			$date=date("d-m-y");
-			$que="insert into class_result(roll_no,course_code,subject_code,semester,total_marks,obtain_marks,result_date)values('".$_POST['roll_no'][$i]."','".$_POST['course_code'][$i]."','".$_POST['subject_code'][$i]."','".$_POST['semester'][$i]."','".$_POST['total_marks'][$i]."','".$_POST['obtain_marks'][$i]."','$date')";
-			$run=mysqli_query($con,$que);
-			if ($run) {
-				$success_message = "All Results Has Been Submitted Successfully";
-			}	
-			else{
-				$error_message = "All Results Has Not Been Submitted Successfully";
-			}
-		}
-	}
+$message = "";
+$success_message = "";
+$error_message = "";
+if (isset($_POST['sub'])) {
+    $count = $_POST['count'];
+    for ($i = 0; $i < $count; $i++) {
+        $date = date("Y-m-d"); // Corrected date format to match MySQL date format
+        $obtain_marks = intval($_POST['obtain_marks'][$i]); // Convert to integer
 
+        // Server-side validation to ensure obtain marks fall within the range of 1 to 100
+        if ($obtain_marks >= 1 && $obtain_marks <= 100) {
+            $que = "INSERT INTO class_result (roll_no, course_code, subject_code, semester, total_marks, obtain_marks, result_date) VALUES ('" . $_POST['roll_no'][$i] . "','" . $_POST['course_code'][$i] . "','" . $_POST['subject_code'][$i] . "','" . $_POST['semester'][$i] . "','" . $_POST['total_marks'][$i] . "','" . $obtain_marks . "','$date')";
+            $run = mysqli_query($con, $que);
+            if ($run) {
+                echo "<div class='alert alert-success' role='alert'>All Results Have Been Submitted Successfully.</div>";
+            } else {
+                echo "<div class='alert alert-danger' role='alert'>All Results Have Not Been Submitted Successfully</div>";
+            }
+        } else {
+            echo "<div class='alert alert-danger' role='alert'>Invalid Obtain Marks. Please enter a value between 1 and 100.</div>";
+        }
+    }
+}
 ?>
+	
 
 
 	<!-- title of this page -->
@@ -52,16 +58,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="col-md-12">
-							<?php
-								if($success_message==true){
-									$bg_color = "alert-success";
-									$message = $success_message;
-								}
-								else if($error_message==true){
-									$bg_color = "alert-danger";	
-									$message = $error_message;
-								}
-							?>
+							
 							<!-- <h5 class="py-2 pl-3 <?php echo $bg_color; ?>"> -->
 								
 								<?php echo $message ?>
@@ -173,7 +170,7 @@
 									}
 									}
 								?>
-								<input type="submit" name="sub">
+								<input type="submit" name="sub" class="btn btn-success px-4">
 
 								</form>
 							</table>				

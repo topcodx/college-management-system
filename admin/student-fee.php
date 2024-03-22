@@ -19,12 +19,11 @@ if (isset($_POST['sub'])) {
  	$status=$_POST['status'];
 		$que="insert into student_fee(roll_no,amount,status)values('$roll_no','$amount','$status')";
 	$run=mysqli_query($con,$que);
-	if ($run) {
-			echo "Insert Successfully";
-		}	
-		else{
-			echo " Insert Not Successfully";
-		}
+		if ($run) {  
+            echo "<div class='alert alert-success' role='alert'>Your fee has received.</div>";
+        } else { 
+            echo "<div class='alert alert-danger' role='alert'>your fee has not received. Please try again.</div>";
+        }
 	}
 
 ?>
@@ -101,7 +100,7 @@ if (isset($_POST['sub'])) {
 									}
 									}
 								?>
-								<input type="submit" name="sub">
+								<input type="submit" name="sub"  class="btn btn-success px-4 ml-4">
 
 								</form>
 							</table>				

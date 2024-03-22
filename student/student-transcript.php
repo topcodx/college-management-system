@@ -284,10 +284,13 @@ $all_semester_quality_points = 0;
                                     <td colspan="2">.</td>
                                 </tr>
                                 <tr>
-                                    <th colspan="4">Semester GPA</th>
-                                    <?php $all_semester_quality_points = $all_semester_quality_points + $total_quality_points; ?>
-                                    <th colspan="2"><?php echo  round($total_quality_points/$total_ch, 2); ?></th>
-                                </tr>
+    <th colspan="4">Semester GPA</th>
+    <?php
+    $all_semester_quality_points = $all_semester_quality_points + $total_quality_points;
+    $gpa = $total_ch != 0 ? round($total_quality_points / $total_ch, 2) : 0;
+    ?>
+    <th colspan="2"><?php echo $gpa; ?></th>
+</tr>
                             </table>
                         </div>
                     </section>

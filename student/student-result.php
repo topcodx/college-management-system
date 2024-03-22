@@ -143,7 +143,7 @@
         $final = 'C';
     } else if ($marks_grade > 55) {
         $final = 'D+';
-    } else if ($marks_grade > 50) {
+    } else if ($marks_grade > 50) {	
         $final = 'D';
     } else {
         $final = $marks_grade ? 'F' : "0"; // Consider $marks_grade to decide between 'F' and '0'

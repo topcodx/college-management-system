@@ -34,12 +34,11 @@
 		
 		$query="insert into time_table(course_code,semester,timing_from,timing_to,day,subject_code,room_no)values('$course_code','$semester','$timing_from','$timing_to','$day','$subject_code','$room_no')";
 		$run=mysqli_query($con, $query);
-		if ($run) {
-			echo "Your Data has been submitted";
-		}
-		else {
-			echo "Your Data has not been submitted";
-		}
+        if ($run) {  
+            echo "<div class='alert alert-success' role='alert'>Your Data has been submitted</div>";
+        } else { 
+            echo "<div class='alert alert-danger' role='alert'>Your Data has not been submitted</div>";
+        }
 	}
 ?>
 
@@ -64,12 +63,11 @@
 
 		$query1="update time_table set course_code='$course_code',semester='$semester',timing_from='$timing_from',timing_to='$timing_to',day='$day',subject_code='$subject_code',room_no='$room_no' where course_code='".$_POST['course_code']."'";
 		$run1=mysqli_query($con, $query1);
-		if ($run1) {
-			echo "Your Data has been updated";
-		}
-		else {
-			echo "Your Data has not been updated";
-		}
+        if ($run1) {  
+            echo "<div class='alert alert-success' role='alert'>Your Data has been updated</div>";
+        } else { 
+            echo "<div class='alert alert-danger' role='alert'>Your Data has not been updated</div>";
+        }
 	}
 ?>
 <!-- ---------------------------------------update time table------------------------------------------------ -->

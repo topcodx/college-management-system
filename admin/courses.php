@@ -24,9 +24,9 @@
 		$query = "INSERT INTO courses (course_code, course_name, semester_or_year, no_of_year) VALUES ('$course_code', '$course_name', '$semester_or_year', '$no_of_year')";
 		$run = mysqli_query($con, $query);
 		if ($run) {
-			echo "Course added successfully.";
-		} else {
-			echo "Failed to add course.";
+			echo "<div class='alert alert-success' role='alert'>Course added successfullydiv>";
+		} else { 
+			echo "<div class='alert alert-danger' role='alert'>Failed to add course.</div>";
 		}
 	}
 ?>
@@ -49,10 +49,11 @@
 		$semester_or_year = $_POST['semester_or_year'];
 		$no_of_year = $_POST['no_of_year'];
 
+
 		if (updateCourse($con, $course_code, $course_name, $semester_or_year, $no_of_year)) {
-			echo "Course updated successfully.";
-		} else {
-			echo "Failed to update course.";
+			echo "<div class='alert alert-success' role='alert'>Course updated successfully </div>";
+		} else { 
+			echo "<div class='alert alert-danger' role='alert'>Failed to update course</div>";
 		}
 	}
 ?>

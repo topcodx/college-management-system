@@ -71,20 +71,18 @@
 $query = "INSERT INTO student_info (roll_no, first_name, middle_name, last_name, email, mobile_no, course_code, session, profile_image, application_status, cnic, dob, gender, current_address, matric_complition_date, matric_certificate, fa_complition_date, fa_certificate) 
 VALUES ('$roll_no', '$first_name', '$middle_name', '$last_name', '$email', '$mobile_no', '$course_code', '$session', '$profile_image', '$application_status', '$cnic', '$dob', '$gender', '$current_address', '$matric_complition_date', '$matric_certificate', '$fa_complition_date', '$fa_certificate')";
 $run=mysqli_query($con, $query);
- 		if ($run) {
- 			echo "Your Data has been submitted";
- 		}
- 		else {
- 			echo "Your Data has not been submitted";
- 		}
+         if ($run) {  
+            echo "<div class='alert alert-success' role='alert'>Your Data has been submitted</div>";
+        } else { 
+            echo "<div class='alert alert-danger' role='alert'>Your Data has not been submitted</div>";
+        }
  		$query2="insert into login(user_id,Password,Role)values('$roll_no','$password','$role')";
  		$run2=mysqli_query($con, $query2);
- 		if ($run2) {
- 			echo "Your Data has been submitted into login";
- 		}
- 		else {
- 			echo "Your Data has not been submitted into login";
- 		}
+         if ($run2) {  
+            echo "<div class='alert alert-success' role='alert'>Your Data has been submitted into login</div>";
+        } else { 
+            echo "<div class='alert alert-danger' role='alert'>Your Data has not been submitted into login</div>";
+        }
  	}
 ?>
 
@@ -103,12 +101,11 @@ $run=mysqli_query($con, $query);
 
 		$query3="insert into student_courses(course_code,semester,roll_no,subject_code,assign_date)values('$course_code','$semester','$roll_no','$subject_code','$date')";
 		$run3=mysqli_query($con,$query3);
-		if ($run3) {
- 			echo "Your Data has been submitted";
- 		}
- 		else {
- 			echo "Your Data has not been submitted";
- 		}
+        if ($run3) {  
+            echo "<div class='alert alert-success' role='alert'>Your Data has been submitted</div>";
+        } else { 
+            echo "<div class='alert alert-danger' role='alert'>Your Data has not been submitted</div>";
+        }
 
 
 	}
@@ -119,8 +116,16 @@ $run=mysqli_query($con, $query);
 <html lang="en">
 
 <head>
-<link rel="shortcut icon" href=" <?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>" type="image/x-icon">
+    <link rel="shortcut icon" href=" <?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>"
+        type="image/x-icon">
     <title>Admin - Register Student</title>
+    <style>
+    .error-message {
+        color: red;
+        display: none;
+    }
+    </style>
+
 </head>
 
 <body>
@@ -149,21 +154,27 @@ $run=mysqli_query($con, $query);
                                     <div class="row mt-3">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Applicant First Name:*</label>
-                                                <input type="text" name="first_name" class="form-control" required>
+                                                <label for="first_name">Applicant First Name:*</label>
+                                                <input type="text" name="first_name" class="form-control"
+                                                    id="first_name" required>
+                                                <div class="invalid-feedback error-message" id="first_name_error"></div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="exampleInputPassword1">Applicant Middle Name:</label>
-                                                <input type="text" name="middle_name" class="form-control">
+                                                <label for="middle_name">Applicant Middle Name:</label>
+                                                <input type="text" name="middle_name" class="form-control"
+                                                    id="middle_name">
+                                                <div class="invalid-feedback error-message" id="middle_name_error">
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="exampleInputPassword1" required>Applicant Last
-                                                    Name:*</label>
-                                                <input type="text" name="last_name" class="form-control">
+                                                <label for="last_name">Applicant Last Name:*</label>
+                                                <input type="text" name="last_name" class="form-control" id="last_name"
+                                                    required>
+                                                <div class="invalid-feedback error-message" id="last_name_error"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -182,11 +193,12 @@ $run=mysqli_query($con, $query);
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Mobile Number</label>
-                                                <input type="text" name="mobile_no" class="form-control" required>
-                                            </div>
-                                        </div>
+    <div class="form-group">
+        <label for="mobile_no">Mobile Number</label>
+        <input type="text" name="mobile_no" class="form-control" id="mobile_no" required>
+        <div class="invalid-feedback error-message" id="mobile_no_error"></div>
+    </div>
+</div>
                                     </div>
                                     <div class="row mt-3">
                                         <div class="col-md-4">
@@ -311,7 +323,7 @@ $run=mysqli_query($con, $query);
 								  											Hidden Values are here
 								  		_________________________________________________________________________________ -->
                             <div>
-                                <input type="hidden" name="password" value="student123*">
+                                <input type="hidden" name="password" value="VMJ">
                                 <input type="hidden" name="role" value="Student">
                             </div>
                             <!-- _________________________________________________________________________________
@@ -465,6 +477,60 @@ $run=mysqli_query($con, $query);
         </div>
         </div>
     </main>
+    <script>
+    function validateAlphabets(inputField, errorSpan) {
+        var inputValue = inputField.value.trim();
+        var letters = /^[A-Za-z]+$/;
+        if (!inputValue.match(letters)) {
+            errorSpan.innerHTML = "Please enter only alphabet characters.";
+            errorSpan.style.display = "block";
+            inputField.classList.add("is-invalid");
+            return false;
+        } else {
+            errorSpan.innerHTML = "";
+            errorSpan.style.display = "none";
+            inputField.classList.remove("is-invalid");
+            return true;
+        }
+    }
+
+    document.getElementById("first_name").addEventListener("input", function() {
+        validateAlphabets(this, document.getElementById("first_name_error"));
+    });
+
+    document.getElementById("middle_name").addEventListener("input", function() {
+        validateAlphabets(this, document.getElementById("middle_name_error"));
+    });
+
+    document.getElementById("last_name").addEventListener("input", function() {
+        validateAlphabets(this, document.getElementById("last_name_error"));
+    });
+
+    function validateMobileNumber(inputField, errorSpan) {
+        var inputValue = inputField.value.trim();
+        var numbers = /^[0-9]+$/;
+        if (!inputValue.match(numbers)) {
+            errorSpan.innerHTML = "Please enter only numeric characters.";
+            errorSpan.style.display = "block";
+            inputField.classList.add("is-invalid");
+            return false;
+        } else if (inputValue.length !== 10) {
+            errorSpan.innerHTML = "Mobile number must have exactly 10 digits.";
+            errorSpan.style.display = "block";
+            inputField.classList.add("is-invalid");
+            return false;
+        } else {
+            errorSpan.innerHTML = "";
+            errorSpan.style.display = "none";
+            inputField.classList.remove("is-invalid");
+            return true;
+        }
+    }
+
+    document.getElementById("mobile_no").addEventListener("input", function() {
+        validateMobileNumber(this, document.getElementById("mobile_no_error"));
+    });
+    </script>
     <script type="text/javascript" src="../bootstrap/js/jquery.min.js"></script>
     <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
 </body>

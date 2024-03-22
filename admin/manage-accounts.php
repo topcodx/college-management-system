@@ -21,11 +21,10 @@ if (isset($_POST['submit'])) {
 	$user_id = $_POST['user_id'];
 	$que="update login set account='$account' where user_id = '$user_id'";
 	$run=mysqli_query($con,$que);
-	if ($run) {
-		$message =  $account == "Activate" ? "Account Activated Successfully" : "Account Deactivated Successfully";
-	}	
-	else{
-		$message = "Account Not Activated  Successfully";
+	if ($run) { 
+		echo "<div class='alert alert-success' role='alert'>Account Activated Successfully </div>";
+	} else { 
+		echo "<div class='alert alert-danger' role='alert'>Account Not Activated</div>";
 	}
 }
 ?>

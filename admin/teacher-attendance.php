@@ -18,13 +18,10 @@ if (isset($_POST['sub'])) {
 
     $que="insert into teacher_attendance(teacher_id,attendance,attendance_date)values('$teacher_id','$attendance','$date')";
     $run=mysqli_query($con,$que);
-    if ($run) {?>
-        <script type="text/javascript">
-            alert("Insert Successfully");
-        </script>
-    <?php
-    } else{
-        echo " Insert Not Successfully";
+    if ($run) {  
+        echo "<div class='alert alert-success' role='alert'>Attandance submitted uccessfully.</div>";
+    } else { 
+        echo "<div class='alert alert-danger' role='alert'>Attendance not submitted. Please try again.</div>";
     }
 }
 ?>
@@ -116,7 +113,7 @@ if (isset($_POST['sub'])) {
                                 }
                             }
                             ?>
-                            <input type="submit" name="sub">
+                            <input type="submit" name="sub" class="btn btn-success px-4 ml-4>
                         </form>
                     </table>                
                 </section>

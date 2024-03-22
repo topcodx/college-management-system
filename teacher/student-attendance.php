@@ -14,20 +14,26 @@
 
 <?php
 if (isset($_POST['sub'])) {
-	$count=$_POST['count'];
-	for ($i=0; $i < $count; $i++) {  
-		$date=date("d-m-y");
-		$que="insert into student_attendance(course_code,subject_code,semester,student_id,attendance,attendance_date)values('".$_POST['course_code'][$i]."','".$_POST['subject_code'][$i]."','".$_POST['semester'][$i]."','".$_POST['roll_no'][$i]."','".$_POST['attendance'][$i]."','$date')";
-	$run=mysqli_query($con,$que);
-	if ($run) {
-			echo "Insert Successfully";
-		}	
-		else{
-			echo " Insert Not Successfully";
-		}
-	}
+    $count = $_POST['count'];
+    $success = true; // Assume success initially
+    for ($i = 0; $i < $count; $i++) {
+        $date = date("d-m-y");
+        $que = "insert into student_attendance(course_code,subject_code,semester,student_id,attendance,attendance_date)values('" . $_POST['course_code'][$i] . "','" . $_POST['subject_code'][$i] . "','" . $_POST['semester'][$i] . "','" . $_POST['roll_no'][$i] . "','" . $_POST['attendance'][$i] . "','$date')";
+        $run = mysqli_query($con, $que);
+
+        if (!$run) {
+            $success = false; // If any insertion fails, set success to false
+        }
+    }
+    if ($success) {
+        echo "<div class='alert alert-success' role='alert'>Insert Successfully</div>";
+    } else {
+        echo "<div class='alert alert-danger' role='alert'>Insert Not Successfully</div>";
+    }
 }
 ?>
+
+
 
 
 <!doctype html>
@@ -147,7 +153,9 @@ if (isset($_POST['sub'])) {
 											<td><?php echo $row1['attendance_id'] > 0 ? round(($row1['attendance']*100)/$row1['attendance_id'])."%" : "0" ?></td>
 										<?php 	}
 											?>
-											<td>Present<input type="checkbox" name="attendance[]" value="1">Absent<input type="checkbox" name="attendance[]" value="0" ></td>
+											<td>
+													Present<input type="checkbox" name="attendance[]" value="1">
+											Absent<input type="checkbox" name="attendance[]" value="0" ></td>
 											<input type="hidden" name="count" value="<?php echo $count ?>">
 										</tr>
 										
@@ -155,15 +163,31 @@ if (isset($_POST['sub'])) {
 									}
 									}
 								?>
-								<input type="submit" name="sub">
+								<div class="row mt-3">
+        <div class="col-md-12">
+            <button class="btn btn-primary" id="presentAll">Present All</button>
+            <button class="btn btn-danger" id="absentAll">Absent All</button>
+        </div>
+    </div>
 
 								</form>
-							</table>				
+							</table>	
+							<input type="submit" name="sub" class="btn btn-success">
+
 						</section>
 					</div>
 				</div>
 			</div>
 		</main>
+		<script>
+        // JavaScript to check all checkboxes for attendance
+        document.getElementById('presentAll').addEventListener('click', function() {
+            var checkboxes = document.querySelectorAll('input[name="attendance[]"]');
+            checkboxes.forEach(function(checkbox) {
+                checkbox.checked = true;
+            });
+        });
+    </script>
 		<script type="text/javascript" src="../bootstrap/js/jquery.min.js"></script>
 		<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
 	</body>

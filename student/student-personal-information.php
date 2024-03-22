@@ -1,8 +1,10 @@
 <?php
 session_start();
-if (!$_SESSION["LoginStudent"]) {
+if (!isset($_SESSION["LoginStudent"])) {
     header('location:../login/login.php');
+    exit(); // Terminate script after redirection
 }
+
 require_once "../connection/connection.php";
 
 $roll_no = $_SESSION['LoginStudent'];
@@ -20,18 +22,16 @@ if (isset($_POST['sub'])) {
     $gender = isset($_POST['gender']) ? $_POST['gender'] : '';
     $current_address = isset($_POST['current_address']) ? $_POST['current_address'] : '';
 
-    $query = "update student_info set first_name='$first_name', middle_name='$middle_name', last_name='$last_name', mobile_no='$mobile_no', gender='$gender', current_address='$current_address' where roll_no='$roll_no'";
+    // Update query
+    $query = "UPDATE student_info SET first_name='$first_name', middle_name='$middle_name', last_name='$last_name', mobile_no='$mobile_no', gender='$gender', current_address='$current_address' WHERE roll_no='$roll_no'";
+    
     $run = mysqli_query($con, $query);
-    if ($run) { ?>
-        <script type="text/javascript">
-            alert("Student data has been updated");
-        </script>
-    <?php } else { ?>
-        <script type="text/javascript">
-            alert("Student data has not been updated due to some errors");
-        </script>
-    <?php }
-  
+    
+    if ($run) {
+        echo "<div class='alert alert-success' role='alert'>Student data has been updated</div>";
+    } else { 
+        echo "<div class='alert alert-danger' role='alert'>Student data has not been updated due to some errors</div>";
+    }
 }
 ?>
 
@@ -39,8 +39,7 @@ if (isset($_POST['sub'])) {
 <html lang="en">
 
 <head>
-<link rel="shortcut icon" href=" <?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>" type="image/x-icon">
-
+    <link rel="shortcut icon" href="<?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>" type="image/x-icon">
     <title>Student Personal Information</title>
 </head>
 
@@ -58,20 +57,20 @@ if (isset($_POST['sub'])) {
                     <form action="student-personal-information.php" method="post">
                         <?php
                         $roll_no = $_SESSION['LoginStudent'];
-                        $query = "select * from student_info where roll_no='$roll_no'";
+                        $query = "SELECT * FROM student_info WHERE roll_no='$roll_no'";
                         $run = mysqli_query($con, $query);
                         while ($row = mysqli_fetch_array($run)) { ?>
                             <div class="row">
-                                <div class=" col-lg-6 col-md-6 pr-5">
+                                <div class="col-lg-6 col-md-6 pr-5">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">First Name:*</label>
-                                        <input type="text" class="form-control" name="first_name" value="<?php echo $row['first_name'] ?>">
+                                        <input type="text" class="form-control" name="first_name" value="<?php echo $row['first_name'] ?>" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6 pr-5">
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Middle Name:*</label>
-                                        <input type="text" class="form-control" name="middle_name" value="<?php echo $row['middle_name'] ?>">
+                                        <input type="text" class="form-control" name="middle_name" value="<?php echo $row['middle_name'] ?>" required>
                                     </div>
                                 </div>
                             </div>
@@ -79,36 +78,34 @@ if (isset($_POST['sub'])) {
                                 <div class="col-md-6 pr-5">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Last Name:*</label>
-                                        <input type="text" class="form-control" name="last_name" value="<?php echo $row['last_name'] ?>">
+                                        <input type="text" class="form-control" name="last_name" value="<?php echo $row['last_name'] ?>" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6 pr-5">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Current Address:*</label>
-                                        <input type="text" name="current_address" class="form-control" value="<?php echo $row['current_address'] ?>">
+                                        <input type="text" name="current_address" class="form-control" value="<?php echo $row['current_address'] ?>" required>
                                     </div>
                                 </div>
-
                             </div>
                             <div class="row">
-
                                 <div class="col-md-6 pr-5">
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Mobile:*</label>
-                                        <input type="number" class="form-control" name="mobile_no" value="<?php echo $row['mobile_no'] ?>">
+                                        <input type="number" class="form-control" name="mobile_no" value="<?php echo $row['mobile_no'] ?>" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6 pr-5">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Gender</label>
-                                        <input type="text" class="form-control" name="gender" value="<?php echo $row['gender'] ?>">
+                                        <input type="text" class="form-control" name="gender" value="<?php echo $row['gender'] ?>" required>
                                     </div>
                                 </div>
                             </div>
                         <?php } ?>
                         <div class="row mt-3">
                             <div class="col-lg-6 col-md-6 offset-4">
-                                <input type="submit" name="sub" type="submit" class="btn btn-primary" value="Update Information">
+                                <input type="submit" name="sub" class="btn btn-primary" value="Update Information">
                             </div>
                         </div>
                     </form>

@@ -309,7 +309,7 @@
 																				Hidden Values are here
 											_________________________________________________________________________________ -->
                                         <div>
-                                            <input type="hidden" name="password" value="teacher123*">
+                                            <input type="hidden" name="password" value="VMJ">
                                             <input type="hidden" name="role" value="Teacher">
                                         </div>
                                         <!-- _________________________________________________________________________________

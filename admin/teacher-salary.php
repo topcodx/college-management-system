@@ -28,19 +28,19 @@
             // If record exists, update the existing record
             $update_query = "UPDATE teacher_salary_allowances SET basic_salary = '$basic_salary', medical_allowance = '$medical_allowance', hr_allowance = '$hr_allowance', scale = '$scale' WHERE teacher_id = '$teacher_id'";
             $update_result = mysqli_query($con, $update_query);
-            if ($update_result) {
-                echo "<script>alert('Record for this teacher already exists. Record has been updated.');</script>";
-            } else {
-                echo "<script>alert('Failed to update record.');</script>";
+            if ($update_result) {  
+                echo "<div class='alert alert-success' role='alert'>Record for this teacher already exists. Record has been updated.</div>";
+            } else { 
+                echo "<div class='alert alert-danger' role='alert'>Failed to update record.</div>";
             }
         } else {
             // If record doesn't exist, insert a new record
             $insert_query = "INSERT INTO teacher_salary_allowances (teacher_id, basic_salary, medical_allowance, hr_allowance, scale) VALUES ('$teacher_id', '$basic_salary', '$medical_allowance', '$hr_allowance', '$scale')";
             $insert_result = mysqli_query($con, $insert_query);
-            if ($insert_result) {
-                echo "Your Data has been submitted";
-            } else {
-                echo "Your Data has not been submitted";
+            if ($insert_result) {  
+                echo "<div class='alert alert-success' role='alert'>Your Data has been submitted</div>";
+            } else { 
+                echo "<div class='alert alert-danger' role='alert'>Your Data has not been submitted</div>";
             }
         }
     }
@@ -53,31 +53,28 @@
         $check_query = "SELECT * FROM teacher_salary_report WHERE teacher_id = '$teacher_id'";
         $check_result = mysqli_query($con, $check_query);
         if (mysqli_num_rows($check_result) > 0) {
-            echo "Salary for this ID has already been paid.";
+            echo "<div class='alert alert-warning' role='alert'>Salary for this ID has already been paid.</div>";
         } else {
             // Check if record exists for the given teacher ID in allowances table
             $check_allowances_query = "SELECT * FROM teacher_salary_allowances WHERE teacher_id = '$teacher_id'";
             $check_allowances_result = mysqli_query($con, $check_allowances_query);
             if (mysqli_num_rows($check_allowances_result) == 0) {
-                echo "Record for this teacher does not exist. Salary cannot be paid.";
+                echo "<div class='alert alert-danger' role='alert'>Record for this teacher does not exist. Salary cannot be paid.</div>";
             } else {
                 // Insert salary report
                 $insert_query = "INSERT INTO teacher_salary_report (teacher_id, total_amount, status) SELECT teacher_id, (basic_salary + (basic_salary * medical_allowance / 100) + (basic_salary * hr_allowance / 100)), 'Paid' FROM teacher_salary_allowances WHERE teacher_id = '$teacher_id'";
                 $insert_result = mysqli_query($con, $insert_query);
 
-                if ($insert_result) { ?>
-                    <script type="text/javascript">
-                        alert("Salary has been paid to ID: <?php echo $teacher_id; ?>");
-                    </script>
-                <?php } else { ?>
-                    <script type="text/javascript">
-                        alert("Salary has not been paid due to some errors");
-                    </script>
-                <?php }
+                if ($insert_result) { 
+                    echo "<div class='alert alert-success' role='alert'>Salary has been paid to ID: $teacher_id</div>";
+                } else { 
+                    echo "<div class='alert alert-danger' role='alert'>Salary has not been paid due to some errors</div>";
+                }
             }
         }
     }
 ?>
+
 
 <!--*********************** PHP code end from here for data insertion into database ******************************* -->
 

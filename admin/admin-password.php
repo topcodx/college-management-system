@@ -15,24 +15,19 @@
 
 
 <?php 
-	if (isset($_POST['submit'])) {
-		$user_id=$_SESSION['LoginAdmin'];
-		$password=$_POST['password'];
-		$query="UPDATE login set Password='$password' where user_id='$user_id'";
-		$run=mysqli_query($con,$query);
-		if ($run) {  ?>
- 			<script type="text/javascript">
- 				alert("Your Password Has Been Changed");
- 			</script>
- 		<?php }
- 		else { ?>
- 			<script type="text/javascript">
- 				alert("Your Password Has Not Been Changed");
- 			</script>
-		<?php }
-	}
-	
+    if (isset($_POST['submit'])) {
+        $user_id=$_SESSION['LoginAdmin'];
+        $password=$_POST['password'];
+        $query="UPDATE login set Password='$password' where user_id='$user_id'";
+        $run=mysqli_query($con,$query);
+        if ($run) {  
+            echo "<div class='alert alert-success' role='alert'>Your password has been updated successfully.</div>";
+        } else { 
+            echo "<div class='alert alert-danger' role='alert'>Failed to update password. Please try again.</div>";
+        }
+    }
 ?>
+
 
 <!doctype html>
 <html lang="en">
