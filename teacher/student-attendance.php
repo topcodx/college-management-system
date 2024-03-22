@@ -154,10 +154,10 @@ if (isset($_POST['sub'])) {
 										<?php 	}
 											?>
 											<td>
-													Present<input type="checkbox" name="attendance[]" value="1">
-											Absent<input type="checkbox" name="attendance[]" value="0" ></td>
-											<input type="hidden" name="count" value="<?php echo $count ?>">
-										</tr>
+													Present<input type="checkbox" name="attendance[]" value="1" id="present">
+													Absent<input type="checkbox" name="attendance[]" value="0" id="absent"></td>
+													<input type="hidden" name="count" value="<?php echo $count ?>">
+											</tr>
 										
 								<?php		
 									}
@@ -180,12 +180,20 @@ if (isset($_POST['sub'])) {
 			</div>
 		</main>
 		<script>
-        // JavaScript to check all checkboxes for attendance
-        document.getElementById('presentAll').addEventListener('click', function() {
-            var checkboxes = document.querySelectorAll('input[name="attendance[]"]');
+       document.getElementById('presentAll').addEventListener('click', function() {
+            var checkboxes = document.querySelectorAll('input[id="present"]');
             checkboxes.forEach(function(checkbox) {
                 checkbox.checked = true;
             });
+        });
+
+        document.getElementById('absentAll').addEventListener('click', function() {
+            var checkboxes = document.querySelectorAll('input[id="absent"]');
+            checkboxes.forEach(function(checkbox) {
+                checkbox.checked = true;
+            });
+            // Hide the Absent All button
+            document.getElementById('absentAll').style.display = 'none';
         });
     </script>
 		<script type="text/javascript" src="../bootstrap/js/jquery.min.js"></script>

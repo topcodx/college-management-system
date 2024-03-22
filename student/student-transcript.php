@@ -1071,6 +1071,7 @@ $all_semester_quality_points = 0;
                                     <th colspan="2"><?php echo  ($total_semester_ch > 0) ? round($all_semester_quality_points/$total_semester_ch, 2) : '0'; ?></th>
                                 </tr>
                             </table>
+
                         </div>
                     </section>
                 </div>
@@ -1084,7 +1085,14 @@ $all_semester_quality_points = 0;
             <div class="col-xl-4">DEAN</div>
             <div class="col-xl-4">CONTROLLER EXAMINATIONS</div>
         </div>
-    </div>
+    </div><br>
+    <div class="container">
+
+<button
+    style="background-color: #007bff; color: #fff; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; font-size: 16px; width:100px;	 margin-left:1050px;"
+    onclick="window.print()">Print</button>
+
+</div>
 
 </body>
 </html>
