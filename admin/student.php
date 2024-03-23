@@ -193,12 +193,13 @@ $run=mysqli_query($con, $query);
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-    <div class="form-group">
-        <label for="mobile_no">Mobile Number</label>
-        <input type="text" name="mobile_no" class="form-control" id="mobile_no" required>
-        <div class="invalid-feedback error-message" id="mobile_no_error"></div>
-    </div>
-</div>
+                                            <div class="form-group">
+                                                <label for="mobile_no">Mobile Number</label>
+                                                <input type="text" name="mobile_no" class="form-control" id="mobile_no"
+                                                    required>
+                                                <div class="invalid-feedback error-message" id="mobile_no_error"></div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="row mt-3">
                                         <div class="col-md-4">

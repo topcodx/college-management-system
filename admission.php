@@ -129,8 +129,9 @@ if(isset($_POST['btn_save'])) {
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Mobile No:*</label>
-                                <input type="number" name="mobile_no" class="form-control" required>
+                                <label for="mobile_no">Mobile Number</label>
+                                <input type="text" name="mobile_no" class="form-control" id="mobile_no" required>
+                                <div class="invalid-feedback error-message" id="mobile_no_error"></div>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -290,16 +291,18 @@ if(isset($_POST['btn_save'])) {
         </div>
     </div>
     <script>
-    function validateAlphabets(inputField, errorSpan) {
+   function validateAlphabets(inputField, errorSpan) {
         var inputValue = inputField.value.trim();
         var letters = /^[A-Za-z]+$/;
         if (!inputValue.match(letters)) {
             errorSpan.innerHTML = "Please enter only alphabet characters.";
-            inputField.style.borderColor = "red";
+            errorSpan.style.display = "block";
+            inputField.classList.add("is-invalid");
             return false;
         } else {
             errorSpan.innerHTML = "";
-            inputField.style.borderColor = "";
+            errorSpan.style.display = "none";
+            inputField.classList.remove("is-invalid");
             return true;
         }
     }
@@ -314,6 +317,31 @@ if(isset($_POST['btn_save'])) {
 
     document.getElementById("last_name").addEventListener("input", function() {
         validateAlphabets(this, document.getElementById("last_name_error"));
+    });
+
+    function validateMobileNumber(inputField, errorSpan) {
+        var inputValue = inputField.value.trim();
+        var numbers = /^[0-9]+$/;
+        if (!inputValue.match(numbers)) {
+            errorSpan.innerHTML = "Please enter only numeric characters.";
+            errorSpan.style.display = "block";
+            inputField.classList.add("is-invalid");
+            return false;
+        } else if (inputValue.length !== 10) {
+            errorSpan.innerHTML = "Mobile number must have exactly 10 digits.";
+            errorSpan.style.display = "block";
+            inputField.classList.add("is-invalid");
+            return false;
+        } else {
+            errorSpan.innerHTML = "";
+            errorSpan.style.display = "none";
+            inputField.classList.remove("is-invalid");
+            return true;
+        }
+    }
+
+    document.getElementById("mobile_no").addEventListener("input", function() {
+        validateMobileNumber(this, document.getElementById("mobile_no_error"));
     });
     </script>
 
