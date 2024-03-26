@@ -438,7 +438,8 @@
 									echo "<td>".$row["current_address"]."</td>";
 									echo "<td>".$row["hire_date"]."</td>";
 									echo "<td>".$row["email"]."</td>";
-									echo	"<td width='170'><a class='btn btn-primary' href=display-teacher.php?teacher_id=".$row['teacher_id'].">Profile</a> <a class='btn btn-danger' href=delete-function.php?teacher_id=".$row['teacher_id'].">Delete</a></td>";
+									echo	"<td width='170'><a class='btn btn-primary' href=display-teacher.php?teacher_id=".$row['teacher_id'].">Profile</a> 
+                                    <a class='btn btn-danger' href=delete-function.php?teacher_id=".$row['teacher_id'].">Delete</a></td>";
 									echo "</tr>";
 								}
 								?>

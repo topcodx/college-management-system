@@ -76,13 +76,6 @@ $run=mysqli_query($con, $query);
         } else { 
             echo "<div class='alert alert-danger' role='alert'>Your Data has not been submitted</div>";
         }
- 		$query2="insert into login(user_id,Password,Role)values('$roll_no','$password','$role')";
- 		$run2=mysqli_query($con, $query2);
-         if ($run2) {  
-            echo "<div class='alert alert-success' role='alert'>Your Data has been submitted into login</div>";
-        } else { 
-            echo "<div class='alert alert-danger' role='alert'>Your Data has not been submitted into login</div>";
-        }
  	}
 ?>
 
@@ -465,9 +458,11 @@ $run=mysqli_query($con, $query);
                             </td>
                             <td width='170'>
                                 <?php 
-												echo "<a class='btn btn-primary' href=display-student.php?roll_no=".$row['roll_no'].">Profile</a> 
-												<a class='btn btn-danger' href=delete-function.php?roll_no=".$row['roll_no'].">Delete</a> "
-											?>
+    echo "<a class='btn btn-primary' href='display-student.php?roll_no=".$row['roll_no']."'>Profile</a> 
+          <a class='btn btn-success' href='update-student.php?roll_no=".$row['roll_no']."'>Update</a>
+          <a class='btn btn-danger' href='delete-function.php?roll_no=".$row['roll_no']."'>Delete</a>";
+?>
+
                             </td>
                         </tr>
                         <?php }
