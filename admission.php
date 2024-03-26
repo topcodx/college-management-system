@@ -5,6 +5,15 @@ require_once "connection/connection.php";
 
 
 // Check if the form has been submitted
+function generateUserID() {
+    // Generate a random 3-digit user ID within the range 0 to 999
+    return rand(0, 999);
+}
+
+function generateRollNumber() {
+    // Generate a random 3-digit roll number within the range 0 to 999
+    return rand(0, 999);
+}
 if(isset($_POST['btn_save'])) {
 	
 	$first_name=$_POST["first_name"];
@@ -33,10 +42,12 @@ if(isset($_POST['btn_save'])) {
 	$tmp_name=$_FILES['fa_certificate']['tmp_name'];
 	$path = "images/".$fa_certificate;
 	move_uploaded_file($tmp_name, $path);
+    $userId = generateUserID();
+$roll_no = generateRollNumber();
 
 	$randDom = rand();
     $query = "INSERT INTO student_info (roll_no, first_name, middle_name, last_name, email, mobile_no, course_code, session, profile_image, application_status, cnic, dob, gender,current_address, matric_complition_date, matric_certificate, fa_complition_date, fa_certificate) 
-    VALUES ('$randDom', '$first_name', '$middle_name', '$last_name', '$email', '$mobile_no', '$course_code', '$session', '$profile_image', '$application_status', '$cnic', '$dob', '$gender', '$current_address', '$matric_complition_date', '$matric_certificate', '$fa_complition_date', '$fa_certificate')";
+    VALUES ('$roll_no', '$first_name', '$middle_name', '$last_name', '$email', '$mobile_no', '$course_code', '$session', '$profile_image', '$application_status', '$cnic', '$dob', '$gender', '$current_address', '$matric_complition_date', '$matric_certificate', '$fa_complition_date', '$fa_certificate')";
     
     $run = mysqli_query($con, $query);
 
@@ -44,12 +55,12 @@ if(isset($_POST['btn_save'])) {
     $password = mysqli_real_escape_string($con, $_POST['password']); // Assuming you have a password field in your form
     $role = mysqli_real_escape_string($con, $_POST['role']); // Assuming you have a role field in your form
 
-    $query2 = "INSERT INTO login (user_id, Password, Role, account) VALUES ('$randDom', '$password', '$role', 'Deactive')";
+    $query2 = "INSERT INTO login (user_id, Password, Role, account) VALUES ('$roll_no', '$password', '$role', 'Deactive')";
     $run2 = mysqli_query($con, $query2);
 
 	if ($run && $run2) {
 		// Fetch and display user_id and password
-		$query3 = "SELECT user_id, Password FROM login WHERE user_id = '$randDom'";
+		$query3 = "SELECT user_id, Password FROM login WHERE user_id = '$roll_no'";
 		$result = mysqli_query($con, $query3);
 		$row = mysqli_fetch_assoc($result);
 		if ($row) {
@@ -249,7 +260,7 @@ if(isset($_POST['btn_save'])) {
 														Hidden Values are here
 					_________________________________________________________________________________ -->
                     <div>
-                        <input type="hidden" name="password" value="student123*">
+                        <input type="hidden" name="password" value="VMJ">
                         <input type="hidden" name="role" value="Student">
                     </div>
                     <!-- _________________________________________________________________________________

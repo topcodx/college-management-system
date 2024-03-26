@@ -17,9 +17,13 @@
 
 <!--*********************** PHP code starts from here for data insertion into database ******************************* -->
 <?php  
+function generateRollNumber() {
+    // Generate a random 9-digit roll number
+    return mt_rand(0, 999);
+}
  	if (isset($_POST['btn_save'])) {
 
-		$roll_no= $_POST["roll_no"];
+        $roll_no = generateRollNumber();
 
  		$first_name=$_POST["first_name"];
 
@@ -76,6 +80,14 @@ $run=mysqli_query($con, $query);
         } else { 
             echo "<div class='alert alert-danger' role='alert'>Your Data has not been submitted</div>";
         }
+        $query2="insert into login(user_id,Password,Role)values('$roll_no','$password','$role')";
+ 		$run2=mysqli_query($con, $query2);
+ 		if ($run2) {
+ 			echo "Your Data has been submitted into login";
+ 		}
+ 		else {
+ 			echo "Your Data has not been submitted into login";
+ 		}
  	}
 ?>
 
@@ -174,12 +186,6 @@ $run=mysqli_query($con, $query);
                                     <div class="row mt-3">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="exampleInputPassword1">Student Roll No:</label>
-                                                <input type="text" name="roll_no" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
                                                 <label for="exampleInputPassword1">Applicant Email:*</label>
                                                 <input type="email" name="email" class="form-control"
                                                     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
@@ -193,8 +199,6 @@ $run=mysqli_query($con, $query);
                                                 <div class="invalid-feedback error-message" id="mobile_no_error"></div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row mt-3">
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Course which you want?: </label>
@@ -210,6 +214,9 @@ $run=mysqli_query($con, $query);
                                                 </select>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Select Session:</label>
                                             <select class="browser-default custom-select" name="session">
@@ -230,6 +237,12 @@ $run=mysqli_query($con, $query);
                                                 <label for="exampleInputPassword1">Your Profile Image:</label>
                                                 <input type="file" name="profile_image" placeholder="Student Age"
                                                     class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Current Address:</label>
+                                                <input type="text" name="current_address" class="form-control">
                                             </div>
                                         </div>
 
@@ -273,15 +286,6 @@ $run=mysqli_query($con, $query);
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="exampleInputPassword1">Current Address:</label>
-                                                <input type="text" name="current_address" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mt-3">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
                                                 <label for="exampleInputEmail1">Matric/OLevel Complition Date: </label>
                                                 <input type="date" name="matric_complition_date" class="form-control">
                                             </div>
@@ -296,6 +300,8 @@ $run=mysqli_query($con, $query);
                                             </div>
                                         </div>
                                     </div>
+
+                                   
                                     <div class="row mt-3">
                                         <div class="col-md-4">
                                             <div class="form-group">
@@ -457,7 +463,7 @@ $run=mysqli_query($con, $query);
                                 <img height='50px' width='50px' src=<?php echo "images/$profile_image"  ?>>
                             </td>
                             <td width='170'>
-                                <?php 
+                            <?php 
     echo "<a class='btn btn-primary' href='display-student.php?roll_no=".$row['roll_no']."'>Profile</a> 
           <a class='btn btn-success' href='update-student.php?roll_no=".$row['roll_no']."'>Update</a>
           <a class='btn btn-danger' href='delete-function.php?roll_no=".$row['roll_no']."'>Delete</a>";
