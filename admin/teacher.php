@@ -75,20 +75,14 @@
  		$query="Insert into teacher_info(first_name,middle_name,last_name,email,phone_no,profile_image,teacher_status,application_status,cnic,dob,other_phone,gender,current_address,ba_complition_date,ba_certificate,ma_complition_date,ma_certificate,last_qualification,hire_date)values
 		('$first_name','$middle_name','$last_name','$email','$phone_no','$profile_image','$teacher_status','$application_status','$cnic','$dob','$other_phone','$gender','$current_address','$ba_complition_date','$ba_certificate','$ma_complition_date','$ma_certificate','$last_qualification','$hire_date')";
  		$run=mysqli_query($con, $query);
- 		if ($run) {
- 			echo "Your Data has been submitted";
- 		}
- 		else {
- 			echo "Your Data has not been submitted";
- 		}
- 		$query2="insert into login(user_id,Password,Role)values('$email','$password','$role')";
+ 		
+ 		$query2="insert into login(user_id,Password,Role)values('$teacher_id','$password','$role')";
  		$run2=mysqli_query($con, $query2);
- 		if ($run2) {
- 			echo "Your Data has been submitted into login";
- 		}
- 		else {
- 			echo "Your Data has not been submitted into login";
- 		}
+         if ($run2) {  
+            echo "<div class='alert alert-success' role='alert'>Your Data has been submitted</div>";
+        } else { 
+            echo "<div class='alert alert-danger' role='alert'>Your Data has not been submitted</div>";
+        }
  	}
 ?>
 
@@ -109,12 +103,11 @@
 
 		$query3="insert into teacher_courses(course_code,semester,teacher_id,subject_code,assign_date,total_classes)values('$course_code','$semester','$teacher_id','$subject_code','$date','$total_classes')";
 		$run3=mysqli_query($con,$query3);
-		if ($run3) {
- 			echo "Your Data has been submitted";
- 		}
- 		else {
- 			echo "Your Data has not been submitted";
- 		}
+         if ($run3) {  
+            echo "<div class='alert alert-success' role='alert'>Your Data has been submitted</div>";
+        } else { 
+            echo "<div class='alert alert-danger' role='alert'>Your Data has not been submitted</div>";
+        }
 
 
 	}

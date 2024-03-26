@@ -82,12 +82,7 @@ $run=mysqli_query($con, $query);
         }
         $query2="insert into login(user_id,Password,Role)values('$roll_no','$password','$role')";
  		$run2=mysqli_query($con, $query2);
- 		if ($run2) {
- 			echo "Your Data has been submitted into login";
- 		}
- 		else {
- 			echo "Your Data has not been submitted into login";
- 		}
+ 		
  	}
 ?>
 
