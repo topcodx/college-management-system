@@ -34,6 +34,9 @@
             <div class="text-center d-flex flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 text-white admin-dashboard pl-3">
                 <h4 class="">Student Fee Summary</h4>
             </div>
+
+            <button style="background-color: #007bff; color: #fff; cursor: pointer; border-radius: 5px; font-size: 16px; width: 100px; display: flex; justify-content: center; align-items: center;" onclick="window.location.href = 'http://localhost/college-management-system/public_html/';">PAY NOW</button>
+
             <div class="row">
                 <div class="col-md-12">
                     <section class="border mt-3">
@@ -71,6 +74,7 @@
 								?>
                         </table><br>
                         <div class="container">
+                        
 
                             <button
                                 style="background-color: #007bff; color: #fff; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; font-size: 16px; width:100px;	 margin-left:1050px;"
