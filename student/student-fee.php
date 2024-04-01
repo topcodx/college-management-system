@@ -35,7 +35,9 @@
                 <h4 class="">Student Fee Summary</h4>
             </div>
 
-            <button style="background-color: #007bff; color: #fff; cursor: pointer; border-radius: 5px; font-size: 16px; width: 100px; display: flex; justify-content: center; align-items: center;" onclick="window.location.href = 'http://localhost/college-management-system/public_html/';">PAY NOW</button>
+            <div class="d-flex justify-content-end">
+                <a href="payment/index.php" type="button" class="btn btn-primary">PAY NOW</a>
+            </div>
 
             <div class="row">
                 <div class="col-md-12">
@@ -72,14 +74,11 @@
                             <?php	
 									}
 								?>
-                        </table><br>
-                        <div class="container">
-                        
-
-                            <button
-                                style="background-color: #007bff; color: #fff; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; font-size: 16px; width:100px;	 margin-left:1050px;"
-                                onclick="window.print()">Print</button>
-
+                        </table>
+                        <div class="mt-3 mb-1 mr-1 d-flex justify-content-end">
+                            <button class="btn btn-primary"
+                                    onclick="window.print()">Print
+                            </button>
                         </div>
                     </section>
                 </div>

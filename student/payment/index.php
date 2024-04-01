@@ -54,7 +54,6 @@
 
                         <!-- submit button -->
                         <button id="PayNow" class="btn btn-success btn-lg btn-block">Submit & Pay</button>
-
                     </div>
                 </div>
             </div>
@@ -63,6 +62,9 @@
     <script>
     //Pay Amount
     jQuery(document).ready(function($) {
+        let failedURL = "payment-failed.php";
+        let successURL = "payment-success.php";
+        let request_url = "submitpayment.php";
 
         jQuery('#PayNow').click(function(e) {
 
@@ -76,7 +78,6 @@
             var paymentOption = "netbanking";
             var payAmount = $('#payAmount').val();
 
-            var request_url = "submitpayment.php";
             var formData = {
                 billing_name: billing_name,
                 billing_mobile: billing_mobile,
@@ -113,7 +114,7 @@
                         "handler": function(response) {
 
                             window.location.replace(
-                                "http://localhost/college-management-system/public_html/payment-success.php?oid=" +
+                                successURL+"?oid=" +
                                 orderID + "&rp_payment_id=" + response
                                 .razorpay_payment_id + "&rp_signature=" + response
                                 .razorpay_signature);
@@ -122,7 +123,7 @@
                         "modal": {
                             "ondismiss": function() {
                                 window.location.replace(
-                                    "http://localhost/college-management-system/public_html/payment-success.php?oid=" +
+                                    successURL+"?oid=" +
                                     orderID);
                             }
                         },
@@ -162,7 +163,7 @@
                     rzp1.on('payment.failed', function(response) {
 
                         window.location.replace(
-                            "http://localhost/college-management-system/public_html/payment-failed.php?oid=" +
+                            failedURL+"?oid=" +
                             orderID + "&reason=" + response.error.description +
                             "&paymentid=" + response.error.metadata.payment_id);
 
