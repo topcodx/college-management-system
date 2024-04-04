@@ -1,5 +1,7 @@
 <!---------------- Session starts form here ----------------------->
 <?php  
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 	session_start();
 	if (!$_SESSION["LoginStudent"])
 	{
@@ -10,6 +12,31 @@
 		// Include helper.php file
 		require_once "../common/helper.php";
 		$universityLogo = getUniversityLogo('University_logo');
+
+require '../student/payment/config.php';
+require '../vendor/autoload.php';
+
+use Razorpay\Api\Api;
+
+// Check if form is submitted
+if (!empty($_POST['amount'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $amount = $_POST['amount'] * 100;
+    $api = new Api(API_KEY, API_SECRET);
+
+    // Create a Razorpay order
+    $res = $api->order->create([
+        'receipt' => '123',
+        'amount' => $amount,
+        'currency' => 'INR',
+    ]);
+
+    // If order creation is successful
+    if (!empty($res['id'])) {
+        $_SESSION['order_id'] = $res['id'];
+    }
+}
 	?>
 <!---------------- Session Ends form here ------------------------>
 
@@ -22,7 +49,7 @@
         type="image/x-icon">
 
     <title>Student - Fees</title>
-
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 
 <body>
@@ -56,7 +83,7 @@
                                 <th>Amount (Rs.)</th>
                                 <th>Posting Date</th>
                                 <th>Status</th>
-                                <th>paid_at</th>
+                                <th>Paid At</th>
                             </tr>
                             <?php 
 								$roll_no=$_SESSION['LoginStudent'];
@@ -73,7 +100,11 @@
                                 <td><?php echo $row['status'] ?></td>
                                 <?php if($row['status'] == 'Unpaid') { ?>
                                 <td>
-                                    <a href="payment/index.php" class="btn btn-primary">Pay Now</a>
+                                    <a href="javascript:void(0);" type="button" class="btn btn-primary pay_now"
+                                            data-amount="<?php echo ($row['amount'] * 100); ?>"
+                                            data-user-name="<?php echo $row['first_name']." ".$row['middle_name']." ".$row['last_name']; ?>"
+                                    >Pay</a>
+
                                     <?php } else { ?>
                                     <?php echo date('Y-m-d H:i:s', strtotime($row['time_of_payment'])); ?>
                                     <?php } ?>
@@ -83,37 +114,44 @@
 									}
 								?>
                         </table>
-                        
                     </section>
                 </div>
             </div>
         </div>
     </main>
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-    <script type="text/javascript" src="../bootstrap/js/jquery.min.js"></script>
-    <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        $(document).on('click', '.pay_now', function(){
+
+            let userName = $(this).data('user-name');
+            let amount = $(this).data('amount');
+
+
+            // Create Razorpay options
+            var options = {
+                key: '<?php echo API_KEY; ?>',
+                amount: amount,
+                currency: 'INR',
+                name: '<?php echo COMPANY_NAME; ?>',
+                description: 'Colleage Management System',
+                image: '<?php echo COMPANY_LOGO_URL; ?>',
+                prefill: {
+                    name: userName
+                },
+                handler: function(response) {
+                    // Handle payment success
+                    alert('Payment successful! Payment ID: ' + response.razorpay_payment_id);
+                    // You can also redirect or perform other actions here
+                }
+            };
+
+            // Open Razorpay payment popup
+            var rzp = new Razorpay(options);
+            rzp.open();
+        });
+    </script>
 </body>
 
 </html>
-
-<?php
-// Check if payment is successful and update the payment status
-if (!empty($_SESSION['order_id'])) {
-    // Assuming '123' is the receipt ID generated earlier
-    $orderId = $_SESSION['order_id'];
-
-    // Your logic to update the payment status to 'Paid' and add the paid timestamp
-    // Example SQL query to update the status
-    // UPDATE student_fee SET status = 'Paid', paid_at = NOW() WHERE receipt_id = '123';
-
-    // After updating the status, unset the order ID session variable
-    unset($_SESSION['order_id']);
-
-    // Set a session variable to display a success message after redirecting back to this page
-    $_SESSION['payment_success'] = true;
-
-    // Redirect back to this page after payment success
-    header('Location: student-fee.php');
-    exit;
-}
-?>

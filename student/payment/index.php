@@ -1,10 +1,11 @@
 <?php  
 	session_start(); // Session already started, so no need to call it again
+    
 	if (!$_SESSION["LoginStudent"])
 	{
 		header('location:../login/login.php');
 	}
-	require_once "C:/wamp64/www/college-management-system/connection/connection.php";
+	require_once "/connection/connection.php";
 
 	// Include helper.php file
 	require_once "C:\wamp64\www\college-management-system\common\helper.php";
@@ -87,14 +88,6 @@ if (!empty($_POST['amount'])) {
 
     <script type="text/javascript" src="../bootstrap/js/jquery.min.js"></script>
     <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
-
-    <?php
-    // Check if payment success message is set
-    if (!empty($_SESSION['payment_success'])) {
-        echo '<script>alert("Payment successful!");</script>';
-        unset($_SESSION['payment_success']);
-    }
-    ?>
 </body>
 
 </html>
