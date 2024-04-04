@@ -12,21 +12,6 @@
 	?>
 <!---------------- Session Ends form here ------------------------>
 
-<?php
-if (isset($_POST['sub'])) {
- 	$roll_no=$_POST['roll_no'];
- 	$amount=$_POST['amount'];
- 	$status=$_POST['status'];
-		$que="insert into student_fee(roll_no,amount,status)values('$roll_no','$amount','$status')";
-	$run=mysqli_query($con,$que);
-		if ($run) {  
-            echo "<div class='alert alert-success' role='alert'>Your fee has received.</div>";
-        } else { 
-            echo "<div class='alert alert-danger' role='alert'>your fee has not received. Please try again.</div>";
-        }
-	}
-
-?>
 
 <!doctype html>
 <html lang="en">
@@ -44,6 +29,22 @@ if (isset($_POST['sub'])) {
 				<div class="bar-margin text-center d-flex flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 text-white admin-dashboard pl-3">
 					<h4>Student Fee Management System </h4>
 				</div>
+				<?php
+if (isset($_POST['sub'])) {
+ 	$roll_no=$_POST['roll_no'];
+ 	$amount=$_POST['amount'];
+ 	$status=$_POST['status'];
+		$que="insert into student_fee(roll_no,amount,status)values('$roll_no','$amount','$status')";
+		$run=mysqli_query($con,$que);
+		if ($run) {  
+            echo "<div class='alert alert-success' role='alert'>Your Data has received.</div>";
+        } else { 
+            echo "<div class='alert alert-danger' role='alert'>your Data has not received. Please try again.</div>";
+        }
+	}
+
+?>
+
 				<div class="row">
 					<div class="col-md-12">
 						<form action="student-fee.php" method="post">
@@ -73,6 +74,10 @@ if (isset($_POST['sub'])) {
 									<th>Student Name</th>
 									<th>Program</th>
 									<th>Amount (Rs.)</th>
+									<th>Status</th>
+										
+
+
 								</tr>
 								<?php  
 								$i=1;
@@ -93,6 +98,12 @@ if (isset($_POST['sub'])) {
 											<td><?php echo $row['course_code'] ?></td>
 											<td><input type="text" name="amount" class="form-control" placeholder="Enter Amount for fee"></td>
 											<input type="hidden" name="status" value="Paid">
+											<td>
+                                        <select name="status" class="form-control">
+                                            <option value="Paid">Paid</option>
+                                            <option value="Unpaid">Unpaid</option>
+                                        </select>
+                                    </td>											
 
 										</tr>
 										
@@ -100,8 +111,9 @@ if (isset($_POST['sub'])) {
 									}
 									}
 								?>
-								<input type="submit" name="sub"  class="btn btn-success px-4 ml-4">
-
+									<div class="d-flex justify-content-end">
+										<input type="submit" name="sub"  class="btn btn-success px-4 ml-4 mb-2 mt-2">
+									</div>
 								</form>
 							</table>				
 						</section>

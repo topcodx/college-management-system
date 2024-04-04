@@ -11,7 +11,27 @@
 		$universityLogo = getUniversityLogo('University_logo');
 	?>
 <!---------------- Session Ends form here ------------------------>
-<?php 
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" href="<?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>"
+        type="image/x-icon">
+    <title>Student Personal Information</title>
+</head>
+
+<body>
+    <?php include('../common/common-header.php') ?>
+    <?php include('../common/student-sidebar.php') ?>
+
+    <main role="main" class="col-xl-10 col-lg-9 col-md-8 ml-sm-auto px-md-4 w-100">
+        <div class="sub-main sub-main-student">
+            <div class="text-center d-flex flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 text-white admin-dashboard pl-3">
+                <h4 class="">Update Your Personal Information </h4>
+            </div>
+            <?php 
     
     $roll_no=$_SESSION['LoginStudent'];
     $query1="select * from student_info where email='$roll_no'";
@@ -51,25 +71,6 @@
 <?php }
     }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <link rel="shortcut icon" href="<?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>"
-        type="image/x-icon">
-    <title>Student Personal Information</title>
-</head>
-
-<body>
-    <?php include('../common/common-header.php') ?>
-    <?php include('../common/student-sidebar.php') ?>
-
-    <main role="main" class="col-xl-10 col-lg-9 col-md-8 ml-sm-auto px-md-4 w-100">
-        <div class="sub-main sub-main-student">
-            <div class="text-center d-flex flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 text-white admin-dashboard pl-3">
-                <h4 class="">Update Your Personal Information </h4>
-            </div>
             <div class="row ml-4">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <form action="student-personal-information.php" method="post">

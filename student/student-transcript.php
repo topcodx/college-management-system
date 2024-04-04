@@ -137,56 +137,57 @@
         return $gpa;
     }
 ?>
-<link rel="shortcut icon" href=" <?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>" type="image/x-icon">
+<link rel="shortcut icon" href=" <?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>"
+    type="image/x-icon">
 
-    <title>Student - Transcript</title>
+<title>Student - Transcript</title>
 
 <?php include "../common/common-header.php"?>
-    <div class="container mt-4">
-        <div class="text-danger text-center m-auto">
-            <img src="../Images/LOGO1.JPG" alt="" width="100" height="100">
-            <h4 class="text-dark mt-3">Vidhi Manjari Janvi - VMJ Univercity</h4>
-            <h4 class="text-dark">Univercity OF Computer Science And Business Managemant</h4>
-        </div>
+<div class="container mt-4">
+    <div class="text-danger text-center m-auto">
+        <img src="../Images/LOGO1.JPG" alt="" width="100" height="100">
+        <h4 class="text-dark mt-3">Vidhi Manjari Janvi - VMJ Univercity</h4>
+        <h4 class="text-dark">Univercity OF Computer Science And Business Managemant</h4>
     </div>
-    <div class="container-fluid mb-4 text-dark">
-        <div class="program-info">
-            <?php  
+</div>
+<div class="container-fluid mb-4 text-dark">
+    <div class="program-info">
+        <?php  
             
                 $roll_no = $_SESSION['LoginStudent'];
                 $query = "select * from student_info inner join sessions on sessions.session=student_info.session where roll_no = '$roll_no'";
                 $run = mysqli_query($con, $query);
                 while($row = mysqli_fetch_array($run)){ ?>
-                    <h5>Student Transcript - <?php echo $row['course_code']; ?> Program</h5>
+        <h5>Student Transcript - <?php echo $row['course_code']; ?> Program</h5>
+    </div>
+    <div class="d-flex mt-3">
+        <div>
+            <h5>Student Name : <?php echo $row['first_name']. " ". $row['middle_name']. " ". $row['last_name']; ?></h5>
+            <h5>S/O : <?php echo $row['father_name']; ?></h5>
         </div>
-        <div class="d-flex mt-3">
-            <div>
-                <h5>Student Name : <?php echo $row['first_name']. " ". $row['middle_name']. " ". $row['last_name']; ?></h5>
-                <h5>S/O : <?php echo $row['father_name']; ?></h5>
-            </div>
-            <div class="ml-auto">
-                <?php
+        <div class="ml-auto">
+            <?php
                     $row['session_name'] = "";
                     // print_r($row);
                     // exit;
                 ?>
-                <h5>Student I.D # : <?php echo $row['roll_no']; ?></h5>
-                <?php if (isset($row['admission_date'])): ?>
-                    <h5>Year of Admission : <?php echo intval($row['admission_date']) . " ". $row['session_name']; ?></h5>
-                <?php endif; ?>
-            </div>
+            <h5>Student I.D # : <?php echo $row['roll_no']; ?></h5>
+            <?php if (isset($row['admission_date'])): ?>
+            <h5>Year of Admission : <?php echo intval($row['admission_date']) . " ". $row['session_name']; ?></h5>
+            <?php endif; ?>
         </div>
-        <?php }
-        ?>
     </div>
-    <div class="container-fluid table-font-for-transcript">
-        <div class="row">
-            <div class="col-lg-6 col-md-12 col-sm-12">
-                <div>
-                    <section class="mt-3">
-                        <div class="mt-2">
-                            <table class="w-100 table-elements table-six-tr"cellpadding="2">
-                                <tr class="pt-5 table-six text-white" style="height: 32px;">
+    <?php }
+        ?>
+</div>
+<div class="container-fluid table-font-for-transcript">
+    <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div>
+                <section class="mt-3">
+                    <div class="mt-2">
+                        <table class="w-100 table-elements table-six-tr" cellpadding="2">
+                            <tr class="pt-5 table-six text-white" style="height: 32px;">
                                 <?php
 $que="SELECT * FROM student_courses sc INNER JOIN sessions s ON sc.session = s.session_id WHERE sc.semester='1' AND sc.roll_no='$roll_no'";
 $run=mysqli_query($con,$que);
@@ -196,23 +197,23 @@ while ($row=mysqli_fetch_array($run)) {
 }
 ?>
 
-    <th colspan="2">
-        <?php
+                                <th colspan="2">
+                                    <?php
             $assign_date = ""; 
             $session = "";
         ?>
-        <div class="d-flex">
-            <span class="mr-5">Semester - 1</span>
-            <span class="ml-5"><?php echo $assign_date . " " . $session; ?></span>
-        </div>
-    </th>
-    
-    <th>CH</th>
-    <th>%</th>
-    <th>G.P</th>
-    <th>Letter</th>
-</tr>
-<?php
+                                    <div class="d-flex">
+                                        <span class="mr-5">Semester - 1</span>
+                                        <span class="ml-5"><?php echo $assign_date . " " . $session; ?></span>
+                                    </div>
+                                </th>
+
+                                <th>CH</th>
+                                <th>%</th>
+                                <th>G.P</th>
+                                <th>Letter</th>
+                            </tr>
+                            <?php
 $completed_ch = 0;
 $total_semester_ch = 0;
 $obtain_marks = ""; // It seems this variable is not being used, consider removing if unnecessary
@@ -229,11 +230,11 @@ $all_semester_quality_points = 0;
                                         $grade = "";
                                         // Here you can continue with your code logic for each row fetched
                                     ?>
-                                        <tr>
-                                            <td><?php echo $row['subject_code'] ?></td>
-                                            <td><?php echo $row['subject_name'] ?></td>
-                                            <td><?php echo $row['credit_hours'] ?></td>
-                                            <?php
+                            <tr>
+                                <td><?php echo $row['subject_code'] ?></td>
+                                <td><?php echo $row['subject_name'] ?></td>
+                                <td><?php echo $row['credit_hours'] ?></td>
+                                <?php
                                                 $subject = $row['subject_code'];
                                                 $result_query = "select * from class_result cr inner join student_courses cs on cr.subject_code = cs.subject_code and cr.roll_no=cs.roll_no where cr.subject_code='$subject' and cr.roll_no='$roll_no'";
                                                 $run_result = mysqli_query($con, $result_query);
@@ -242,14 +243,14 @@ $all_semester_quality_points = 0;
                                                     $assign_date = date("y", strtotime($result_row['assign_date']));
                                                 }
                                             ?>
-                                            <td><?php echo $obtain_marks ?></td>
-                                            <?php
+                                <td><?php echo $obtain_marks ?></td>
+                                <?php
                                                 $gpa = gpa($obtain_marks, $assign_date); 
                                                 $grade = grade($obtain_marks, $assign_date);
                                             ?>
-                                            <td><?php echo $gpa; ?></td>
-                                            <td><?php echo $grade; ?></td>
-                                            <?php
+                                <td><?php echo $gpa; ?></td>
+                                <td><?php echo $grade; ?></td>
+                                <?php
                                                 $total_ch = $total_ch + $row['credit_hours'];
                                                 if($obtain_marks>=50){
                                                     $quality_points = $gpa * $row['credit_hours'];
@@ -257,51 +258,51 @@ $all_semester_quality_points = 0;
                                                     $completed_ch = $completed_ch + $row['credit_hours'];
                                                 }
                                             ?>
-                                        </tr>
-                                    <?php
+                            </tr>
+                            <?php
                                     }
                                     ?>
 
-                                
-                                <?php
+
+                            <?php
                                 $obtain_marks = "";
                                     
                                 ?>
-                                <tr>
-                                    <th colspan="2">Total Semester CH</th>
-                                    <?php $total_semester_ch = $total_semester_ch + $total_ch; ?>
-                                    <th><?php echo $total_ch; ?></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                <tr>
-                                    <td colspan="4">.</td>
-                                    <td colspan="2">.</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4">.</td>
-                                    <td colspan="2">.</td>
-                                </tr>
-                                <tr>
-    <th colspan="4">Semester GPA</th>
-    <?php
+                            <tr>
+                                <th colspan="2">Total Semester CH</th>
+                                <?php $total_semester_ch = $total_semester_ch + $total_ch; ?>
+                                <th><?php echo $total_ch; ?></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <td colspan="4">.</td>
+                                <td colspan="2">.</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">.</td>
+                                <td colspan="2">.</td>
+                            </tr>
+                            <tr>
+                                <th colspan="4">Semester GPA</th>
+                                <?php
     $all_semester_quality_points = $all_semester_quality_points + $total_quality_points;
     $gpa = $total_ch != 0 ? round($total_quality_points / $total_ch, 2) : 0;
     ?>
-    <th colspan="2"><?php echo $gpa; ?></th>
-</tr>
-                            </table>
-                        </div>
-                    </section>
-                </div>
+                                <th colspan="2"><?php echo $gpa; ?></th>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
             </div>
-            <div class="col-lg-6 col-md-12 col-sm-12">
-                <div>
-                    <section class="mt-3">
-                        <div class="mt-2">
-                            <table class="w-100 table-elements table-six-tr"cellpadding="2">
-                                <tr class="pt-5 table-six text-white" style="height: 32px;">
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div>
+                <section class="mt-3">
+                    <div class="mt-2">
+                        <table class="w-100 table-elements table-six-tr" cellpadding="2">
+                            <tr class="pt-5 table-six text-white" style="height: 32px;">
                                 <?php
                                     $que = "SELECT * FROM student_courses sc INNER JOIN sessions s ON sc.session = s.session_id WHERE sc.semester = '2' AND sc.roll_no = '$roll_no'";
                                     $run = mysqli_query($con, $que);
@@ -316,13 +317,16 @@ $all_semester_quality_points = 0;
                                         }
                                     }
                                 ?>
-                                    <th colspan="2"><div class="d-flex"><span class="mr-5">Semester - 2</span><span class="ml-5"><?php echo  $assign_date. " ".$session; ?> </span></div></th>
-                                    <th>CH</th>
-                                    <th>%</th>
-                                    <th>G.P</th>
-                                    <th>Letter</th>
-                                </tr>
-                                <?php
+                                <th colspan="2">
+                                    <div class="d-flex"><span class="mr-5">Semester - 2</span><span
+                                            class="ml-5"><?php echo  $assign_date. " ".$session; ?> </span></div>
+                                </th>
+                                <th>CH</th>
+                                <th>%</th>
+                                <th>G.P</th>
+                                <th>Letter</th>
+                            </tr>
+                            <?php
                                     $obtain_marks = "";
                                     $total_ch = 0;
                                     $quality_points = 0;
@@ -334,11 +338,11 @@ $all_semester_quality_points = 0;
                                         $gpa = "";
                                         $grade = "";
                                 ?>
-                                <tr>
-                                    <td><?php echo $row['subject_code'] ?></td>
-                                    <td><?php echo $row['subject_name'] ?></td>
-                                    <td><?php echo $row['credit_hours'] ?></td>
-                                    <?php
+                            <tr>
+                                <td><?php echo $row['subject_code'] ?></td>
+                                <td><?php echo $row['subject_name'] ?></td>
+                                <td><?php echo $row['credit_hours'] ?></td>
+                                <?php
                                         $subject = $row['subject_code'];
                                         $result_query = "select * from class_result cr inner join student_courses cs on cr.subject_code = cs.subject_code and cr.roll_no=cs.roll_no where cr.subject_code='$subject' and cr.roll_no='$roll_no'";
                                         $run_result = mysqli_query($con, $result_query);
@@ -347,14 +351,14 @@ $all_semester_quality_points = 0;
                                             $assign_date = date("y", strtotime($result_row['assign_date']));
                                         }
                                     ?>
-                                    <td><?php echo $obtain_marks ?></td>
-                                    <?php
+                                <td><?php echo $obtain_marks ?></td>
+                                <?php
                                         $gpa = gpa($obtain_marks, $assign_date); 
                                         $grade = grade($obtain_marks, $assign_date);
                                     ?>
-                                    <td><?php echo $gpa; ?></td>
-                                    <td><?php echo $grade; ?></td>
-                                    <?php
+                                <td><?php echo $gpa; ?></td>
+                                <td><?php echo $grade; ?></td>
+                                <?php
                                         $total_ch = $total_ch + $row['credit_hours'];
                                         if($obtain_marks>=50){
                                             $quality_points = $gpa * $row['credit_hours'];
@@ -362,37 +366,46 @@ $all_semester_quality_points = 0;
                                             $completed_ch = $completed_ch + $row['credit_hours'];
                                         }
                                     ?>
-                                </tr>
-                                <?php
+                            </tr>
+                            <?php
                                 $obtain_marks = "";
                                     } 
                                 ?>
-                                <tr>
-                                    <th colspan="2">Total Semester CH</th>
-                                    <?php $total_semester_ch = $total_semester_ch + $total_ch; ?>
-                                    <th><?php echo $total_ch; ?></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                <tr>
-                                    <th colspan="4">Semester GPA</th>
-                                    <?php $all_semester_quality_points = $all_semester_quality_points + $total_quality_points; ?>
-                                    <th colspan="2"><?php echo  round($total_quality_points/$total_ch, 2); ?></th>
-                                </tr>
-                            </table>
-                        </div>
-                    </section>
-                </div>
+                            <tr>
+                                <th colspan="2">Total Semester CH</th>
+                                <?php $total_semester_ch = $total_semester_ch + $total_ch; ?>
+                                <th><?php echo $total_ch; ?></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            <tr>
+    <th colspan="4">Semester GPA</th>
+    <?php
+        // Check if $total_ch is not zero before performing the division
+        if ($total_ch != 0) {
+            $semester_gpa = round($total_quality_points / $total_ch, 2);
+        } else {
+            // Handle the case where $total_ch is zero to avoid division by zero error
+            $semester_gpa = 0; // Or any default value you prefer
+        }
+    ?>
+    <th colspan="2"><?php echo $semester_gpa; ?></th>
+</tr>
+
+                        </table>
+                    </div>
+                </section>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-6 col-md-12 col-sm-12">
-                <div>
-                    <section class="mt-3">
-                        <div class="mt-2">
-                            <table class="w-100 table-elements table-six-tr"cellpadding="2">
-                                <tr class="pt-5 table-six text-white" style="height: 32px;">
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div>
+                <section class="mt-3">
+                    <div class="mt-2">
+                        <table class="w-100 table-elements table-six-tr" cellpadding="2">
+                            <tr class="pt-5 table-six text-white" style="height: 32px;">
                                 <?php
                                     $que="select * from student_courses sc inner join sessions s on sc.session = s.session_id where sc.semester='3' and sc.roll_no='$roll_no'";
                                     $run=mysqli_query($con,$que);
@@ -401,13 +414,16 @@ $all_semester_quality_points = 0;
                                         $assign_date = date("Y", strtotime($row['assign_date']));;
                                     }
                                 ?>
-                                    <th colspan="2"><div class="d-flex"><span class="mr-5">Semester - 3</span><span class="ml-5"><?php echo  $assign_date. " ".$session; ?> </span></div></th>
-                                    <th>CH</th>
-                                    <th>%</th>
-                                    <th>G.P</th>
-                                    <th>Letter</th>
-                                </tr>
-                                <?php
+                                <th colspan="2">
+                                    <div class="d-flex"><span class="mr-5">Semester - 3</span><span
+                                            class="ml-5"><?php echo  $assign_date. " ".$session; ?> </span></div>
+                                </th>
+                                <th>CH</th>
+                                <th>%</th>
+                                <th>G.P</th>
+                                <th>Letter</th>
+                            </tr>
+                            <?php
                                     $obtain_marks = "";
                                     $total_ch = 0;
                                     $quality_points = 0;
@@ -418,11 +434,11 @@ $all_semester_quality_points = 0;
                                         $gpa = "";
                                         $grade = "";
                                 ?>
-                                <tr>
-                                    <td><?php echo $row['subject_code'] ?></td>
-                                    <td><?php echo $row['subject_name'] ?></td>
-                                    <td><?php echo $row['credit_hours'] ?></td>
-                                    <?php
+                            <tr>
+                                <td><?php echo $row['subject_code'] ?></td>
+                                <td><?php echo $row['subject_name'] ?></td>
+                                <td><?php echo $row['credit_hours'] ?></td>
+                                <?php
                                         $subject = $row['subject_code'];
                                         $result_query = "select * from class_result cr inner join student_courses cs on cr.subject_code = cs.subject_code and cr.roll_no=cs.roll_no where cr.subject_code='$subject' and cr.roll_no='$roll_no'";
                                         $run_result = mysqli_query($con, $result_query);
@@ -431,14 +447,14 @@ $all_semester_quality_points = 0;
                                             $assign_date = date("y", strtotime($result_row['assign_date']));
                                         }
                                     ?>
-                                    <td><?php echo $obtain_marks ?></td>
-                                    <?php
+                                <td><?php echo $obtain_marks ?></td>
+                                <?php
                                         $gpa = gpa($obtain_marks, $assign_date); 
                                         $grade = grade($obtain_marks, $assign_date);
                                     ?>
-                                    <td><?php echo $gpa; ?></td>
-                                    <td><?php echo $grade; ?></td>
-                                    <?php
+                                <td><?php echo $gpa; ?></td>
+                                <td><?php echo $grade; ?></td>
+                                <?php
                                         $total_ch = $total_ch + $row['credit_hours'];
                                         if($obtain_marks>=50){
                                             $quality_points = $gpa * $row['credit_hours'];
@@ -446,35 +462,37 @@ $all_semester_quality_points = 0;
                                             $completed_ch = $completed_ch + $row['credit_hours'];
                                         }
                                     ?>
-                                </tr>
-                                <?php
+                            </tr>
+                            <?php
                                 $obtain_marks = "";
                                     } 
                                 ?>
-                                <tr>
-                                    <th colspan="2">Total Semester CH</th>
-                                    <?php $total_semester_ch = $total_semester_ch + $total_ch; ?>
-                                    <th><?php echo $total_ch; ?></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                <tr>
-                                    <th colspan="4">Semester GPA</th>
-                                    <?php $all_semester_quality_points = $all_semester_quality_points + $total_quality_points; ?>
-                                    <th colspan="2"><?php echo  ($total_ch > 0) ? round($total_quality_points/$total_ch, 2) : '0'; ?></th>
-                                </tr>
-                            </table>
-                        </div>
-                    </section>
-                </div>
+                            <tr>
+                                <th colspan="2">Total Semester CH</th>
+                                <?php $total_semester_ch = $total_semester_ch + $total_ch; ?>
+                                <th><?php echo $total_ch; ?></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th colspan="4">Semester GPA</th>
+                                <?php $all_semester_quality_points = $all_semester_quality_points + $total_quality_points; ?>
+                                <th colspan="2">
+                                    <?php echo  ($total_ch > 0) ? round($total_quality_points/$total_ch, 2) : '0'; ?>
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
             </div>
-            <div class="col-lg-6 col-md-12 col-sm-12">
-                <div>
-                    <section class="mt-3">
-                        <div class="mt-2">
-                            <table class="w-100 table-elements table-six-tr"cellpadding="2">
-                                <tr class="pt-5 table-six text-white" style="height: 32px;">
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div>
+                <section class="mt-3">
+                    <div class="mt-2">
+                        <table class="w-100 table-elements table-six-tr" cellpadding="2">
+                            <tr class="pt-5 table-six text-white" style="height: 32px;">
                                 <?php
                                     $que="select * from student_courses sc inner join sessions s on sc.session = s.session_id where sc.semester='4' and sc.roll_no='$roll_no'";
                                     $run=mysqli_query($con,$que);
@@ -483,13 +501,16 @@ $all_semester_quality_points = 0;
                                         $assign_date = date("Y", strtotime($row['assign_date']));;
                                     }
                                 ?>
-                                    <th colspan="2"><div class="d-flex"><span class="mr-5">Semester - 4</span><span class="ml-5"><?php echo  $assign_date. " ".$session; ?> </span></div></th>
-                                    <th>CH</th>
-                                    <th>%</th>
-                                    <th>G.P</th>
-                                    <th>Letter</th>
-                                </tr>
-                                <?php
+                                <th colspan="2">
+                                    <div class="d-flex"><span class="mr-5">Semester - 4</span><span
+                                            class="ml-5"><?php echo  $assign_date. " ".$session; ?> </span></div>
+                                </th>
+                                <th>CH</th>
+                                <th>%</th>
+                                <th>G.P</th>
+                                <th>Letter</th>
+                            </tr>
+                            <?php
                                     $obtain_marks = "";
                                     $total_ch = 0;
                                     $quality_points = 0;
@@ -500,11 +521,11 @@ $all_semester_quality_points = 0;
                                         $gpa = "";
                                         $grade = "";
                                 ?>
-                                <tr>
-                                    <td><?php echo $row['subject_code'] ?></td>
-                                    <td><?php echo $row['subject_name'] ?></td>
-                                    <td><?php echo $row['credit_hours'] ?></td>
-                                    <?php
+                            <tr>
+                                <td><?php echo $row['subject_code'] ?></td>
+                                <td><?php echo $row['subject_name'] ?></td>
+                                <td><?php echo $row['credit_hours'] ?></td>
+                                <?php
                                         $subject = $row['subject_code'];
                                         $result_query = "select * from class_result cr inner join student_courses cs on cr.subject_code = cs.subject_code and cr.roll_no=cs.roll_no where cr.subject_code='$subject' and cr.roll_no='$roll_no'";
                                         $run_result = mysqli_query($con, $result_query);
@@ -513,14 +534,14 @@ $all_semester_quality_points = 0;
                                             $assign_date = date("y", strtotime($result_row['assign_date']));
                                         }
                                     ?>
-                                    <td><?php echo $obtain_marks ?></td>
-                                    <?php
+                                <td><?php echo $obtain_marks ?></td>
+                                <?php
                                         $gpa = gpa($obtain_marks, $assign_date); 
                                         $grade = grade($obtain_marks, $assign_date);
                                     ?>
-                                    <td><?php echo $gpa; ?></td>
-                                    <td><?php echo $grade; ?></td>
-                                    <?php
+                                <td><?php echo $gpa; ?></td>
+                                <td><?php echo $grade; ?></td>
+                                <?php
                                         $total_ch = $total_ch + $row['credit_hours'];
                                         if($obtain_marks>=50){
                                             $quality_points = $gpa * $row['credit_hours'];
@@ -528,41 +549,43 @@ $all_semester_quality_points = 0;
                                             $completed_ch = $completed_ch + $row['credit_hours'];
                                         }
                                     ?>
-                                </tr>
-                                <?php
+                            </tr>
+                            <?php
                                 $obtain_marks = "";
                                     } 
                                 ?>
-                                <tr>
-                                    <th colspan="2">Total Semester CH</th>
-                                    <?php $total_semester_ch = $total_semester_ch + $total_ch; ?>
-                                    <th><?php echo $total_ch; ?></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                <tr>
-                                    <td colspan="4">.</td>
-                                    <td colspan="2">.</td>
-                                </tr>
-                                <tr>
-                                    <th colspan="4">Semester GPA</th>
-                                    <?php $all_semester_quality_points = $all_semester_quality_points + $total_quality_points; ?>
-                                    <th colspan="2"><?php echo  ($total_ch > 0) ? round($total_quality_points/$total_ch, 2) : '0'; ?></th>
-                                </tr>
-                            </table>
-                        </div>
-                    </section>
-                </div>
+                            <tr>
+                                <th colspan="2">Total Semester CH</th>
+                                <?php $total_semester_ch = $total_semester_ch + $total_ch; ?>
+                                <th><?php echo $total_ch; ?></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <td colspan="4">.</td>
+                                <td colspan="2">.</td>
+                            </tr>
+                            <tr>
+                                <th colspan="4">Semester GPA</th>
+                                <?php $all_semester_quality_points = $all_semester_quality_points + $total_quality_points; ?>
+                                <th colspan="2">
+                                    <?php echo  ($total_ch > 0) ? round($total_quality_points/$total_ch, 2) : '0'; ?>
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-6 col-md-12 col-sm-12">
-                <div>
-                    <section class="mt-3">
-                        <div class="mt-2">
-                            <table class="w-100 table-elements table-six-tr"cellpadding="2">
-                                <tr class="pt-5 table-six text-white" style="height: 32px;">
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div>
+                <section class="mt-3">
+                    <div class="mt-2">
+                        <table class="w-100 table-elements table-six-tr" cellpadding="2">
+                            <tr class="pt-5 table-six text-white" style="height: 32px;">
                                 <?php
                                     $que="select * from student_courses sc inner join sessions s on sc.session = s.session_id where sc.semester='5' and sc.roll_no='$roll_no'";
                                     $run=mysqli_query($con,$que);
@@ -571,13 +594,16 @@ $all_semester_quality_points = 0;
                                         $assign_date = date("Y", strtotime($row['assign_date']));;
                                     }
                                 ?>
-                                    <th colspan="2"><div class="d-flex"><span class="mr-5">Semester - 5</span><span class="ml-5"><?php echo  $assign_date. " ".$session; ?> </span></div></th>
-                                    <th>CH</th>
-                                    <th>%</th>
-                                    <th>G.P</th>
-                                    <th>Letter</th>
-                                </tr>
-                                <?php
+                                <th colspan="2">
+                                    <div class="d-flex"><span class="mr-5">Semester - 5</span><span
+                                            class="ml-5"><?php echo  $assign_date. " ".$session; ?> </span></div>
+                                </th>
+                                <th>CH</th>
+                                <th>%</th>
+                                <th>G.P</th>
+                                <th>Letter</th>
+                            </tr>
+                            <?php
                                     $obtain_marks = "";
                                     $total_ch = 0;
                                     $quality_points = 0;
@@ -588,11 +614,11 @@ $all_semester_quality_points = 0;
                                         $gpa = "";
                                         $grade = "";
                                 ?>
-                                <tr>
-                                    <td><?php echo $row['subject_code'] ?></td>
-                                    <td><?php echo $row['subject_name'] ?></td>
-                                    <td><?php echo $row['credit_hours'] ?></td>
-                                    <?php
+                            <tr>
+                                <td><?php echo $row['subject_code'] ?></td>
+                                <td><?php echo $row['subject_name'] ?></td>
+                                <td><?php echo $row['credit_hours'] ?></td>
+                                <?php
                                         $subject = $row['subject_code'];
                                         $result_query = "select * from class_result cr inner join student_courses cs on cr.subject_code = cs.subject_code and cr.roll_no=cs.roll_no where cr.subject_code='$subject' and cr.roll_no='$roll_no'";
                                         $run_result = mysqli_query($con, $result_query);
@@ -601,14 +627,14 @@ $all_semester_quality_points = 0;
                                             $assign_date = date("y", strtotime($result_row['assign_date']));
                                         }
                                     ?>
-                                    <td><?php echo $obtain_marks ?></td>
-                                    <?php
+                                <td><?php echo $obtain_marks ?></td>
+                                <?php
                                         $gpa = gpa($obtain_marks, $assign_date); 
                                         $grade = grade($obtain_marks, $assign_date);
                                     ?>
-                                    <td><?php echo $gpa; ?></td>
-                                    <td><?php echo $grade; ?></td>
-                                    <?php
+                                <td><?php echo $gpa; ?></td>
+                                <td><?php echo $grade; ?></td>
+                                <?php
                                         $total_ch = $total_ch + $row['credit_hours'];
                                         if($obtain_marks>=50){
                                             $quality_points = $gpa * $row['credit_hours'];
@@ -616,35 +642,37 @@ $all_semester_quality_points = 0;
                                             $completed_ch = $completed_ch + $row['credit_hours'];
                                         }
                                     ?>
-                                </tr>
-                                <?php
+                            </tr>
+                            <?php
                                 $obtain_marks = "";
                                     } 
                                 ?>
-                                <tr>
-                                    <th colspan="2">Total Semester CH</th>
-                                    <?php $total_semester_ch = $total_semester_ch + $total_ch; ?>
-                                    <th><?php echo $total_ch; ?></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                <tr>
-                                    <th colspan="4">Semester GPA</th>
-                                    <?php $all_semester_quality_points = $all_semester_quality_points + $total_quality_points; ?>
-                                    <th colspan="2"><?php echo  ($total_ch > 0) ? round($total_quality_points/$total_ch, 2) : '0'; ?></th>
-                                </tr>
-                            </table>
-                        </div>
-                    </section>
-                </div>
+                            <tr>
+                                <th colspan="2">Total Semester CH</th>
+                                <?php $total_semester_ch = $total_semester_ch + $total_ch; ?>
+                                <th><?php echo $total_ch; ?></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th colspan="4">Semester GPA</th>
+                                <?php $all_semester_quality_points = $all_semester_quality_points + $total_quality_points; ?>
+                                <th colspan="2">
+                                    <?php echo  ($total_ch > 0) ? round($total_quality_points/$total_ch, 2) : '0'; ?>
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
             </div>
-            <div class="col-lg-6 col-md-12 col-sm-12">
-                <div>
-                    <section class="mt-3">
-                        <div class="mt-2">
-                            <table class="w-100 table-elements table-six-tr"cellpadding="2">
-                                <tr class="pt-5 table-six text-white" style="height: 32px;">
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div>
+                <section class="mt-3">
+                    <div class="mt-2">
+                        <table class="w-100 table-elements table-six-tr" cellpadding="2">
+                            <tr class="pt-5 table-six text-white" style="height: 32px;">
                                 <?php
                                     $que="select * from student_courses sc inner join sessions s on sc.session = s.session_id where sc.semester='6' and sc.roll_no='$roll_no'";
                                     $run=mysqli_query($con,$que);
@@ -653,13 +681,16 @@ $all_semester_quality_points = 0;
                                         $assign_date = date("Y", strtotime($row['assign_date']));;
                                     }
                                 ?>
-                                    <th colspan="2"><div class="d-flex"><span class="mr-5">Semester - 6</span><span class="ml-5"><?php echo  $assign_date. " ".$session; ?> </span></div></th>
-                                    <th>CH</th>
-                                    <th>%</th>
-                                    <th>G.P</th>
-                                    <th>Letter</th>
-                                </tr>
-                                <?php
+                                <th colspan="2">
+                                    <div class="d-flex"><span class="mr-5">Semester - 6</span><span
+                                            class="ml-5"><?php echo  $assign_date. " ".$session; ?> </span></div>
+                                </th>
+                                <th>CH</th>
+                                <th>%</th>
+                                <th>G.P</th>
+                                <th>Letter</th>
+                            </tr>
+                            <?php
                                     $obtain_marks = "";
                                     $total_ch = 0;
                                     $quality_points = 0;
@@ -670,11 +701,11 @@ $all_semester_quality_points = 0;
                                         $gpa = "";
                                         $grade = "";
                                 ?>
-                                <tr>
-                                    <td><?php echo $row['subject_code'] ?></td>
-                                    <td><?php echo $row['subject_name'] ?></td>
-                                    <td><?php echo $row['credit_hours'] ?></td>
-                                    <?php
+                            <tr>
+                                <td><?php echo $row['subject_code'] ?></td>
+                                <td><?php echo $row['subject_name'] ?></td>
+                                <td><?php echo $row['credit_hours'] ?></td>
+                                <?php
                                         $subject = $row['subject_code'];
                                         $result_query = "select * from class_result cr inner join student_courses cs on cr.subject_code = cs.subject_code and cr.roll_no=cs.roll_no where cr.subject_code='$subject' and cr.roll_no='$roll_no'";
                                         $run_result = mysqli_query($con, $result_query);
@@ -683,14 +714,14 @@ $all_semester_quality_points = 0;
                                             $assign_date = date("y", strtotime($result_row['assign_date']));
                                         }
                                     ?>
-                                    <td><?php echo $obtain_marks ?></td>
-                                    <?php
+                                <td><?php echo $obtain_marks ?></td>
+                                <?php
                                         $gpa = gpa($obtain_marks, $assign_date); 
                                         $grade = grade($obtain_marks, $assign_date);
                                     ?>
-                                    <td><?php echo $gpa; ?></td>
-                                    <td><?php echo $grade; ?></td>
-                                    <?php
+                                <td><?php echo $gpa; ?></td>
+                                <td><?php echo $grade; ?></td>
+                                <?php
                                         $total_ch = $total_ch + $row['credit_hours'];
                                         if($obtain_marks>=50){
                                             $quality_points = $gpa * $row['credit_hours'];
@@ -698,37 +729,39 @@ $all_semester_quality_points = 0;
                                             $completed_ch = $completed_ch + $row['credit_hours'];
                                         }
                                     ?>
-                                </tr>
-                                <?php
+                            </tr>
+                            <?php
                                 $obtain_marks = "";
                                     } 
                                 ?>
-                                <tr>
-                                    <th colspan="2">Total Semester CH</th>
-                                    <?php $total_semester_ch = $total_semester_ch + $total_ch; ?>
-                                    <th><?php echo $total_ch; ?></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                <tr>
-                                    <th colspan="4">Semester GPA</th>
-                                    <?php $all_semester_quality_points = $all_semester_quality_points + $total_quality_points; ?>
-                                    <th colspan="2"><?php echo  ($total_ch > 0) ? round($total_quality_points/$total_ch, 2) : '0'; ?></th>
-                                </tr>
-                            </table>
-                        </div>
-                    </section>
-                </div>
+                            <tr>
+                                <th colspan="2">Total Semester CH</th>
+                                <?php $total_semester_ch = $total_semester_ch + $total_ch; ?>
+                                <th><?php echo $total_ch; ?></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th colspan="4">Semester GPA</th>
+                                <?php $all_semester_quality_points = $all_semester_quality_points + $total_quality_points; ?>
+                                <th colspan="2">
+                                    <?php echo  ($total_ch > 0) ? round($total_quality_points/$total_ch, 2) : '0'; ?>
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-6 col-md-12 col-sm-12">
-                <div>
-                    <section class="mt-3">
-                        <div class="mt-2">
-                            <table class="w-100 table-elements table-six-tr"cellpadding="2">
-                                <tr class="pt-5 table-six text-white" style="height: 32px;">
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div>
+                <section class="mt-3">
+                    <div class="mt-2">
+                        <table class="w-100 table-elements table-six-tr" cellpadding="2">
+                            <tr class="pt-5 table-six text-white" style="height: 32px;">
                                 <?php
                                     $que="select * from student_courses sc inner join sessions s on sc.session = s.session_id where sc.semester='7' and sc.roll_no='$roll_no'";
                                     $run=mysqli_query($con,$que);
@@ -737,13 +770,16 @@ $all_semester_quality_points = 0;
                                         $assign_date = date("Y", strtotime($row['assign_date']));;
                                     }
                                 ?>
-                                    <th colspan="2"><div class="d-flex"><span class="mr-5">Semester - 7</span><span class="ml-5"><?php echo  $assign_date. " ".$session; ?> </span></div></th>
-                                    <th>CH</th>
-                                    <th>%</th>
-                                    <th>G.P</th>
-                                    <th>Letter</th>
-                                </tr>
-                                <?php
+                                <th colspan="2">
+                                    <div class="d-flex"><span class="mr-5">Semester - 7</span><span
+                                            class="ml-5"><?php echo  $assign_date. " ".$session; ?> </span></div>
+                                </th>
+                                <th>CH</th>
+                                <th>%</th>
+                                <th>G.P</th>
+                                <th>Letter</th>
+                            </tr>
+                            <?php
                                     $obtain_marks = "";
                                     $total_ch = 0;
                                     $quality_points = 0;
@@ -754,11 +790,11 @@ $all_semester_quality_points = 0;
                                         $gpa = "";
                                         $grade = "";
                                 ?>
-                                <tr>
-                                    <td><?php echo $row['subject_code'] ?></td>
-                                    <td><?php echo $row['subject_name'] ?></td>
-                                    <td><?php echo $row['credit_hours'] ?></td>
-                                    <?php
+                            <tr>
+                                <td><?php echo $row['subject_code'] ?></td>
+                                <td><?php echo $row['subject_name'] ?></td>
+                                <td><?php echo $row['credit_hours'] ?></td>
+                                <?php
                                         $subject = $row['subject_code'];
                                         $result_query = "select * from class_result cr inner join student_courses cs on cr.subject_code = cs.subject_code and cr.roll_no=cs.roll_no where cr.subject_code='$subject' and cr.roll_no='$roll_no'";
                                         $run_result = mysqli_query($con, $result_query);
@@ -767,14 +803,14 @@ $all_semester_quality_points = 0;
                                             $assign_date = date("y", strtotime($result_row['assign_date']));
                                         }
                                     ?>
-                                    <td><?php echo $obtain_marks ?></td>
-                                    <?php
+                                <td><?php echo $obtain_marks ?></td>
+                                <?php
                                         $gpa = gpa($obtain_marks, $assign_date); 
                                         $grade = grade($obtain_marks, $assign_date);
                                     ?>
-                                    <td><?php echo $gpa; ?></td>
-                                    <td><?php echo $grade; ?></td>
-                                    <?php
+                                <td><?php echo $gpa; ?></td>
+                                <td><?php echo $grade; ?></td>
+                                <?php
                                         $total_ch = $total_ch + $row['credit_hours'];
                                         if($obtain_marks>=50){
                                             $quality_points = $gpa * $row['credit_hours'];
@@ -782,35 +818,37 @@ $all_semester_quality_points = 0;
                                             $completed_ch = $completed_ch + $row['credit_hours'];
                                         }
                                     ?>
-                                </tr>
-                                <?php
+                            </tr>
+                            <?php
                                 $obtain_marks = "";
                                     } 
                                 ?>
-                                <tr>
-                                    <th colspan="2">Total Semester CH</th>
-                                    <?php $total_semester_ch = $total_semester_ch + $total_ch; ?>
-                                    <th><?php echo $total_ch; ?></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                <tr>
-                                    <th colspan="4">Semester GPA</th>
-                                    <?php $all_semester_quality_points = $all_semester_quality_points + $total_quality_points; ?>
-                                    <th colspan="2"><?php echo  ($total_ch > 0) ? round($total_quality_points/$total_ch, 2) : '0'; ?></th>
-                                </tr>
-                            </table>
-                        </div>
-                    </section>
-                </div>
+                            <tr>
+                                <th colspan="2">Total Semester CH</th>
+                                <?php $total_semester_ch = $total_semester_ch + $total_ch; ?>
+                                <th><?php echo $total_ch; ?></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th colspan="4">Semester GPA</th>
+                                <?php $all_semester_quality_points = $all_semester_quality_points + $total_quality_points; ?>
+                                <th colspan="2">
+                                    <?php echo  ($total_ch > 0) ? round($total_quality_points/$total_ch, 2) : '0'; ?>
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
             </div>
-            <div class="col-lg-6 col-md-12 col-sm-12">
-                <div>
-                    <section class="mt-3">
-                        <div class="mt-2">
-                            <table class="w-100 table-elements table-six-tr"cellpadding="2">
-                                <tr class="pt-5 table-six text-white" style="height: 32px;">
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div>
+                <section class="mt-3">
+                    <div class="mt-2">
+                        <table class="w-100 table-elements table-six-tr" cellpadding="2">
+                            <tr class="pt-5 table-six text-white" style="height: 32px;">
                                 <?php
                                     $que="select * from student_courses sc inner join sessions s on sc.session = s.session_id where sc.semester='8' and sc.roll_no='$roll_no'";
                                     $run=mysqli_query($con,$que);
@@ -819,13 +857,16 @@ $all_semester_quality_points = 0;
                                         $assign_date = date("Y", strtotime($row['assign_date']));;
                                     }
                                 ?>
-                                    <th colspan="2"><div class="d-flex"><span class="mr-5">Semester - 8</span><span class="ml-5"><?php echo  $assign_date. " ".$session; ?> </span></div></th>
-                                    <th>CH</th>
-                                    <th>%</th>
-                                    <th>G.P</th>
-                                    <th>Letter</th>
-                                </tr>
-                                <?php
+                                <th colspan="2">
+                                    <div class="d-flex"><span class="mr-5">Semester - 8</span><span
+                                            class="ml-5"><?php echo  $assign_date. " ".$session; ?> </span></div>
+                                </th>
+                                <th>CH</th>
+                                <th>%</th>
+                                <th>G.P</th>
+                                <th>Letter</th>
+                            </tr>
+                            <?php
                                     $obtain_marks = "";
                                     $total_ch = 0;
                                     $quality_points = 0;
@@ -836,11 +877,11 @@ $all_semester_quality_points = 0;
                                         $gpa = "";
                                         $grade = "";
                                 ?>
-                                <tr>
-                                    <td><?php echo $row['subject_code'] ?></td>
-                                    <td><?php echo $row['subject_name'] ?></td>
-                                    <td><?php echo $row['credit_hours'] ?></td>
-                                    <?php
+                            <tr>
+                                <td><?php echo $row['subject_code'] ?></td>
+                                <td><?php echo $row['subject_name'] ?></td>
+                                <td><?php echo $row['credit_hours'] ?></td>
+                                <?php
                                         $subject = $row['subject_code'];
                                         $result_query = "select * from class_result cr inner join student_courses cs on cr.subject_code = cs.subject_code and cr.roll_no=cs.roll_no where cr.subject_code='$subject' and cr.roll_no='$roll_no'";
                                         $run_result = mysqli_query($con, $result_query);
@@ -849,14 +890,14 @@ $all_semester_quality_points = 0;
                                             $assign_date = date("y", strtotime($result_row['assign_date']));
                                         }
                                     ?>
-                                    <td><?php echo $obtain_marks ?></td>
-                                    <?php
+                                <td><?php echo $obtain_marks ?></td>
+                                <?php
                                         $gpa = gpa($obtain_marks, $assign_date); 
                                         $grade = grade($obtain_marks, $assign_date);
                                     ?>
-                                    <td><?php echo $gpa; ?></td>
-                                    <td><?php echo $grade; ?></td>
-                                    <?php
+                                <td><?php echo $gpa; ?></td>
+                                <td><?php echo $grade; ?></td>
+                                <?php
                                         $total_ch = $total_ch + $row['credit_hours'];
                                         if($obtain_marks>=50){
                                             $quality_points = $gpa * $row['credit_hours'];
@@ -864,37 +905,39 @@ $all_semester_quality_points = 0;
                                             $completed_ch = $completed_ch + $row['credit_hours'];
                                         }
                                     ?>
-                                </tr>
-                                <?php
+                            </tr>
+                            <?php
                                 $obtain_marks = "";
                                     } 
                                 ?>
-                                <tr>
-                                    <th colspan="2">Total Semester CH</th>
-                                    <?php $total_semester_ch = $total_semester_ch + $total_ch; ?>
-                                    <th><?php echo $total_ch; ?></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                <tr>
-                                    <th colspan="4">Semester GPA</th>
-                                    <?php $all_semester_quality_points = $all_semester_quality_points + $total_quality_points; ?>
-                                    <th colspan="2"><?php echo  ($total_ch > 0) ? round($total_quality_points/$total_ch, 2) : '0'; ?></th>
-                                </tr>
-                            </table>
-                        </div>
-                    </section>
-                </div>
+                            <tr>
+                                <th colspan="2">Total Semester CH</th>
+                                <?php $total_semester_ch = $total_semester_ch + $total_ch; ?>
+                                <th><?php echo $total_ch; ?></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th colspan="4">Semester GPA</th>
+                                <?php $all_semester_quality_points = $all_semester_quality_points + $total_quality_points; ?>
+                                <th colspan="2">
+                                    <?php echo  ($total_ch > 0) ? round($total_quality_points/$total_ch, 2) : '0'; ?>
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
             </div>
         </div>
-        <div class="row mb-4">
-            <div class="col-lg-6 col-md-12 col-sm-12">
-                <div>
-                    <section class="mt-3">
-                        <div class="mt-2">
-                            <table class="w-100 table-elements table-six-tr"cellpadding="2">
-                                <tr class="pt-5 table-six text-white" style="height: 32px;">
+    </div>
+    <div class="row mb-4">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div>
+                <section class="mt-3">
+                    <div class="mt-2">
+                        <table class="w-100 table-elements table-six-tr" cellpadding="2">
+                            <tr class="pt-5 table-six text-white" style="height: 32px;">
                                 <?php
                                     $que="select * from student_courses sc inner join sessions s on sc.session = s.session_id where sc.semester='9' and sc.roll_no='$roll_no'";
                                     $run=mysqli_query($con,$que);
@@ -903,13 +946,16 @@ $all_semester_quality_points = 0;
                                         $assign_date = date("Y", strtotime($row['assign_date']));;
                                     }
                                 ?>
-                                    <th colspan="2"><div class="d-flex"><span class="mr-5">Semester - 9</span><span class="ml-5"><?php echo  $assign_date. " ".$session; ?> </span></div></th>
-                                    <th>CH</th>
-                                    <th>%</th>
-                                    <th>G.P</th>
-                                    <th>Letter</th>
-                                </tr>
-                                <?php
+                                <th colspan="2">
+                                    <div class="d-flex"><span class="mr-5">Semester - 9</span><span
+                                            class="ml-5"><?php echo  $assign_date. " ".$session; ?> </span></div>
+                                </th>
+                                <th>CH</th>
+                                <th>%</th>
+                                <th>G.P</th>
+                                <th>Letter</th>
+                            </tr>
+                            <?php
                                     $obtain_marks = "";
                                     $total_ch = 0;
                                     $quality_points = 0;
@@ -920,11 +966,11 @@ $all_semester_quality_points = 0;
                                         $gpa = "";
                                         $grade = "";
                                 ?>
-                                <tr>
-                                    <td><?php echo $row['subject_code'] ?></td>
-                                    <td><?php echo $row['subject_name'] ?></td>
-                                    <td><?php echo $row['credit_hours'] ?></td>
-                                    <?php
+                            <tr>
+                                <td><?php echo $row['subject_code'] ?></td>
+                                <td><?php echo $row['subject_name'] ?></td>
+                                <td><?php echo $row['credit_hours'] ?></td>
+                                <?php
                                         $subject = $row['subject_code'];
                                         $result_query = "select * from class_result cr inner join student_courses cs on cr.subject_code = cs.subject_code and cr.roll_no=cs.roll_no where cr.subject_code='$subject' and cr.roll_no='$roll_no'";
                                         $run_result = mysqli_query($con, $result_query);
@@ -933,14 +979,14 @@ $all_semester_quality_points = 0;
                                             $assign_date = date("y", strtotime($result_row['assign_date']));
                                         }
                                     ?>
-                                    <td><?php echo $obtain_marks ?></td>
-                                    <?php
+                                <td><?php echo $obtain_marks ?></td>
+                                <?php
                                         $gpa = gpa($obtain_marks, $assign_date); 
                                         $grade = grade($obtain_marks, $assign_date);
                                     ?>
-                                    <td><?php echo $gpa; ?></td>
-                                    <td><?php echo $grade; ?></td>
-                                    <?php
+                                <td><?php echo $gpa; ?></td>
+                                <td><?php echo $grade; ?></td>
+                                <?php
                                         $total_ch = $total_ch + $row['credit_hours'];
                                         if($obtain_marks>=50){
                                             $quality_points = $gpa * $row['credit_hours'];
@@ -948,35 +994,37 @@ $all_semester_quality_points = 0;
                                             $completed_ch = $completed_ch + $row['credit_hours'];
                                         }
                                     ?>
-                                </tr>
-                                <?php
+                            </tr>
+                            <?php
                                 $obtain_marks = "";
                                     } 
                                 ?>
-                                <tr>
-                                    <th colspan="2">Total Semester CH</th>
-                                    <?php $total_semester_ch = $total_semester_ch + $total_ch; ?>
-                                    <th><?php echo $total_ch; ?></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                <tr>
-                                    <th colspan="4">Semester GPA</th>
-                                    <?php $all_semester_quality_points = $all_semester_quality_points + $total_quality_points; ?>
-                                    <th colspan="2"><?php echo  ($total_ch > 0) ? round($total_quality_points/$total_ch, 2) : '0'; ?></th>
-                                </tr>
-                            </table>
-                        </div>
-                    </section>
-                </div>
+                            <tr>
+                                <th colspan="2">Total Semester CH</th>
+                                <?php $total_semester_ch = $total_semester_ch + $total_ch; ?>
+                                <th><?php echo $total_ch; ?></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th colspan="4">Semester GPA</th>
+                                <?php $all_semester_quality_points = $all_semester_quality_points + $total_quality_points; ?>
+                                <th colspan="2">
+                                    <?php echo  ($total_ch > 0) ? round($total_quality_points/$total_ch, 2) : '0'; ?>
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
             </div>
-            <div class="col-lg-6 col-md-12 col-sm-12">
-                <div>
-                    <section class="mt-3">
-                        <div class="mt-2">
-                            <table class="w-100 table-elements table-six-tr"cellpadding="2">
-                                <tr class="pt-5 table-six text-white" style="height: 32px;">
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div>
+                <section class="mt-3">
+                    <div class="mt-2">
+                        <table class="w-100 table-elements table-six-tr" cellpadding="2">
+                            <tr class="pt-5 table-six text-white" style="height: 32px;">
                                 <?php
                                     $que="select * from student_courses sc inner join sessions s on sc.session = s.session_id where sc.semester='10' and sc.roll_no='$roll_no'";
                                     $run=mysqli_query($con,$que);
@@ -985,13 +1033,16 @@ $all_semester_quality_points = 0;
                                         $assign_date = date("Y", strtotime($row['assign_date']));;
                                     }
                                 ?>
-                                    <th colspan="2"><div class="d-flex"><span class="mr-5">Semester - 10</span><span class="ml-5"><?php echo  $assign_date. " ".$session; ?> </span></div></th>
-                                    <th>CH</th>
-                                    <th>%</th>
-                                    <th>G.P</th>
-                                    <th>Letter</th>
-                                </tr>
-                                <?php
+                                <th colspan="2">
+                                    <div class="d-flex"><span class="mr-5">Semester - 10</span><span
+                                            class="ml-5"><?php echo  $assign_date. " ".$session; ?> </span></div>
+                                </th>
+                                <th>CH</th>
+                                <th>%</th>
+                                <th>G.P</th>
+                                <th>Letter</th>
+                            </tr>
+                            <?php
                                     $obtain_marks = "";
                                     $total_ch = 0;
                                     $quality_points = 0;
@@ -1002,11 +1053,11 @@ $all_semester_quality_points = 0;
                                         $gpa = "";
                                         $grade = "";
                                 ?>
-                                <tr>
-                                    <td><?php echo $row['subject_code'] ?></td>
-                                    <td><?php echo $row['subject_name'] ?></td>
-                                    <td><?php echo $row['credit_hours'] ?></td>
-                                    <?php
+                            <tr>
+                                <td><?php echo $row['subject_code'] ?></td>
+                                <td><?php echo $row['subject_name'] ?></td>
+                                <td><?php echo $row['credit_hours'] ?></td>
+                                <?php
                                         $subject = $row['subject_code'];
                                         $result_query = "select * from class_result cr inner join student_courses cs on cr.subject_code = cs.subject_code and cr.roll_no=cs.roll_no where cr.subject_code='$subject' and cr.roll_no='$roll_no'";
                                         $run_result = mysqli_query($con, $result_query);
@@ -1015,14 +1066,14 @@ $all_semester_quality_points = 0;
                                             $assign_date = date("y", strtotime($result_row['assign_date']));
                                         }
                                     ?>
-                                    <td><?php echo $obtain_marks ?></td>
-                                    <?php
+                                <td><?php echo $obtain_marks ?></td>
+                                <?php
                                         $gpa = gpa($obtain_marks, $assign_date); 
                                         $grade = grade($obtain_marks, $assign_date);
                                     ?>
-                                    <td><?php echo $gpa; ?></td>
-                                    <td><?php echo $grade; ?></td>
-                                    <?php
+                                <td><?php echo $gpa; ?></td>
+                                <td><?php echo $grade; ?></td>
+                                <?php
                                         $total_ch = $total_ch + $row['credit_hours'];
                                         if($obtain_marks>=50){
                                             $quality_points = $gpa * $row['credit_hours'];
@@ -1030,69 +1081,74 @@ $all_semester_quality_points = 0;
                                             $completed_ch = $completed_ch + $row['credit_hours'];
                                         }
                                     ?>
-                                </tr>
-                                <?php
+                            </tr>
+                            <?php
                                 $obtain_marks = "";
                                     } 
                                 ?>
-                                <tr>
-                                    <th colspan="2">Total Semester CH</th>
-                                    <?php $total_semester_ch = $total_semester_ch + $total_ch; ?>
-                                    <th><?php echo $total_ch; ?></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                <tr>
-                                    <th colspan="2">Total C.H for Graduation</th>
-                                    <th><?php echo $total_semester_ch; ?></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                </tr>
-                                    <th colspan="2">C.H Completed</th>
-                                    <th><?php echo $completed_ch ?></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                <tr>
-                                    <th colspan="4">.</th>
-                                    <th colspan="2">.</th>
-                                </tr>
-                                <tr>
-                                    <th colspan="4">Semester GPA</th>
-                                    <?php $all_semester_quality_points = $all_semester_quality_points + $total_quality_points; ?>
-                                    <th colspan="2"><?php echo  ($total_ch > 0) ? round($total_quality_points/$total_ch, 2) : '0'; ?></th>
-                                </tr>
-                                </tr>
-                                    <th colspan="4">CGPA</th>
-                                    <th colspan="2"><?php echo  ($total_semester_ch > 0) ? round($all_semester_quality_points/$total_semester_ch, 2) : '0'; ?></th>
-                                </tr>
-                            </table>
+                            <tr>
+                                <th colspan="2">Total Semester CH</th>
+                                <?php $total_semester_ch = $total_semester_ch + $total_ch; ?>
+                                <th><?php echo $total_ch; ?></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th colspan="2">Total C.H for Graduation</th>
+                                <th><?php echo $total_semester_ch; ?></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            </tr>
+                            <th colspan="2">C.H Completed</th>
+                            <th><?php echo $completed_ch ?></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            </tr>
+                            <tr>
+                                <th colspan="4">.</th>
+                                <th colspan="2">.</th>
+                            </tr>
+                            <tr>
+                                <th colspan="4">Semester GPA</th>
+                                <?php $all_semester_quality_points = $all_semester_quality_points + $total_quality_points; ?>
+                                <th colspan="2">
+                                    <?php echo  ($total_ch > 0) ? round($total_quality_points/$total_ch, 2) : '0'; ?>
+                                </th>
+                            </tr>
+                            </tr>
+                            <th colspan="4">CGPA</th>
+                            <th colspan="2">
+                                <?php echo  ($total_semester_ch > 0) ? round($all_semester_quality_points/$total_semester_ch, 2) : '0'; ?>
+                            </th>
+                            </tr>
+                        </table>
 
-                        </div>
-                    </section>
-                </div>
+                    </div>
+                </section>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="container-fluid">
-        <div class="row text-center font-weight-bold mb-5">
-            <div class="col-xl-4">PREPARED BY</div>
-            <div class="col-xl-4">DEAN</div>
-            <div class="col-xl-4">CONTROLLER EXAMINATIONS</div>
-        </div>
-    </div><br>
-    <div class="container">
+<div class="container-fluid">
+    <div class="row text-center font-weight-bold mb-5">
+        <div class="col-xl-4">PREPARED BY</div>
+        <div class="col-xl-4">DEAN</div>
+        <div class="col-xl-4">CONTROLLER EXAMINATIONS</div>
+    </div>
+</div><br>
+<div class="container">
 
-<button
-    style="background-color: #007bff; color: #fff; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; font-size: 16px; width:100px;	 margin-left:1050px;"
-    onclick="window.print()">Print</button>
+    <button
+        style="background-color: #007bff; color: #fff; border: none; padding: 10px 15px; cursor: pointer; border-radius: 5px; font-size: 16px; width:100px;	 margin-left:1200px ;margin-bottom:20px;"
+        onclick="window.print()">Download</button>
 
 </div>
 
 </body>
+
 </html>

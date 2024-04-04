@@ -9,35 +9,7 @@
 		 require_once "../common/helper.php";
 		 $universityLogo = getUniversityLogo('University_logo');
 	?>	
-<?php
-    // Code to handle insertion
-    if (isset($_POST['sub'])) {
-        // Retrieve form data
-        $course_code = $_POST['course_code'];
-        $course_name = $_POST['course_name'];
-        $semester_or_year = $_POST['semester_or_year'];
-        $no_of_year = $_POST['no_of_year'];
 
-        // Perform insertion into the database
-		$query = "INSERT INTO courses (course_code, course_name, semester_or_year, no_of_year) VALUES ('$course_code', '$course_name', '$semester_or_year', '$no_of_year') 
-		ON DUPLICATE KEY UPDATE course_name = VALUES(course_name), semester_or_year = VALUES(semester_or_year), no_of_year = VALUES(no_of_year)";
-	  $run = mysqli_query($con, $query);
-        
-    }
-
-    // Code to handle updating
-    if (isset($_POST['update'])) {
-        // Retrieve form data
-        $course_code = $_POST['course_code'];
-        $course_name = $_POST['course_name'];
-        $semester_or_year = $_POST['semester_or_year'];
-        $no_of_year = $_POST['no_of_year'];
-
-        // Perform update in the database
-        $query = "UPDATE courses SET course_name='$course_name', semester_or_year='$semester_or_year', no_of_year='$no_of_year' WHERE course_code='$course_code'";
-        $run = mysqli_query($con, $query);
-    }
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,6 +28,36 @@
             <div class="bar-margin text-center d-flex flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 text-white admin-dashboard pl-3">
                 <h4>Course Management System</h4>
             </div>
+            <?php
+    // Code to handle insertion
+    if (isset($_POST['sub'])) {
+        // Retrieve form data
+        $course_code = $_POST['course_code'];
+        $course_name = $_POST['course_name'];
+        $semester_or_year = $_POST['semester_or_year'];
+        $no_of_year = $_POST['no_of_year'];
+
+        // Perform insertion into the database
+		$query = "INSERT INTO courses (course_code, course_name, semester_or_year, no_of_year) VALUES ('$course_code', '$course_name', '$semester_or_year', '$no_of_year') 
+		ON DUPLICATE KEY UPDATE course_name = VALUES(course_name), semester_or_year = VALUES(semester_or_year), no_of_year = VALUES(no_of_year)";
+	  $run = mysqli_query($con, $query);
+      
+        
+    }
+
+    // Code to handle updating
+    if (isset($_POST['update'])) {
+        // Retrieve form data
+        $course_code = $_POST['course_code'];
+        $course_name = $_POST['course_name'];
+        $semester_or_year = $_POST['semester_or_year'];
+        $no_of_year = $_POST['no_of_year'];
+
+        // Perform update in the database
+        $query = "UPDATE courses SET course_name='$course_name', semester_or_year='$semester_or_year', no_of_year='$no_of_year' WHERE course_code='$course_code'";
+        $run = mysqli_query($con, $query);
+    }
+?>
             <div class="row">
                 <div class="col-md-12">
                     <form action="courses.php" method="post">

@@ -13,21 +13,7 @@
 	?>
 <!---------------- Session Ends form here ------------------------>
 
-<?php
-	$message = "";
-	$account = "";
-if (isset($_POST['submit'])) {
-	$account = $_POST['account'];
-	$user_id = $_POST['user_id'];
-	$que="update login set account='$account' where user_id = '$user_id'";
-	$run=mysqli_query($con,$que);
-	if ($run) { 
-		echo "<div class='alert alert-success' role='alert'>Account Activated Successfully </div>";
-	} else { 
-		echo "<div class='alert alert-danger' role='alert'>Account Not Activated</div>";
-	}
-}
-?>
+
 
 <!doctype html>
 <html lang="en">
@@ -45,6 +31,21 @@ if (isset($_POST['submit'])) {
 				<div class="bar-margin text-center d-flex flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 text-white admin-dashboard pl-3">
 					<h4>User Account Management System </h4>
 				</div>
+				<?php
+	$message = "";
+	$account = "";
+if (isset($_POST['submit'])) {
+	$account = $_POST['account'];
+	$user_id = $_POST['user_id'];
+	$que="update login set account='$account' where user_id = '$user_id'";
+	$run=mysqli_query($con,$que);
+	if ($run) { 
+		echo "<div class='alert alert-success' role='alert'>Account Activated Successfully </div>";
+	} else { 
+		echo "<div class='alert alert-danger' role='alert'>Account Not Activated</div>";
+	}
+}
+?>
 				<div class="row">
 					<div class="container">
 						<div class="row">

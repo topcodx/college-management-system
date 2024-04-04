@@ -15,7 +15,32 @@
 <!---------------- Session Ends form here ------------------------>
 
 <!--*********************** PHP code starts from here for data insertion into database ******************************* -->
-<?php  
+
+
+<!--*********************** PHP code end from here for data insertion into database ******************************* -->
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" href=" <?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>" type="image/x-icon">
+    <title>Admin - Register Teacher</title>
+</head>
+
+<body>
+    <?php include('../common/common-header.php') ?>
+    <?php include('../common/admin-sidebar.php') ?>
+    <main role="main" class="col-xl-10 col-lg-9 col-md-8 ml-sm-auto px-md-4 mb-2 w-100">
+        <div class="sub-main">
+            <div class="text-center d-flex flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 text-white admin-dashboard pl-3">
+                <div class="d-flex">
+                    <h4 class="mr-5">Teacher Management System </h4>
+                    <button type="button" class="btn btn-primary ml-5" data-toggle="modal"
+                        data-target=".bd-example-modal-lg">Add Teacher</button>
+                </div>
+            </div>
+            <?php  
  	if (isset($_POST['btn_save'])) {
 
  		$first_name=$_POST["first_name"];
@@ -62,15 +87,7 @@
 
  		$role=$_POST['role'];
 
-		
-// *****************************************Images upload code starts here********************************************************** 
-
-
-
-
-
-// *****************************************Images upload code end here********************************************************** 
-
+        $teacher_id = " ";
 
  		$query="Insert into teacher_info(first_name,middle_name,last_name,email,phone_no,profile_image,teacher_status,application_status,cnic,dob,other_phone,gender,current_address,ba_complition_date,ba_certificate,ma_complition_date,ma_certificate,last_qualification,hire_date)values
 		('$first_name','$middle_name','$last_name','$email','$phone_no','$profile_image','$teacher_status','$application_status','$cnic','$dob','$other_phone','$gender','$current_address','$ba_complition_date','$ba_certificate','$ma_complition_date','$ma_certificate','$last_qualification','$hire_date')";
@@ -85,9 +102,7 @@
         }
  	}
 ?>
-
-
-<?php  
+            <?php  
 	if (isset($_POST['btn_save2'])) {
 		$course_code=$_POST['course_code'];
 
@@ -112,29 +127,6 @@
 
 	}
 ?>
-<!--*********************** PHP code end from here for data insertion into database ******************************* -->
-
-
-<!doctype html>
-<html lang="en">
-
-<head>
-    <link rel="shortcut icon" href=" <?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>" type="image/x-icon">
-    <title>Admin - Register Teacher</title>
-</head>
-
-<body>
-    <?php include('../common/common-header.php') ?>
-    <?php include('../common/admin-sidebar.php') ?>
-    <main role="main" class="col-xl-10 col-lg-9 col-md-8 ml-sm-auto px-md-4 mb-2 w-100">
-        <div class="sub-main">
-            <div class="text-center d-flex flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 text-white admin-dashboard pl-3">
-                <div class="d-flex">
-                    <h4 class="mr-5">Teacher Management System </h4>
-                    <button type="button" class="btn btn-primary ml-5" data-toggle="modal"
-                        data-target=".bd-example-modal-lg">Add Teacher</button>
-                </div>
-            </div>
             <div class="row w-100">
                 <div class=" col-lg-6 col-md-6 col-sm-12 mt-1 ">
                     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"

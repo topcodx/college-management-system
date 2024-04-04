@@ -10,21 +10,6 @@
 		 $universityLogo = getUniversityLogo('University_logo');
 ?>
 
-<?php
-if (isset($_POST['sub'])) {
-    $teacher_id=$_POST['teacher_id'];
-    $attendance=$_POST['attendance'];
-    $date=date("d-m-y");
-
-    $que="insert into teacher_attendance(teacher_id,attendance,attendance_date)values('$teacher_id','$attendance','$date')";
-    $run=mysqli_query($con,$que);
-    if ($run) {  
-        echo "<div class='alert alert-success' role='alert'>Attandance submitted uccessfully.</div>";
-    } else { 
-        echo "<div class='alert alert-danger' role='alert'>Attendance not submitted. Please try again.</div>";
-    }
-}
-?>
 
 
 <!doctype html>
@@ -43,6 +28,22 @@ if (isset($_POST['sub'])) {
             <div class="bar-margin text-center d-flex flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 text-white admin-dashboard pl-3">
                 <h4>Teacher Attendance Management System </h4>
             </div>
+            <?php
+if (isset($_POST['sub'])) {
+    $teacher_id=$_POST['teacher_id'];
+    $attendance=$_POST['attendance'];
+    $date=date("d-m-y");
+
+    $que="insert into teacher_attendance(teacher_id,attendance,attendance_date)values('$teacher_id','$attendance','$date')";
+    $run=mysqli_query($con,$que);
+    if ($run) {  
+        echo "<div class='alert alert-success' role='alert'>Attandance submitted uccessfully.</div>";
+    } else { 
+        echo "<div class='alert alert-danger' role='alert'>Attendance not submitted. Please try again.</div>";
+    }
+}
+?>
+
             <div class="row">
                 <div class="col-md-12">
                     <form action="teacher-attendance.php" method="post">

@@ -12,7 +12,36 @@
 
 <!--*********************** PHP code starts from here for data insertion into database ******************************* -->
 
-<?php 
+
+
+<!--*********************** PHP code end from here for data insertion into database ******************************* -->
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" href=" <?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>"
+        type="image/x-icon">
+
+    <title>Admin - Teacher Salary</title>
+</head>
+
+<body>
+    <?php include('../common/common-header.php') ?>
+    <?php include('../common/admin-sidebar.php') ?>
+    <main role="main" class="col-xl-10 col-lg-9 col-md-8 ml-sm-auto px-md-4 w-100">
+        <div class="sub-main">
+            <div class="text-center d-flex flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 text-white admin-dashboard pl-3">
+                <div class="d-flex">
+                    <h4 class="mr-5">Teacher Salary Management System </h4>
+                    <button type="button" class="btn btn-primary ml-5 mr-5" data-toggle="modal"
+                        data-target=".bd-example-modal-lg">Add Salary Scale</button>
+                    <button type="button" class="btn btn-primary ml-5" data-toggle="modal" data-target=".add_salary">Add
+                        Salary</button>
+                </div>
+            </div>
+			<?php 
     // Check if the form for saving data is submitted
     if (isset($_POST['btn_save'])) {
         $teacher_id = $_POST["teacher_id"];
@@ -74,171 +103,173 @@
         }
     }
 ?>
-
-
-<!--*********************** PHP code end from here for data insertion into database ******************************* -->
-
-
-<!doctype html>
-<html lang="en">
-	<head>
-	<link rel="shortcut icon" href=" <?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>" type="image/x-icon">
-
-		<title>Admin - Teacher Salary</title>
-	</head>
-	<body>
-		<?php include('../common/common-header.php') ?>
-		<?php include('../common/admin-sidebar.php') ?>
-		<main role="main" class="col-xl-10 col-lg-9 col-md-8 ml-sm-auto px-md-4 w-100">
-			<div class="sub-main">
-				<div class="text-center d-flex flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 text-white admin-dashboard pl-3">
-					<div class="d-flex">
-						<h4 class="mr-5">Teacher Salary Management System </h4>
-						<button type="button" class="btn btn-primary ml-5 mr-5" data-toggle="modal" data-target=".bd-example-modal-lg">Add Salary Scale</button>
-						<button type="button" class="btn btn-primary ml-5" data-toggle="modal" data-target=".add_salary">Add Salary</button>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12 ml-2">
-						<section class=" mt-3">
-							<div class="row">
-								<div class="col-md-8"></div>
-								<div class="col-md-3 ml-5 ">
-									<div class="col-md-12 pt-3 ml-5">
-										<!-- Large modal -->
-										<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-										<div class="modal-dialog modal-lg">
-												<div class="modal-content">
-													<div class="modal-header bg-info text-white">
-														<h4 class="modal-title text-center">Add Salary</h4>
-													</div>
-													<div class="modal-body">
-														<form action="teacher-salary.php" method="post">
-															<div class="row mt-3">
-																<div class="col-md-6 pr-5">
-																	<div class="form-group">
-																		<label for="exampleInputEmail1">Teacher I'd: </label>
-																		<input type="text" name="teacher_id" class="form-control" placeholder="Enter Teacher Id">
-																	</div>
-																</div>
-																<div class="col-md-6 pr-5">
-																	<div class="form-group">
-																		<label for="exampleInputEmail1">Basic Salary:</label>
-																		<input type="text" name="basic_salary" class="form-control" placeholder="Enter Basic Salary">
-																	</div>
-																</div>
-															</div>
-															<div class="row">
-																<div class="col-md-6">
-																	<div class="form-group">
-																		<label for="exampleInputEmail1">Medical Allowance: </label>
-																		<input type="text" name="medical_allowance" class="form-control" placeholder="Enter Medical Allowance">
-																	</div>
-																</div>
-																<div class="col-md-6">
-																	<div class="formp">
-																		<label for="exampleInputEmail1">House Rent Allowance: </label>
-																		<input type="text" name="hr_allowance" class="form-control" placeholder="Enter HR Allowance">
-																	</div>
-																</div>
-															</div>
-															<div class="row">
-																<div class="col-md-6">
-																	<div class="formp">
-																		<label for="exampleInputEmail1">Paid Scale: </label>
-																		<input type="text" name="scale" class="form-control"placeholder="Enter Paid Scale">
-																	</div>
-																</div>
-															</div>
-															<div class="modal-footer">
-																<input type="submit" class="btn btn-primary" name="btn_save" value="Save Data">
-																<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-															</div> 	
-														</form>
-													</div>
-												</div>
-										</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-8"></div>
-								<div class="col-md-3 ml-5 ">
-									<div class="col-md-12 pt-3 ml-5">
-										<!-- Large modal -->
-										<div class="modal fade add_salary" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-										<div class="modal-dialog modal-lg">
-												<div class="modal-content">
-													<div class="modal-header bg-info text-white">
-														<h4 class="modal-title text-center">Add Salary</h4>
-													</div>
-													<div class="modal-body">
-														<form action="teacher-salary.php" method="post">
-															<div class="row mt-3">
-																<div class="col-md-12 pr-5">
-																	<div class="form-group">
-																		<label for="exampleInputEmail1">Teacher I'd: </label>
-																		<input type="text" name="teacher_id" class="form-control" placeholder="Enter Teacher Id">
-																	</div>
-																</div>
-															</div>
-															<div class="modal-footer">
-																<input type="submit" class="btn btn-primary" name="btn_sub" value="Save Data">
-																<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-															</div> 	
-														</form>
-													</div>
-												</div>
-										</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-12">
-									<table class="w-100 table-elements table-three-tr" cellpadding="3">
-										<tr class="table-tr-head table-three text-white">
-											<td colspan="9" class=" text-center text-white"><h4>All Teachers Salary Report</h4></td>
-										</tr>
-										<tr class="table-tr-head">
-											<th>Salary Voucher</th>
-											<th>I'd</th>
-											<th>Name</th>
-											<th>Basic Salary</th>
-											<th>Medical Allowance</th>
-											<th>HR Allowance</th>
-											<th>Pay Scale</th>
-											<th>Paid Date</th>
-											<th>Total Amount</th>
-										</tr>
-										<?php  
+            <div class="row">
+                <div class="col-md-12 ml-2">
+                    <section class=" mt-3">
+                        <div class="row">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-3 ml-5 ">
+                                <div class="col-md-12 pt-3 ml-5">
+                                    <!-- Large modal -->
+                                    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+                                        aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-info text-white">
+                                                    <h4 class="modal-title text-center">Add Salary</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="teacher-salary.php" method="post">
+                                                        <div class="row mt-3">
+                                                            <div class="col-md-6 pr-5">
+                                                                <div class="form-group">
+                                                                    <label for="exampleInputEmail1">Teacher I'd:
+                                                                    </label>
+                                                                    <input type="text" name="teacher_id"
+                                                                        class="form-control"
+                                                                        placeholder="Enter Teacher Id">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 pr-5">
+                                                                <div class="form-group">
+                                                                    <label for="exampleInputEmail1">Basic
+                                                                        Salary:</label>
+                                                                    <input type="text" name="basic_salary"
+                                                                        class="form-control"
+                                                                        placeholder="Enter Basic Salary">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="exampleInputEmail1">Medical Allowance:
+                                                                    </label>
+                                                                    <input type="text" name="medical_allowance"
+                                                                        class="form-control"
+                                                                        placeholder="Enter Medical Allowance">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="formp">
+                                                                    <label for="exampleInputEmail1">House Rent
+                                                                        Allowance: </label>
+                                                                    <input type="text" name="hr_allowance"
+                                                                        class="form-control"
+                                                                        placeholder="Enter HR Allowance">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="formp">
+                                                                    <label for="exampleInputEmail1">Paid Scale: </label>
+                                                                    <input type="text" name="scale" class="form-control"
+                                                                        placeholder="Enter Paid Scale">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <input type="submit" class="btn btn-primary" name="btn_save"
+                                                                value="Save Data">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-3 ml-5 ">
+                                <div class="col-md-12 pt-3 ml-5">
+                                    <!-- Large modal -->
+                                    <div class="modal fade add_salary" tabindex="-1" role="dialog"
+                                        aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-info text-white">
+                                                    <h4 class="modal-title text-center">Add Salary</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="teacher-salary.php" method="post">
+                                                        <div class="row mt-3">
+                                                            <div class="col-md-12 pr-5">
+                                                                <div class="form-group">
+                                                                    <label for="exampleInputEmail1">Teacher I'd:
+                                                                    </label>
+                                                                    <input type="text" name="teacher_id"
+                                                                        class="form-control"
+                                                                        placeholder="Enter Teacher Id">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <input type="submit" class="btn btn-primary" name="btn_sub"
+                                                                value="Save Data">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="w-100 table-elements table-three-tr" cellpadding="3">
+                                    <tr class="table-tr-head table-three text-white">
+                                        <td colspan="9" class=" text-center text-white">
+                                            <h4>All Teachers Salary Report</h4>
+                                        </td>
+                                    </tr>
+                                    <tr class="table-tr-head">
+                                        <th>Salary Voucher</th>
+                                        <th>I'd</th>
+                                        <th>Name</th>
+                                        <th>Basic Salary</th>
+                                        <th>Medical Allowance</th>
+                                        <th>HR Allowance</th>
+                                        <th>Pay Scale</th>
+                                        <th>Paid Date</th>
+                                        <th>Total Amount</th>
+                                    </tr>
+                                    <?php  
 											$query="select tsr.teacher_id,ti.first_name,middle_name,last_name,salary_id,basic_salary,medical_allowance,hr_allowance,scale,Date(paid_date) as paid_date,total_amount from teacher_salary_allowances tsa inner join teacher_salary_report tsr on tsa.teacher_id=tsr.teacher_id inner join teacher_info ti on ti.teacher_id=tsr.teacher_id";
 											$run=mysqli_query($con,$query);
 											while ($row=mysqli_fetch_array($run)) { ?>
-												<tr>
-													<td><?php echo $row['salary_id'] ?></td>
-													<td><?php echo $row['teacher_id'] ?></td>
-													<td><?php echo $row["first_name"]." ".$row["middle_name"]." ".$row["last_name"] ?></td>
-													<td><?php echo $row['basic_salary'] ?></td>
-													<td><?php echo ($row['basic_salary']*$row['medical_allowance']/100) ?></td>
-													<td><?php echo ($row['basic_salary']*$row['hr_allowance']/100) ?></td>
-													<td><?php echo $row['scale'] ?></td>
-													<td><?php echo $row['paid_date'] ?></td>
-													<td><?php echo $row['total_amount'] ?></td>
-												</tr>		
-											<?php
+                                    <tr>
+                                        <td><?php echo $row['salary_id'] ?></td>
+                                        <td><?php echo $row['teacher_id'] ?></td>
+                                        <td><?php echo $row["first_name"]." ".$row["middle_name"]." ".$row["last_name"] ?>
+                                        </td>
+                                        <td><?php echo $row['basic_salary'] ?></td>
+                                        <td><?php echo ($row['basic_salary']*$row['medical_allowance']/100) ?></td>
+                                        <td><?php echo ($row['basic_salary']*$row['hr_allowance']/100) ?></td>
+                                        <td><?php echo $row['scale'] ?></td>
+                                        <td><?php echo $row['paid_date'] ?></td>
+                                        <td><?php echo $row['total_amount'] ?></td>
+                                    </tr>
+                                    <?php
 											}
 										?>
-									</table>
-								</div>
-							</div>				
-						</section>
-					</div>
-				</div>
-			</div>
-		</main>
-		<script type="text/javascript" src="../bootstrap/js/jquery.min.js"></script>
-		<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
-	</body>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script type="text/javascript" src="../bootstrap/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+</body>
+
 </html>

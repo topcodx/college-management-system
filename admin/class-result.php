@@ -12,7 +12,26 @@
 	?>
 <!---------------- Session Ends form here ------------------------>
 
-<?php
+
+	
+
+
+	<!-- title of this page -->
+	<link rel="shortcut icon" href=" <?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>" type="image/x-icon">
+
+		<title>Admin - Class Result</title>
+		
+
+		<?php include('../common/common-header.php') ?>
+		<?php include('../common/admin-sidebar.php') ?>  
+
+		<main role="main" class="col-xl-10 col-lg-9 col-md-8 ml-sm-auto px-md-4 mb-2 w-100">
+			<div class="sub-main">
+				<div class="bar-margin text-center d-flex flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 text-white admin-dashboard pl-3">
+					<h4>Result Management System </h4>
+					<a class="btn btn-outline-primary ml-auto mr-2 text-white" href="add-single-student-results.php">Single Student Result</a>
+				</div>
+				<?php
 $message = "";
 $success_message = "";
 $error_message = "";
@@ -37,24 +56,6 @@ if (isset($_POST['sub'])) {
     }
 }
 ?>
-	
-
-
-	<!-- title of this page -->
-	<link rel="shortcut icon" href=" <?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>" type="image/x-icon">
-
-		<title>Admin - Class Result</title>
-		
-
-		<?php include('../common/common-header.php') ?>
-		<?php include('../common/admin-sidebar.php') ?>  
-
-		<main role="main" class="col-xl-10 col-lg-9 col-md-8 ml-sm-auto px-md-4 mb-2 w-100">
-			<div class="sub-main">
-				<div class="bar-margin text-center d-flex flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 text-white admin-dashboard pl-3">
-					<h4>Result Management System </h4>
-					<a class="btn btn-outline-primary ml-auto mr-2 text-white" href="add-single-student-results.php">Single Student Result</a>
-				</div>
 				<div class="row">
 					<div class="col-md-12">
 						<div class="col-md-12">

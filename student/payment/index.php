@@ -1,57 +1,100 @@
+<?php  
+	session_start(); // Session already started, so no need to call it again
+	if (!$_SESSION["LoginStudent"])
+	{
+		header('location:../login/login.php');
+	}
+	require_once "C:/wamp64/www/college-management-system/connection/connection.php";
+
+	// Include helper.php file
+	require_once "C:\wamp64\www\college-management-system\common\helper.php";
+	$universityLogo = getUniversityLogo('University_logo');
+
+	// Fetch payment amount from the database
+	$roll_no = $_SESSION['LoginStudent']; // Assuming this holds the user's roll number
+    $query = "SELECT amount FROM student_fee WHERE roll_no = '$roll_no' ORDER BY posting_date DESC LIMIT 1"; // Assuming the amount is stored in the student_fee table
+	$result = mysqli_query($con, $query);
+	$row = mysqli_fetch_assoc($result);
+	$paymentAmount = $row['amount'];
+?>
+
+<?php
+require './config.php';
+require '../../vendor/autoload.php';
+
+use Razorpay\Api\Api;
+
+// Check if form is submitted
+if (!empty($_POST['amount'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $amount = $_POST['amount'] * 100;
+    $api = new Api(API_KEY, API_SECRET);
+
+    // Create a Razorpay order
+    $res = $api->order->create([
+        'receipt' => '123',
+        'amount' => $amount,
+        'currency' => 'INR',
+    ]);
+
+    // If order creation is successful
+    if (!empty($res['id'])) {
+        $_SESSION['order_id'] = $res['id'];
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>How to Integrate Razorpay payment gateway in PHP | tutorialswebsite.com</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student - Dashboard</title>
+    <link rel="shortcut icon" href="<?php echo $universityLogo != null ? $universityLogo : './images/LOGO1.JPG' ?>" type="image/x-icon">
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title"><b>VMJ University Payment</b></h4>
-                    </div>
-                    <form action="./checkout.php" method="post">
-                        <div class="panel-body">
-                        
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" class="form-control" name="name" value="test" id="billing_name"
-                                    placeholder="Enter name" required="" autofocus="">
-                            </div>
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="email" class="form-control" name="email" value="test@gmail.com" id="billing_email"
-                                    placeholder="Enter email" required="">
-                            </div>
 
-                            <div class="form-group">
-                                <label>Mobile Number</label>
-                                <input type="number" class="form-control" name="mobile"  value="1234567890" id="billing_mobile"
-                                    min-length="10" max-length="10" placeholder="Enter Mobile Number" required=""
-                                    autofocus="">
-                            </div>
+    <main role="main" class="col-xl-10 col-lg-9 col-md-8 ml-sm-auto px-md-4 mb-2 w-100">
+        <div class="sub-main">
+            <!-- Other content here -->
 
-                            <div class="form-group">
-                                <label>Payment Amount</label>
-                                <input type="text" class="form-control" name="amount" id="payAmount" value="100"
-                                    placeholder="Enter Amount" required="" autofocus="">
-                            </div>
-
-                            <!-- submit button -->
-                            <button type="submit" id="PayNow" class="btn btn-success btn-lg btn-block">Submit & Pay</button>
-                        </div>
+            <div class="d-flex justify-content-end">
+                <!-- Payment form -->
+                
+                <?php if (!empty($paymentAmount)) : ?>
+                    <form action="index.php" method="post">
+                        <script src="https://checkout.razorpay.com/v1/checkout.js"
+                            data-key="<?php echo API_KEY; ?>"
+                            data-amount="<?php echo $paymentAmount * 100; ?>"
+                            data-currency="INR"
+                            data-buttontext="Pay <?php echo $paymentAmount; ?>"
+                            data-name="<?php echo COMPANY_NAME; ?>"
+                            data-description="Company Description"
+                            data-image="<?php echo COMPANY_LOGO_URL; ?>"
+                            data-prefill.name="<?php echo $name; ?>"
+                            data-prefill.email="<?php echo $email; ?>">
+                        </script>
                     </form>
-                </div>
+                <?php endif; ?>
             </div>
+
+            <!-- Other content here -->
         </div>
-    </div>
+    </main>
+
+    <script type="text/javascript" src="../bootstrap/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+
+    <?php
+    // Check if payment success message is set
+    if (!empty($_SESSION['payment_success'])) {
+        echo '<script>alert("Payment successful!");</script>';
+        unset($_SESSION['payment_success']);
+    }
+    ?>
 </body>
 
 </html>

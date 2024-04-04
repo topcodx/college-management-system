@@ -56,6 +56,7 @@
                                 <th>Amount (Rs.)</th>
                                 <th>Posting Date</th>
                                 <th>Status</th>
+                                <th>paid_at</th>
                             </tr>
                             <?php 
 								$roll_no=$_SESSION['LoginStudent'];
@@ -70,16 +71,19 @@
                                 <td><?php echo $row['amount'] ?></td>
                                 <td><?php echo date($row['posting_date']) ?></td>
                                 <td><?php echo $row['status'] ?></td>
+                                <?php if($row['status'] == 'Unpaid') { ?>
+                                <td>
+                                    <a href="payment/index.php" class="btn btn-primary">Pay Now</a>
+                                    <?php } else { ?>
+                                    <?php echo date('Y-m-d H:i:s', strtotime($row['time_of_payment'])); ?>
+                                    <?php } ?>
+                                </td>
                             </tr>
                             <?php	
 									}
 								?>
                         </table>
-                        <div class="mt-3 mb-1 mr-1 d-flex justify-content-end">
-                            <button class="btn btn-primary"
-                                    onclick="window.print()">Print
-                            </button>
-                        </div>
+                        
                     </section>
                 </div>
             </div>
@@ -91,3 +95,25 @@
 </body>
 
 </html>
+
+<?php
+// Check if payment is successful and update the payment status
+if (!empty($_SESSION['order_id'])) {
+    // Assuming '123' is the receipt ID generated earlier
+    $orderId = $_SESSION['order_id'];
+
+    // Your logic to update the payment status to 'Paid' and add the paid timestamp
+    // Example SQL query to update the status
+    // UPDATE student_fee SET status = 'Paid', paid_at = NOW() WHERE receipt_id = '123';
+
+    // After updating the status, unset the order ID session variable
+    unset($_SESSION['order_id']);
+
+    // Set a session variable to display a success message after redirecting back to this page
+    $_SESSION['payment_success'] = true;
+
+    // Redirect back to this page after payment success
+    header('Location: student-fee.php');
+    exit;
+}
+?>

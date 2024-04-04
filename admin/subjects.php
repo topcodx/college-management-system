@@ -9,7 +9,24 @@
     $universityLogo = getUniversityLogo('University_logo');
 
     // Initialize variables for prefilling form data
-    $prefill_subject_code = "";
+?>
+
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="<?php echo $universityLogo != null ? $universityLogo : './images/LOGO1.JPG' ?>" type="image/x-icon">
+    <title>Admin - Subjects</title>
+</head>
+<body>
+    <?php include('../common/common-header.php') ?>
+    <?php include('../common/admin-sidebar.php') ?>
+
+    <main role="main" class="col-xl-10 col-lg-9 col-md-8 ml-sm-auto px-md-4 mb-2 w-100">
+        <div class="sub-main">
+            <div class="bar-margin text-center d-flex flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 text-white admin-dashboard pl-3">
+                <h4>Subject Management System</h4>
+            </div>
+            <?php $prefill_subject_code = "";
     $prefill_subject_name = "";
     $prefill_semester = "";
     $prefill_course_code = "";
@@ -66,23 +83,7 @@
             $prefill_credit_hours = $row['credit_hours'];
         }
     }
-?>
-
-<!doctype html>
-<html lang="en">
-<head>
-    <link rel="shortcut icon" href="<?php echo $universityLogo != null ? $universityLogo : './images/LOGO1.JPG' ?>" type="image/x-icon">
-    <title>Admin - Subjects</title>
-</head>
-<body>
-    <?php include('../common/common-header.php') ?>
-    <?php include('../common/admin-sidebar.php') ?>
-
-    <main role="main" class="col-xl-10 col-lg-9 col-md-8 ml-sm-auto px-md-4 mb-2 w-100">
-        <div class="sub-main">
-            <div class="bar-margin text-center d-flex flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 text-white admin-dashboard pl-3">
-                <h4>Subject Management System</h4>
-            </div>
+    ?>
             <div class="row">
                 <div class="col-md-12">
                     <form action="subjects.php" method="post">

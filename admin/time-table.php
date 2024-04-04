@@ -14,7 +14,34 @@
 <!---------------- Session Ends form here ------------------------>
 
 <!--*********************** PHP code starts from here for data insertion into database ******************************* -->
-<?php 
+
+<!-- ---------------------------------------update time table------------------------------------------------ -->
+
+<!--*********************** PHP code end from here for data insertion into database ******************************* -->
+
+<!doctype html>
+<html lang="en">
+
+<head>
+<link rel="shortcut icon" href=" <?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>" type="image/x-icon">
+
+    <title>Admin - Time Table</title>
+</head>
+
+<body>
+    <?php include('../common/common-header.php') ?>
+    <?php include('../common/admin-sidebar.php') ?>
+
+    <main role="main" class="col-xl-10 col-lg-9 col-md-8 ml-sm-auto px-md-4 mb-2 w-100">
+        <div class="sub-main">
+            <div class="text-center d-flex flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 text-white admin-dashboard pl-3">
+                <div class="d-flex">
+                    <h4 class="mr-5">Time Table Management System </h4>
+                    <button type="button" class="btn btn-primary ml-5" data-toggle="modal"
+                        data-target=".bd-example-modal-lg">Add Time Table</button>
+                </div>
+            </div>
+            <?php 
  
 	if (isset($_POST['btn_save'])) {
 
@@ -70,32 +97,6 @@
         }
 	}
 ?>
-<!-- ---------------------------------------update time table------------------------------------------------ -->
-
-<!--*********************** PHP code end from here for data insertion into database ******************************* -->
-
-<!doctype html>
-<html lang="en">
-
-<head>
-<link rel="shortcut icon" href=" <?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>" type="image/x-icon">
-
-    <title>Admin - Time Table</title>
-</head>
-
-<body>
-    <?php include('../common/common-header.php') ?>
-    <?php include('../common/admin-sidebar.php') ?>
-
-    <main role="main" class="col-xl-10 col-lg-9 col-md-8 ml-sm-auto px-md-4 mb-2 w-100">
-        <div class="sub-main">
-            <div class="text-center d-flex flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 text-white admin-dashboard pl-3">
-                <div class="d-flex">
-                    <h4 class="mr-5">Time Table Management System </h4>
-                    <button type="button" class="btn btn-primary ml-5" data-toggle="modal"
-                        data-target=".bd-example-modal-lg">Add Time Table</button>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-md-12 ml-2">
                     <section class=" mt-3">

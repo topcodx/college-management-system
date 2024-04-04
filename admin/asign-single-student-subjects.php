@@ -22,12 +22,12 @@
 			$date=date("d-m-y");
 			$que="insert into student_courses(course_code,semester,roll_no,subject_code,assign_date)values('".$_POST['course_code'][$i]."','".$_POST['semester'][$i]."','".$_POST['roll_no'][$i]."','".$_POST['subject_code'][$i]."','$date')";
 			$run=mysqli_query($con,$que);
+		
 			if ($run) {
-				$success_message = "All Subjects Successfully Assigned To The Student";
-			}	
-			else{
-				$error_message = "All Subjects Not Successfully Assigned To The Student";
-			}
+                echo "<div class='alert alert-success' role='alert'>All Subjects Successfully Assigned To The Student</div>";
+            } else {
+                echo "<div class='alert alert-danger' role='alert'>All Subjects Not Successfully Assigned To The Student</div>";
+            }
 		}
 	}
 

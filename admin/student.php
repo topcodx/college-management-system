@@ -16,7 +16,38 @@
 
 
 <!--*********************** PHP code starts from here for data insertion into database ******************************* -->
-<?php  
+
+<!--*********************** PHP code end from here for data insertion into database ******************************* -->
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" href=" <?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>"
+        type="image/x-icon">
+    <title>Admin - Register Student</title>
+    <style>
+    .error-message {
+        color: red;
+        display: none;
+    }
+    </style>
+
+</head>
+
+<body>
+    <?php include('../common/common-header.php') ?>
+    <?php include('../common/admin-sidebar.php') ?>
+    <main role="main" class="col-xl-10 col-lg-9 col-md-8 ml-sm-auto px-md-4 w-100">
+        <div class="sub-main">
+            <div class="text-center d-flex flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 text-white admin-dashboard pl-3">
+                <div class="d-flex">
+                    <h4 class="mr-5">Student Management System </h4>
+                    <button type="button" class="btn btn-primary ml-5" data-toggle="modal"
+                        data-target=".bd-example-modal-lg">Add Student</button>
+                </div>
+            </div>
+            <?php  
 function generateRollNumber() {
     // Generate a random 9-digit roll number
     return mt_rand(0, 999);
@@ -110,36 +141,6 @@ $run=mysqli_query($con, $query);
 
 	}
 ?>
-<!--*********************** PHP code end from here for data insertion into database ******************************* -->
-
-<!doctype html>
-<html lang="en">
-
-<head>
-    <link rel="shortcut icon" href=" <?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>"
-        type="image/x-icon">
-    <title>Admin - Register Student</title>
-    <style>
-    .error-message {
-        color: red;
-        display: none;
-    }
-    </style>
-
-</head>
-
-<body>
-    <?php include('../common/common-header.php') ?>
-    <?php include('../common/admin-sidebar.php') ?>
-    <main role="main" class="col-xl-10 col-lg-9 col-md-8 ml-sm-auto px-md-4 w-100">
-        <div class="sub-main">
-            <div class="text-center d-flex flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 text-white admin-dashboard pl-3">
-                <div class="d-flex">
-                    <h4 class="mr-5">Student Management System </h4>
-                    <button type="button" class="btn btn-primary ml-5" data-toggle="modal"
-                        data-target=".bd-example-modal-lg">Add Student</button>
-                </div>
-            </div>
             <div class="col-md-2 pt-3 w-100">
                 <!-- Large modal -->
                 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
@@ -460,7 +461,6 @@ $run=mysqli_query($con, $query);
                             <td width='170'>
                             <?php 
     echo "<a class='btn btn-primary' href='display-student.php?roll_no=".$row['roll_no']."'>Profile</a> 
-          <a class='btn btn-success' href='update-student.php?roll_no=".$row['roll_no']."'>Update</a>
           <a class='btn btn-danger' href='delete-function.php?roll_no=".$row['roll_no']."'>Delete</a>";
 ?>
 
