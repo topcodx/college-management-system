@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 04, 2024 at 01:20 PM
+-- Generation Time: Apr 05, 2024 at 08:33 AM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.13
 
@@ -162,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `login` (
   `Role` varchar(10) NOT NULL,
   `account` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'Deactivate',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `login`
@@ -176,7 +176,8 @@ INSERT INTO `login` (`ID`, `user_id`, `Password`, `Role`, `account`) VALUES
 (89, '', 'VMJ', 'Teacher', 'Deactivate'),
 (90, 'Array', 'VMJ', 'Teacher', 'Deactivate'),
 (91, ' ', 'VMJ', 'Teacher', 'Deactivate'),
-(92, '71', 'VMJ', 'Student', 'Activate');
+(92, '71', 'VMJ', 'Student', 'Activate'),
+(93, '123', 'VMJ', 'Student', 'Activate');
 
 -- --------------------------------------------------------
 
@@ -389,26 +390,20 @@ CREATE TABLE IF NOT EXISTS `student_fee` (
   `paid_at` timestamp NOT NULL,
   PRIMARY KEY (`fee_voucher`),
   KEY `roll_no` (`roll_no`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `student_fee`
 --
 
 INSERT INTO `student_fee` (`fee_voucher`, `roll_no`, `amount`, `posting_date`, `status`, `paid_at`) VALUES
-(16, '147852369', 5000, '2024-03-15 07:31:02', 'Paid', '0000-00-00 00:00:00'),
-(17, '123716694', 5000, '2024-03-22 07:37:39', 'Paid', '0000-00-00 00:00:00'),
-(18, '123716694', 500, '2024-03-22 07:38:49', 'Paid', '0000-00-00 00:00:00'),
-(19, '0', 500, '2024-03-22 07:40:44', 'Paid', '0000-00-00 00:00:00'),
-(20, '147852369', 500, '2024-03-22 07:43:47', 'Paid', '0000-00-00 00:00:00'),
-(21, '716', 5000, '2024-04-04 06:24:07', 'Paid', '0000-00-00 00:00:00'),
-(22, '716', 5000, '2024-04-04 06:25:53', 'Paid', '0000-00-00 00:00:00'),
-(23, '716', 5000, '2024-04-04 06:27:01', 'Paid', '0000-00-00 00:00:00'),
-(24, '716', 5000, '2024-04-04 06:27:17', 'Paid', '0000-00-00 00:00:00'),
-(25, '716', 5000, '2024-04-04 06:27:25', 'Paid', '0000-00-00 00:00:00'),
-(26, '716', 14500, '2024-04-04 06:27:41', 'Paid', '0000-00-00 00:00:00'),
-(37, '71', 9000, '2024-04-04 12:05:34', 'Unpaid', '0000-00-00 00:00:00'),
-(38, '71', 14295, '2024-04-04 12:20:02', 'Unpaid', '0000-00-00 00:00:00');
+(63, '71', 5000, '2024-04-05 07:21:58', 'Paid', '2024-04-05 07:21:58'),
+(64, '71', 10000, '2024-04-05 07:20:29', 'Paid', '2024-04-05 07:20:29'),
+(65, '71', 5000, '2024-04-05 07:29:52', 'Paid', '2024-04-05 07:29:52'),
+(66, '71', 4000, '2024-04-05 07:28:49', 'Paid', '2024-04-05 07:28:49'),
+(67, '71', 1452, '2024-04-05 07:25:25', 'Paid', '2024-04-05 07:25:25'),
+(68, '71', 500, '2024-04-05 07:35:35', 'Paid', '0000-00-00 00:00:00'),
+(69, '71', 1000, '2024-04-05 07:36:01', 'Paid', '2024-04-05 02:06:01');
 
 -- --------------------------------------------------------
 
@@ -454,6 +449,7 @@ CREATE TABLE IF NOT EXISTS `student_info` (
   `obtain_marks` int NOT NULL,
   `state` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'N/A',
   `admission_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `paid_at` timestamp NOT NULL,
   PRIMARY KEY (`roll_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -461,8 +457,9 @@ CREATE TABLE IF NOT EXISTS `student_info` (
 -- Dumping data for table `student_info`
 --
 
-INSERT INTO `student_info` (`roll_no`, `first_name`, `middle_name`, `last_name`, `father_name`, `email`, `mobile_no`, `course_code`, `session`, `profile_image`, `prospectus_issued`, `prospectus_amount`, `form_b`, `applicant_status`, `application_status`, `cnic`, `dob`, `other_phone`, `gender`, `permanent_address`, `current_address`, `place_of_birth`, `matric_complition_date`, `matric_awarded_date`, `matric_certificate`, `fa_complition_date`, `fa_awarded_date`, `fa_certificate`, `ba_complition_date`, `ba_awarded_date`, `ba_certificate`, `semester`, `total_marks`, `obtain_marks`, `state`, `admission_date`) VALUES
-(71, 'jogani', 'vidhi', 'nareshbahi', 'N/A', 'vidhi@gmail.com', '1478523690', 'MIT', 'S19', 'student.jpg', 'N/A', 'N/A', 'N/A', 'N/A', 'Admitted', '', '', 'N/A', 'Female', 'N/A', 'varchha', 'N/A', '', 'N/A', '', '', 'N/A', '', 'N/A', 'N/A', 'N/A', 0, 0, 0, 'N/A', '2024-04-04 06:59:17');
+INSERT INTO `student_info` (`roll_no`, `first_name`, `middle_name`, `last_name`, `father_name`, `email`, `mobile_no`, `course_code`, `session`, `profile_image`, `prospectus_issued`, `prospectus_amount`, `form_b`, `applicant_status`, `application_status`, `cnic`, `dob`, `other_phone`, `gender`, `permanent_address`, `current_address`, `place_of_birth`, `matric_complition_date`, `matric_awarded_date`, `matric_certificate`, `fa_complition_date`, `fa_awarded_date`, `fa_certificate`, `ba_complition_date`, `ba_awarded_date`, `ba_certificate`, `semester`, `total_marks`, `obtain_marks`, `state`, `admission_date`, `paid_at`) VALUES
+(71, 'jogani', 'vidhi', 'nareshbahi', 'N/A', 'vidhi@gmail.com', '1478523690', 'MIT', 'S19', 'student.jpg', 'N/A', 'N/A', 'N/A', 'N/A', 'Admitted', '', '', 'N/A', 'Female', 'N/A', 'varchha', 'N/A', '', 'N/A', '', '', 'N/A', '', 'N/A', 'N/A', 'N/A', 0, 0, 0, 'N/A', '2024-04-04 06:59:17', '0000-00-00 00:00:00'),
+(123, 'patel', 'gopi', 's', 'N/A', 'gopi@gmail.com', '1478523690', 'MCS', 'Select Ses', 'student.jpg', 'N/A', 'N/A', 'N/A', 'N/A', 'Select Option', '', '', 'N/A', 'Female', 'N/A', '', 'N/A', '', 'N/A', '', '', 'N/A', '', 'N/A', 'N/A', 'N/A', 0, 0, 0, 'N/A', '2024-04-05 06:31:56', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
