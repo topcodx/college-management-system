@@ -37,9 +37,9 @@ if (isset($_POST['sub'])) {
 		$que="insert into student_fee(roll_no,amount,status)values('$roll_no','$amount','$status')";
 		$run=mysqli_query($con,$que);
 		if ($run) {  
-            echo "<div class='alert alert-success' role='alert'>Your Data has received.</div>";
+            echo "<div class='alert alert-success' role='alert'> Data send successfully</div>";
         } else { 
-            echo "<div class='alert alert-danger' role='alert'>your Data has not received. Please try again.</div>";
+            echo "<div class='alert alert-danger' role='alert'>data not send. Please try again.</div>";
         }
 	}
 
@@ -112,8 +112,9 @@ if (isset($_POST['sub'])) {
 									}
 								?>
 									<div class="d-flex justify-content-end">
-										<input type="submit" name="sub"  class="btn btn-success px-4 ml-4 mb-2 mt-2">
-									</div>
+    <input type="submit" name="sub" class="btn btn-success px-4 ml-4 mr-2 mb-2 mt-2">
+</div>
+
 								</form>
 							</table>				
 						</section>

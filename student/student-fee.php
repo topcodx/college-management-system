@@ -1,17 +1,15 @@
-<!---------------- Session starts form here ----------------------->
 <?php  
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-	session_start();
-	if (!$_SESSION["LoginStudent"])
-	{
-		header('location:../login/login.php');
-	}
-		require_once "../connection/connection.php";
+session_start();
+if (!$_SESSION["LoginStudent"]) {
+    header('location:../login/login.php');
+}
+require_once "../connection/connection.php";
 
-		// Include helper.php file
-		require_once "../common/helper.php";
-		$universityLogo = getUniversityLogo('University_logo');
+// Include helper.php file
+require_once "../common/helper.php";
+$universityLogo = getUniversityLogo('University_logo');
 
 require '../student/payment/config.php';
 require '../vendor/autoload.php';
@@ -37,18 +35,33 @@ if (!empty($_POST['amount'])) {
         $_SESSION['order_id'] = $res['id'];
     }
 }
-	?>
-<!---------------- Session Ends form here ------------------------>
+// Process payment completion
+if (!empty($_POST['razorpay_payment_id']) && !empty($_POST['voucher'])) {
+    $payment_id = $_POST['razorpay_payment_id'];
+    $voucher = $_POST['voucher'];
 
+    // Update payment status and paid at timestamp in the database
+    $update_query = "UPDATE student_fee SET status = 'Paid', paid_at = NOW() WHERE fee_voucher = '$voucher'";
+    $result = mysqli_query($con, $update_query);
+    if ($result) {
+        echo "Payment successful!"; // Debugging message
+        echo date('Y-m-d H:i:s'); // Debugging message
+        exit; // Exit to prevent further output
+    } else {
+        http_response_code(500); // Internal server error
+        exit("Error updating database: " . mysqli_error($con)); // Debugging message
+    }
+}
 
-<!doctype html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <link rel="shortcut icon" href=" <?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>"
-        type="image/x-icon">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student - Fees</title>
+    <link rel="shortcut icon" href="<?php echo $universityLogo != null ?  $universityLogo : './images/LOGO1.JPG' ?>" type="image/x-icon">
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 
@@ -62,17 +75,13 @@ if (!empty($_POST['amount'])) {
                 <h4 class="">Student Fee Summary</h4>
             </div>
 
-            <div class="d-flex justify-content-end">
-                <a href="payment/index.php" type="button" class="btn btn-primary">PAY NOW</a>
-            </div>
-
             <div class="row">
                 <div class="col-md-12">
                     <section class="border mt-3">
                         <table class="w-100 table-striped table-hover table-dark" cellpadding="10">
                             <tr>
                                 <th colspan="9">
-                                    <h4 class="text-center">Student Fee Detail</h4 class="text-center">
+                                    <h4 class="text-center">Student Fee Detail</h4>
                                 </th>
                             </tr>
                             <tr>
@@ -86,40 +95,40 @@ if (!empty($_POST['amount'])) {
                                 <th>Paid At</th>
                             </tr>
                             <?php 
-								$roll_no=$_SESSION['LoginStudent'];
-									$query="select fee_voucher,student_fee.roll_no,first_name,middle_name,last_name,course_code,amount,date(posting_date) as posting_date,status from student_fee inner join student_info on student_fee.roll_no=student_info.roll_no where student_fee.roll_no='$roll_no'";
-									$run=mysqli_query($con,$query);
-									while ($row=mysqli_fetch_array($run)) { ?>
-                            <tr>
-                                <td><?php echo $row['fee_voucher'] ?></td>
-                                <td><?php echo $row['roll_no'] ?></td>
-                                <td><?php echo $row['first_name']." ".$row['middle_name']." ".$row['last_name'] ?></td>
-                                <td><?php echo $row['course_code'] ?></td>
-                                <td><?php echo $row['amount'] ?></td>
-                                <td><?php echo date($row['posting_date']) ?></td>
-                                <td><?php echo $row['status'] ?></td>
-                                <?php if($row['status'] == 'Unpaid') { ?>
-                                <td>
-                                    <a href="javascript:void(0);" type="button" class="btn btn-primary pay_now"
-                                            data-amount="<?php echo ($row['amount'] * 100); ?>"
-                                            data-user-name="<?php echo $row['first_name']." ".$row['middle_name']." ".$row['last_name']; ?>"
-                                    >Pay</a>
-
-                                    <?php } else { ?>
-                                    <?php echo date('Y-m-d H:i:s', strtotime($row['time_of_payment'])); ?>
-                                    <?php } ?>
-                                </td>
-                            </tr>
-                            <?php	
-									}
-								?>
+                                $roll_no=$_SESSION['LoginStudent'];
+                                $query="select fee_voucher,student_fee.roll_no,first_name,middle_name,last_name,course_code,amount,date(posting_date) as posting_date,status,paid_at from student_fee inner join student_info on student_fee.roll_no=student_info.roll_no where student_fee.roll_no='$roll_no'";
+                                $run=mysqli_query($con,$query);
+                                while ($row=mysqli_fetch_array($run)) { ?>
+                                    <tr>
+                                        <td><?php echo $row['fee_voucher'] ?></td>
+                                        <td><?php echo $row['roll_no'] ?></td>
+                                        <td><?php echo $row['first_name']." ".$row['middle_name']." ".$row['last_name'] ?></td>
+                                        <td><?php echo $row['course_code'] ?></td>
+                                        <td><?php echo $row['amount'] ?></td>
+                                        <td><?php echo date($row['posting_date']) ?></td>
+                                        <td><?php echo $row['status'] ?></td>
+                                        <td>
+                                            <?php if($row['status'] == 'Unpaid') { ?>
+                                                <a href="javascript:void(0);" type="button" class="btn btn-primary pay_now"
+                                                    data-amount="<?php echo ($row['amount'] * 100); ?>"
+                                                    data-voucher="<?php echo $row['fee_voucher']; ?>"
+                                                    data-user-name="<?php echo $row['first_name']." ".$row['middle_name']." ".$row['last_name']; ?>"
+                                                >Pay</a>
+                                            <?php } else {
+                                                echo date('Y-m-d H:i:s', strtotime($row['paid_at']));
+                                            } ?>
+                                        </td>
+                                    </tr>
+                                <?php   
+                                }
+                            ?>
                         </table>
                     </section>
                 </div>
             </div>
         </div>
     </main>
-   
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <script>
@@ -127,7 +136,7 @@ if (!empty($_POST['amount'])) {
 
             let userName = $(this).data('user-name');
             let amount = $(this).data('amount');
-
+            let voucher = $(this).data('voucher');
 
             // Create Razorpay options
             var options = {
@@ -135,15 +144,28 @@ if (!empty($_POST['amount'])) {
                 amount: amount,
                 currency: 'INR',
                 name: '<?php echo COMPANY_NAME; ?>',
-                description: 'Colleage Management System',
+                description: 'College Management System',
                 image: '<?php echo COMPANY_LOGO_URL; ?>',
                 prefill: {
                     name: userName
                 },
                 handler: function(response) {
-                    // Handle payment success
-                    alert('Payment successful! Payment ID: ' + response.razorpay_payment_id);
-                    // You can also redirect or perform other actions here
+                    var payment_id = response.razorpay_payment_id;
+                    $.ajax({
+                        type: 'POST',
+                        url: '<?php echo $_SERVER['PHP_SELF']; ?>',
+                        data: { razorpay_payment_id: payment_id, voucher: voucher },
+                        success: function(response) {
+                            // Update table on success
+                            $('.pay_now[data-voucher="' + voucher + '"]').closest('tr').find('td:last').html(response);
+                            $('.pay_now[data-voucher="' + voucher + '"]').addClass('hidden');
+                            alert('Payment successful!');
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(xhr.responseText);
+                            alert('An error occurred while processing your payment.');
+                        }
+                    });
                 }
             };
 
